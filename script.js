@@ -731,7 +731,7 @@ function renderProducts(products, container, isHero = false) {
 
         card.innerHTML = `
             <div class="product-image-container" style="position:relative;">
-                <img src="${imgSrc}" alt="${product.nombre}" class="product-img" loading="lazy" onerror="handleImageError(this)">
+                <img src="${imgSrc}" alt="${product.nombre}" class="product-img" onerror="handleImageError(this)">
                 <div class="img-fallback" style="display: ${imgSrc ? 'none' : 'flex'};">Imagen no disponible</div>
             </div>
             <div class="product-info">
