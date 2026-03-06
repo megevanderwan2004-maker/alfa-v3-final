@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administración | ALFA Car Audio</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="admin.css">
+</head>
+
+<body>
+    <script>
+        // Auth check before rendering body content
+        if (sessionStorage.getItem('alfa_admin_auth') !== 'true') {
+            window.location.href = 'index.html';
+        }
+    </script>
+
+    <div class="admin-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>ALFA <span>Admin</span></h2>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#" class="active"><i class="fa-solid fa-box"></i> Productos</a>
+            </nav>
+            <div class="sidebar-footer">
+                <button id="btn-logout" class="btn-sidebar"><i class="fa-solid fa-sign-out-alt"></i> Cerrar
+                    Sesión</button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+            <header class="topbar">
+                <h1>Gestión de Catálogo</h1>
+                <div class="topbar-actions">
+                    <button class="btn-gold" id="btn-add-product"><i class="fa-solid fa-plus"></i> Nuevo
+                        Producto</button>
+                    <button class="btn-gold" id="btn-export-catalog"
+                        style="margin-left: 10px; background: #fff; color: #000;"><i class="fa-solid fa-save"></i>
+                        SAUVEGARDER LES MODIFICATIONS</button>
+                </div>
+            </header>
+
+            <div class="content-panel">
+                <div class="table-container">
+                    <table id="products-table">
+                        <thead>
+                            <tr>
+                                <th>Imagen</th>
+                                <th>SKU</th>
+                                <th>Nombre</th>
+                                <th>Categoría</th>
+                                <th>Precio ($)</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table-body">
+                            <!-- Injected via JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal Form -->
+    <div id="product-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3 id="modal-title">Agregar Producto</h3>
+            <form id="product-form">
+                <input type="hidden" id="prod-id">
+
+                <div class="form-group">
+                    <label>Nombre del Producto *</label>
+                    <input type="text" id="prod-name" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>SKU</label>
+                        <input type="text" id="prod-sku">
+                    </div>
+                    <div class="form-group">
+                        <label>Precio ($) *</label>
+                        <input type="number" id="prod-price" step="0.01" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Categoría *</label>
+                    <input type="text" id="prod-category" placeholder="Ej. amplificadores, subwoofers..." required>
+                </div>
+
+                <div class="form-group">
+                    <label>Descripción</label>
+                    <textarea id="prod-desc" rows="3"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Nom du fichier image (ex: maphoto.jpg)</label>
+                    <input type="text" id="prod-image" placeholder="ex: KFOLEALS2880.jpg">
+                    <small>Le fichier doit être placé manuellement dans le dossier /images/.</small>
+                    <div id="img-preview" class="img-preview"></div>
+                </div>
+
+                <button type="submit" class="btn-save">Guardar Cambios</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Load data -->
+    <script src="catalog.js"></script>
+
+    <script src="admin.js"></script>
+</body>
+
+</html>

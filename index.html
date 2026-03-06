@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALFA Car Audio | Premium Sound Systems</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;800&display=swap"
+        rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- AOS CSS for animations -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Fallback if JS is disabled or AOS completely fails -->
+    <noscript>
+        <style>
+            [data-aos] {
+                opacity: 1 !important;
+                transform: translate(0) scale(1) !important;
+            }
+        </style>
+    </noscript>
+
+    <!-- Navigation -->
+    <header class="navbar" id="navbar">
+        <div class="container nav-content">
+            <h1 class="logo">ALFA <span>Car Audio</span></h1>
+            <nav class="nav-links">
+                <a href="#home">Inicio</a>
+                <a href="#catalog">Catálogo</a>
+                <a href="#contact">Contacto</a>
+                <!-- Admin login trigger -->
+                <button id="btn-cuenta" class="btn-outline-gold"><i class="fa-solid fa-user"></i> Cuenta</button>
+            </nav>
+            <div class="mobile-menu-btn" id="mobile-menu-btn">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content" data-aos="fade-up">
+            <h2 class="hero-title">Tu Sonido, <br>Nuestra Pasión</h2>
+            <p class="hero-subtitle">Distribuidor Oficial de Sistemas de Audio Premium para Automóviles.</p>
+            <a href="#catalog" class="btn-gold">Ver Catálogo</a>
+        </div>
+        <div class="hero-overlay"></div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Catalog Section -->
+        <section id="catalog" class="catalog-section container">
+            <div class="section-title-wrapper" data-aos="fade-up">
+                <h2 class="section-title">Nuestro Catálogo</h2>
+                <div class="title-underline"></div>
+            </div>
+
+            <!-- Dynamic Filters -->
+            <div class="filters-container" id="filters-container" data-aos="fade-up" data-aos-delay="100">
+                <button class="filter-btn active" data-filter="all">Todos</button>
+                <!-- Other filters injected via JS -->
+            </div>
+
+            <!-- Products Grid -->
+            <div id="gallery-grid" class="catalog-grid">
+                <!-- Products will be injected here via JS -->
+            </div>
+
+            <!-- Loading and Empty States -->
+            <div id="loading-spinner" class="spinner-container">
+                <div class="spinner"></div>
+            </div>
+
+            <div id="empty-state" class="empty-state" style="display: none;">
+                <i class="fa-solid fa-box-open fa-3x"></i>
+                <p>No se encontraron productos.</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer id="contact" class="footer">
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <h3>ALFA <span>Car Audio</span></h3>
+                <p>Calidad de sonido inigualable para tu vehículo.</p>
+            </div>
+            <div class="footer-social">
+                <a href="#" class="social-link" id="footer-wa-link"><i class="fa-brands fa-whatsapp"></i></a>
+                <a href="#" class="social-link"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="social-link"><i class="fa-brands fa-facebook"></i></a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 ALFA Car Audio. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="#" class="floating-wa" id="floating-wa" target="_blank" aria-label="Contact us on WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- Password Modal for Admin -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-header">
+                <h3>Acceso Empleados</h3>
+            </div>
+            <div class="modal-body">
+                <p>Ingrese la contraseña para acceder al panel de administración.</p>
+                <input type="password" id="admin-password" placeholder="Contraseña..." class="input-dark">
+                <p id="login-error" class="error-msg"></p>
+                <button id="btn-login-submit" class="btn-gold mt-4">Acceder</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Data source strictly from catalog.js -->
+    <script src="catalog.js"></script>
+
+    <!-- Third-party Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- Application Logic -->
+    <script src="script.js"></script>
+</body>
+
+</html>

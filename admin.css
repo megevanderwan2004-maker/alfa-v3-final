@@ -1,0 +1,409 @@
+/* =========================================
+   ALFA CAR AUDIO - V3 PROPRE ADMIN (Black Dashboard)
+   ========================================= */
+
+:root {
+    --bg-darker: #050505;
+    --bg-sidebar: #0f0f0f;
+    --bg-panel: #161616;
+
+    --gold-primary: #D4AF37;
+    --gold-hover: #BF953F;
+
+    --text-primary: #f0f0f0;
+    --text-secondary: #999;
+
+    --border: #222;
+    --transition: 0.2s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--bg-darker);
+    color: var(--text-primary);
+    overflow: hidden;
+    /* App view */
+}
+
+.admin-layout {
+    display: flex;
+    height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    background: var(--bg-sidebar);
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-header {
+    padding: 20px;
+    border-bottom: 1px solid var(--border);
+}
+
+.sidebar-header h2 {
+    font-size: 1.4rem;
+    font-weight: 800;
+}
+
+.sidebar-header h2 span {
+    color: var(--gold-primary);
+    font-weight: 400;
+}
+
+.sidebar-nav {
+    flex: 1;
+    padding: 20px 0;
+}
+
+.sidebar-nav a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 25px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.sidebar-nav a:hover,
+.sidebar-nav a.active {
+    color: #fff;
+    background: rgba(212, 175, 55, 0.1);
+    border-left: 3px solid var(--gold-primary);
+}
+
+.sidebar-footer {
+    padding: 20px;
+    border-top: 1px solid var(--border);
+}
+
+.btn-sidebar {
+    width: 100%;
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    text-align: left;
+    cursor: pointer;
+    font-size: 1rem;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    transition: var(--transition);
+}
+
+.btn-sidebar:hover {
+    color: #ff4d4d;
+}
+
+/* Main Area */
+.admin-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.topbar {
+    padding: 20px 30px;
+    background: var(--bg-panel);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.topbar h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.topbar-actions {
+    display: flex;
+    gap: 15px;
+}
+
+.btn-gold {
+    background: var(--gold-primary);
+    color: #000;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    gap: 8px;
+    align-items: center;
+    transition: var(--transition);
+}
+
+.btn-gold:hover {
+    background: var(--gold-hover);
+    transform: translateY(-2px);
+}
+
+.btn-outline {
+    background: transparent;
+    color: var(--text-primary);
+    border: 1px solid var(--border);
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    display: inline-flex;
+    gap: 8px;
+    align-items: center;
+    transition: var(--transition);
+}
+
+.btn-outline:hover {
+    background: #333;
+}
+
+.content-panel {
+    padding: 30px;
+}
+
+.table-container {
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    background: rgba(0, 0, 0, 0.5);
+    border-bottom: 1px solid var(--border);
+}
+
+th {
+    padding: 15px;
+    text-align: left;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+td {
+    padding: 15px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+tr:hover {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.thumb {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 4px;
+    background: #000;
+}
+
+.no-thumb {
+    width: 40px;
+    height: 40px;
+    background: #222;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    color: #666;
+    text-align: center;
+}
+
+.badge {
+    background: #333;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+}
+
+.btn-action {
+    background: transparent;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    color: var(--text-secondary);
+    margin-right: 10px;
+    transition: var(--transition);
+}
+
+.btn-action.edit:hover {
+    color: var(--gold-primary);
+}
+
+.btn-action.delete:hover {
+    color: #ff4d4d;
+}
+
+/* Modal Form */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal.active {
+    display: flex;
+    animation: fadeIn 0.2s;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.modal-content {
+    background: var(--bg-sidebar);
+    width: 90%;
+    max-width: 600px;
+    border-radius: 8px;
+    padding: 30px;
+    border: 1px solid var(--border);
+    position: relative;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.close-modal {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--text-secondary);
+}
+
+.close-modal:hover {
+    color: #fff;
+}
+
+.modal-content h3 {
+    margin-bottom: 20px;
+    color: var(--gold-primary);
+    font-size: 1.2rem;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-row {
+    display: flex;
+    gap: 15px;
+}
+
+.form-row .form-group {
+    flex: 1;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group textarea {
+    width: 100%;
+    background: #000;
+    border: 1px solid #333;
+    border-radius: 4px;
+    padding: 10px;
+    color: #fff;
+    font-family: inherit;
+    font-size: 0.9rem;
+    transition: var(--transition);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: var(--gold-primary);
+    outline: none;
+}
+
+.check-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.check-group input[type="checkbox"] {
+    accent-color: var(--gold-primary);
+    width: 16px;
+    height: 16px;
+}
+
+.btn-save {
+    width: 100%;
+    background: var(--gold-primary);
+    color: #000;
+    border: none;
+    padding: 12px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: var(--transition);
+}
+
+.btn-save:hover {
+    background: var(--gold-hover);
+}
+
+small {
+    color: #888;
+    font-size: 0.75rem;
+    display: block;
+    margin-top: 5px;
+}
+
+.img-preview {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.img-preview img {
+    max-width: 100%;
+    max-height: 150px;
+    border-radius: 4px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
