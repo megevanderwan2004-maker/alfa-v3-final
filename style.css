@@ -60,10 +60,9 @@ body {
     position: absolute;
     width: 150px;
     height: 2px;
-    background: linear-gradient(-45deg, var(--red-sport), rgba(0, 0, 255, 0));
+    background: linear-gradient(to right, rgba(217, 4, 41, 0), var(--red-sport));
     border-radius: 999px;
     filter: drop-shadow(0 0 6px var(--red-sport));
-    animation: tail 2500ms ease-in-out infinite, shooting 2500ms ease-in-out infinite;
 }
 
 .shooting-star::before,
@@ -114,119 +113,225 @@ body {
     }
 }
 
-@keyframes shooting {
+@keyframes shoot-tl-br {
     0% {
-        transform: translateX(0) translateY(0) rotate(-45deg);
+        transform: translate(-100px, -100px) rotate(-45deg);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
     }
 
     100% {
-        transform: translateX(100vw) translateY(100vh) rotate(-45deg);
+        transform: translate(120vw, 120vh) rotate(-45deg);
+        opacity: 0.5;
+    }
+}
+
+@keyframes shoot-tr-bl {
+    0% {
+        transform: translate(100px, -100px) rotate(-135deg);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(-120vw, 120vh) rotate(-135deg);
+        opacity: 0.5;
+    }
+}
+
+@keyframes shoot-bl-tr {
+    0% {
+        transform: translate(-100px, 100px) rotate(45deg);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(120vw, -120vh) rotate(45deg);
+        opacity: 0.5;
+    }
+}
+
+@keyframes shoot-br-tl {
+    0% {
+        transform: translate(100px, 100px) rotate(135deg);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(-120vw, -120vh) rotate(135deg);
+        opacity: 0.5;
+    }
+}
+
+@keyframes shoot-l-r {
+    0% {
+        transform: translate(-100px, 0) rotate(0deg);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(120vw, 0) rotate(0deg);
+        opacity: 0.5;
+    }
+}
+
+@keyframes shoot-r-l {
+    0% {
+        transform: translate(100px, 0) rotate(180deg);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(-120vw, 0) rotate(180deg);
+        opacity: 0.5;
+    }
+}
+
+@keyframes shoot-t-b {
+    0% {
+        transform: translate(0, -100px) rotate(90deg);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(0, 120vh) rotate(90deg);
+        opacity: 0.5;
     }
 }
 
 /* 15 stars with varied delays and positions */
 .star-1 {
     top: 10%;
-    left: -10vw;
+    left: 10%;
+    animation: tail 3s ease-in infinite, shoot-tl-br 3s ease-in infinite;
     animation-delay: 0s;
 }
 
 .star-2 {
-    top: 40%;
-    left: -10vw;
-    animation-delay: 1.5s;
-    opacity: 0.6;
+    top: 70%;
+    left: 80%;
+    animation: tail 2.5s ease-in infinite, shoot-br-tl 2.5s ease-in infinite;
+    animation-delay: 1.2s;
 }
 
 .star-3 {
-    top: 70%;
-    left: -10vw;
-    animation-delay: 2.1s;
-    opacity: 0.8;
+    top: 20%;
+    left: 90%;
+    animation: tail 4s ease-in infinite, shoot-tr-bl 4s ease-in infinite;
+    animation-delay: 0.5s;
 }
 
 .star-4 {
-    top: 20%;
-    left: 10vw;
-    animation-delay: 0.7s;
+    top: 80%;
+    left: 10%;
+    animation: tail 3.2s ease-in infinite, shoot-bl-tr 3.2s ease-in infinite;
+    animation-delay: 2.1s;
 }
 
 .star-5 {
-    top: 80%;
-    left: 30vw;
-    animation-delay: 3.5s;
-    opacity: 0.5;
+    top: 50%;
+    left: 0%;
+    animation: tail 2.8s ease-in infinite, shoot-l-r 2.8s ease-in infinite;
+    animation-delay: 1.5s;
 }
 
 .star-6 {
-    top: 15%;
-    left: -5vw;
-    animation-delay: 4.2s;
-    opacity: 0.7;
+    top: 40%;
+    left: 100%;
+    animation: tail 3.5s ease-in infinite, shoot-r-l 3.5s ease-in infinite;
+    animation-delay: 0.8s;
 }
 
 .star-7 {
-    top: 55%;
-    left: 40vw;
-    animation-delay: 1.1s;
-    opacity: 0.9;
+    top: 0%;
+    left: 50%;
+    animation: tail 3s ease-in infinite, shoot-t-b 3s ease-in infinite;
+    animation-delay: 1.9s;
 }
 
 .star-8 {
-    top: 85%;
-    left: 20vw;
+    top: 30%;
+    left: 30%;
+    animation: tail 4.5s ease-in infinite, shoot-tl-br 4.5s ease-in infinite;
     animation-delay: 2.5s;
-    opacity: 0.4;
 }
 
 .star-9 {
-    top: 30%;
-    left: -20vw;
+    top: 90%;
+    left: 60%;
+    animation: tail 2.2s ease-in infinite, shoot-br-tl 2.2s ease-in infinite;
     animation-delay: 0.3s;
-    opacity: 0.8;
 }
 
 .star-10 {
-    top: 65%;
-    left: 50vw;
-    animation-delay: 3.8s;
-    opacity: 0.6;
+    top: 15%;
+    left: 40%;
+    animation: tail 3.8s ease-in infinite, shoot-tr-bl 3.8s ease-in infinite;
+    animation-delay: 1.1s;
 }
 
 .star-11 {
-    top: 5%;
-    left: 60vw;
-    animation-delay: 1.9s;
-    opacity: 0.9;
+    top: 60%;
+    left: 20%;
+    animation: tail 3.1s ease-in infinite, shoot-bl-tr 3.1s ease-in infinite;
+    animation-delay: 1.7s;
 }
 
 .star-12 {
-    top: 50%;
-    left: -15vw;
-    animation-delay: 4.8s;
-    opacity: 0.5;
+    top: 45%;
+    left: 85%;
+    animation: tail 2.9s ease-in infinite, shoot-r-l 2.9s ease-in infinite;
+    animation-delay: 0.6s;
 }
 
 .star-13 {
-    top: 90%;
-    left: 10vw;
-    animation-delay: 2.7s;
-    opacity: 0.7;
+    top: 5%;
+    left: 75%;
+    animation: tail 4.2s ease-in infinite, shoot-t-b 4.2s ease-in infinite;
+    animation-delay: 1.3s;
 }
 
 .star-14 {
-    top: 25%;
-    left: 70vw;
-    animation-delay: 0.9s;
-    opacity: 0.8;
+    top: 65%;
+    left: 35%;
+    animation: tail 3.4s ease-in infinite, shoot-tl-br 3.4s ease-in infinite;
+    animation-delay: 2.8s;
 }
 
 .star-15 {
-    top: 75%;
-    left: -25vw;
-    animation-delay: 3.1s;
-    opacity: 0.6;
+    top: 25%;
+    left: 55%;
+    animation: tail 2.6s ease-in infinite, shoot-l-r 2.6s ease-in infinite;
+    animation-delay: 0.9s;
 }
+
+
 
 /* Content wrapper above stars */
 .page-wrapper {
@@ -470,7 +575,7 @@ h6 {
     top: 50%;
     left: 15px;
     transform: translateY(-50%);
-    color: var(--red-sport);
+    color: #fff;
     font-size: 1.1rem;
 }
 
@@ -513,7 +618,7 @@ h6 {
     align-items: center;
     gap: 8px;
     background: transparent;
-    color: var(--red-sport);
+    color: #fff;
     border: 1px solid var(--red-sport);
     padding: 10px 25px;
     border-radius: 2px;
@@ -1043,19 +1148,27 @@ h6 {
 }
 
 .sp-desc {
-    margin-bottom: 40px;
+    margin-bottom: 30px;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .sp-desc h3 {
-    font-size: 1.3rem;
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.1rem;
+    color: var(--primary-red);
     margin-bottom: 15px;
-    color: var(--text-primary);
+    letter-spacing: 1px;
 }
 
 .sp-desc p {
-    color: var(--text-secondary);
-    font-size: 1.05rem;
+    font-family: 'Montserrat', sans-serif;
+    color: #ccc;
     line-height: 1.8;
+    font-size: 0.95rem;
+    white-space: pre-line;
 }
 
 .sp-actions {
@@ -1611,7 +1724,7 @@ h6 {
     font-family: var(--font-heading);
     letter-spacing: 2px;
     font-size: 1.1rem;
-    color: var(--red-sport);
+    color: #fff;
 }
 
 /* =========================================
@@ -1666,7 +1779,7 @@ h6 {
 }
 
 .footer-info i {
-    color: var(--red-sport);
+    color: #fff;
     width: 20px;
 }
 
@@ -2004,5 +2117,59 @@ h6 {
 
     .footer-content {
         text-align: center;
+    }
+
+}
+
+@media (max-width: 768px) {
+
+    /* 1. LA GRILLE DE PRODUITS */
+    .catalog-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+        padding: 0 10px;
+    }
+
+    .product-card {
+        padding: 5px;
+    }
+
+    .product-image-container {
+        height: 180px;
+        /* Réduire la hauteur de l'image sur mobile */
+    }
+
+    .product-name {
+        font-size: 0.85rem;
+        margin-bottom: 5px;
+    }
+
+    .product-category {
+        font-size: 0.65rem;
+    }
+
+    .product-price {
+        font-size: 1rem;
+    }
+
+    /* 2. LES 3 COLONNES VIDÉOS */
+    .universes-grid {
+        flex-direction: column;
+        gap: 40px;
+        padding: 40px 20px;
+    }
+
+    .universe-item {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .universe-circle {
+        width: 180px;
+        height: 180px;
+    }
+
+    .universe-title {
+        font-size: 1.5rem;
     }
 }

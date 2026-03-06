@@ -3,7 +3,7 @@
 // =========================================
 
 const CONFIG = {
-    whatsappNumber: "5211234567890",
+    whatsappNumber: "523315686159",
     whatsappDefaultMsg: "Hola, me interesa obtener más información sobre sus sistemas de audio premium."
 };
 
@@ -46,7 +46,53 @@ function initAOS() {
 }
 
 /**
- * 2. Navigation Utilities
+ * 2. IMAGE ERROR HANDLER (Failsafe)
+ */
+function handleImageError(img) {
+    if (!img) return;
+
+    // Extensions to try
+    const extensions = ['.jpg', '.png', '.jpeg', '.webp'];
+
+    // Get current retry state
+    let retryIndex = parseInt(img.getAttribute('data-retry-index') || '-1');
+    retryIndex++;
+
+    const originalSrc = img.getAttribute('data-original-original-src') || img.src;
+    if (!img.getAttribute('data-original-original-src')) {
+        img.setAttribute('data-original-original-src', img.src);
+    }
+
+    if (retryIndex < extensions.length) {
+        img.setAttribute('data-retry-index', retryIndex);
+
+        // Try to replace the existing extension with the next one
+        const basePath = originalSrc.substring(0, originalSrc.lastIndexOf('.'));
+        img.src = basePath + extensions[retryIndex];
+        return;
+    }
+
+    // If all extensions fail, try a simplified name (remove suffixes like .1D, .5D)
+    if (!img.getAttribute('data-simplified-tried')) {
+        img.setAttribute('data-simplified-tried', 'true');
+        img.setAttribute('data-retry-index', '-1'); // Reset extensions for the simplified name
+
+        let newBasePath = originalSrc.substring(0, originalSrc.lastIndexOf('.'));
+        // Remove common suffixes used in SKUs but not always in filenames
+        newBasePath = newBasePath.replace(/\.[0-9].*$/, '').replace(/D$/, '');
+
+        img.src = newBasePath + '.jpg';
+        return;
+    }
+
+    // Final Fallback: Default Logo
+    img.onerror = null; // Prevent infinite loop
+    img.src = 'PHOTO-2026-02-20-13-37-44.jpg';
+    img.classList.add('img-placeholder');
+}
+
+/**
+ * 3. Navigation Utilities
  */
 function initNavbar() {
     const navbar = document.getElementById('navbar');
@@ -273,8 +319,8 @@ function loadHome(data) {
     const grid = document.getElementById('featured-grid');
     if (!grid) return;
 
-    // Fixed Featured SKUs as requested
-    const featuredSkus = ["#KFOLEALS2880", "#KFOLEALS2881", "#KFOLEALS2882"];
+    // Fixed Featured SKUs - Final Selection
+    const featuredSkus = ["#KALAL838512", "#KBOALCXPRO80", "#KFOLEALM1H13"];
     const featured = data.filter(p => featuredSkus.includes(String(p.sku).trim()));
 
     if (featured.length === 0) {
@@ -434,7 +480,7 @@ function initSmartSearch(data, grid) {
         if (currentSuggestions.length > 0) {
             suggestionsEl.innerHTML = currentSuggestions.map((p, idx) => `
                 <div class="suggestion-item" data-index="${idx}">
-                    <img src="${p.imagePath || ''}" class="suggestion-img" onerror="this.src='PHOTO-2026-02-20-13-37-44.jpg'">
+                    <img src="${p.imagePath || ''}" class="suggestion-img" onerror="handleImageError(this)">
                     <div class="suggestion-info">
                         <span class="suggestion-name">${p.nombre}</span>
                         <span class="suggestion-meta">${p.categoria} | SKU: ${p.sku}</span>
@@ -523,7 +569,7 @@ function renderAdvancedResults(scoredResults, grid) {
     const perfect = scoredResults[0].product;
     perfectArea.innerHTML = `
         <div class="perfect-match-card" data-aos="fade-right">
-            <img src="${perfect.imagePath || ''}" class="pm-image" onerror="this.src='PHOTO-2026-02-20-13-37-44.jpg'">
+            <img src="${perfect.imagePath || ''}" class="pm-image" onerror="handleImageError(this)">
             <div class="pm-content">
                 <div class="pm-category">${perfect.categoria}</div>
                 <h2 class="pm-name">${perfect.nombre}</h2>
@@ -552,8 +598,7 @@ function renderAdvancedResults(scoredResults, grid) {
             item.innerHTML = `
                 <a href="producto.html?sku=${encodeURIComponent(p.sku)}" class="product-card">
                     <div class="product-image-container">
-                        <img src="${p.imagePath}" class="product-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                        <div class="img-fallback" style="display: none;">No disponible</div>
+                        <img src="${p.imagePath}" class="product-img" onerror="handleImageError(this)">
                     </div>
                     <div class="product-info">
                         <h4 class="product-name" style="font-size:0.8rem;">${p.nombre}</h4>
@@ -611,6 +656,7 @@ function loadProductDetails(data) {
         containerEl.style.display = 'flex';
         const imgSrc = product.imagePath && product.imagePath.trim() !== "" ? product.imagePath : '';
         document.getElementById('sp-img').src = imgSrc;
+        document.getElementById('sp-img').onerror = function () { handleImageError(this); };
         document.getElementById('sp-title').textContent = product.nombre || 'Producto';
         document.getElementById('sp-category').textContent = product.categoria || 'GENERAL';
         document.getElementById('sp-sku-val').textContent = product.sku || 'N/A';
@@ -622,8 +668,8 @@ function loadProductDetails(data) {
         const mscPrice = document.getElementById('msc-price');
         if (mscPrice) mscPrice.innerHTML = prefix + priceDisplay;
 
-        const defaultDesc = 'Garantía de excelencia ALFA. Rendimiento premium garantizado.';
-        document.getElementById('sp-desc-val').textContent = product.description || defaultDesc;
+        const defaultDesc = 'Producto de alta calidad para su vehículo, garantizado por ALFA Car Audio. Rendimiento superior y durabilidad excepcional para los usuarios más exigentes.';
+        document.getElementById('sp-desc-val').textContent = product.descripcion || product.description || defaultDesc;
 
         const waMsg = encodeURIComponent(`Hola, estoy interesado en el producto ${product.nombre} (SKU: ${product.sku || 'N/A'}). ¿Tienen disponibilidad?`);
         const waLink = `https://wa.me/${CONFIG.whatsappNumber}?text=${waMsg}`;
@@ -685,7 +731,7 @@ function renderProducts(products, container, isHero = false) {
 
         card.innerHTML = `
             <div class="product-image-container" style="position:relative;">
-                <img src="${imgSrc}" alt="${product.nombre}" class="product-img" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <img src="${imgSrc}" alt="${product.nombre}" class="product-img" loading="lazy" onerror="handleImageError(this)">
                 <div class="img-fallback" style="display: ${imgSrc ? 'none' : 'flex'};">Imagen no disponible</div>
             </div>
             <div class="product-info">
