@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALFA Car Audio | Producto</title>
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;800&family=Oswald:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <noscript>
+        <style>
+            [data-aos] {
+                opacity: 1 !important;
+                transform: translate(0) scale(1) !important;
+            }
+        </style>
+    </noscript>
+
+    <!-- Shooting Stars Background (15 Stars) -->
+    <div class="stars-container">
+        <div class="shooting-star star-1"></div>
+        <div class="shooting-star star-2"></div>
+        <div class="shooting-star star-3"></div>
+        <div class="shooting-star star-4"></div>
+        <div class="shooting-star star-5"></div>
+        <div class="shooting-star star-6"></div>
+        <div class="shooting-star star-7"></div>
+        <div class="shooting-star star-8"></div>
+        <div class="shooting-star star-9"></div>
+        <div class="shooting-star star-10"></div>
+        <div class="shooting-star star-11"></div>
+        <div class="shooting-star star-12"></div>
+        <div class="shooting-star star-13"></div>
+        <div class="shooting-star star-14"></div>
+        <div class="shooting-star star-15"></div>
+    </div>
+
+    <!-- Page Wrapper -->
+    <div class="page-wrapper">
+        <!-- Navigation -->
+        <header class="navbar" id="navbar">
+            <div class="container nav-content">
+                <div class="nav-left">
+                    <div class="header-search">
+                        <i class="fa-solid fa-search search-icon"></i>
+                        <input type="text" id="header-search-input" class="search-input"
+                            placeholder="Buscar por código, nombre...">
+                    </div>
+                </div>
+                <div class="nav-center">
+                    <a href="index.html" class="logo">
+                        <img src="PHOTO-2026-02-20-13-37-44.jpg" alt="ALFA Audio Logo" class="logo-img">
+                    </a>
+                </div>
+                <div class="nav-right">
+                    <button id="btn-cuenta" class="btn-outline-red"><i class="fa-solid fa-user"></i> CUENTA VIP</button>
+                    <div class="mobile-menu-btn" id="mobile-menu-btn">
+                        <i class="fa-solid fa-bars"></i>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Product Details Section -->
+        <main class="product-page container">
+            <a href="index.html" class="btn-back"><i class="fa-solid fa-arrow-left"></i> VOLVER AL INICIO</a>
+
+            <div id="loading-spinner" class="spinner-container">
+                <div class="spinner"></div>
+            </div>
+
+            <div id="error-state" class="empty-state" style="display: none;">
+                <i class="fa-solid fa-triangle-exclamation fa-3x"></i>
+                <p>Producto no encontrado.</p>
+            </div>
+
+            <div id="single-product-container" class="single-product-layout" style="display: none;" data-aos="fade-in">
+                <!-- Left Image -->
+                <div class="sp-image-col">
+                    <img id="sp-img" src="" alt="Producto">
+                </div>
+                <!-- Right Details -->
+                <div class="sp-info-col">
+                    <div class="sp-category" id="sp-category">CATEGORÍA</div>
+                    <h2 class="sp-title" id="sp-title">Nombre del Producto</h2>
+
+                    <div class="sp-reviews">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                        <span id="sp-reviews-text" style="margin-left:8px; color: var(--text-secondary)">(4.9)
+                            Excelencia comprobada</span>
+                    </div>
+
+                    <div class="sp-sku">Ref / SKU: <span id="sp-sku-val">#000</span></div>
+
+                    <div class="sp-price" id="sp-price"><span>$</span>0.00</div>
+
+                    <div class="sp-divider"></div>
+
+                    <div class="sp-desc">
+                        <h3>DESCRIPCIÓN TÉCNICA</h3>
+                        <p id="sp-desc-val">Descripción detallada...</p>
+                    </div>
+
+                    <div class="sp-actions">
+                        <a href="#" id="sp-wa-btn" target="_blank" class="btn-red"
+                            style="text-align: center; display: block; width: 100%;">
+                            <i class="fa-brands fa-whatsapp"></i> COMPRAR POR WHATSAPP
+                        </a>
+
+                        <!-- Premium Trust Badges -->
+                        <div class="trust-badges"
+                            style="display: flex; justify-content: space-between; align-items: flex-start; margin-top: 25px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.05);">
+                            <div class="tb-item" style="text-align: center; flex: 1; padding: 0 5px;">
+                                <i class="fa-solid fa-shield-halved"
+                                    style="color: var(--text-secondary); font-size: 1.5rem; margin-bottom: 8px;"></i>
+                                <span
+                                    style="display: block; font-size: 0.75rem; color: #fff; font-family: var(--font-heading); text-transform: uppercase; letter-spacing: 0.5px;">Garantía<br>Oficial</span>
+                            </div>
+                            <div class="tb-item"
+                                style="text-align: center; flex: 1; padding: 0 5px; border-left: 1px solid rgba(255,255,255,0.05); border-right: 1px solid rgba(255,255,255,0.05);">
+                                <i class="fa-solid fa-lock"
+                                    style="color: var(--text-secondary); font-size: 1.5rem; margin-bottom: 8px;"></i>
+                                <span
+                                    style="display: block; font-size: 0.75rem; color: #fff; font-family: var(--font-heading); text-transform: uppercase; letter-spacing: 0.5px;">Compra<br>Cifrada</span>
+                            </div>
+                            <div class="tb-item" style="text-align: center; flex: 1; padding: 0 5px;">
+                                <i class="fa-solid fa-truck-fast"
+                                    style="color: var(--text-secondary); font-size: 1.5rem; margin-bottom: 8px;"></i>
+                                <span
+                                    style="display: block; font-size: 0.75rem; color: #fff; font-family: var(--font-heading); text-transform: uppercase; letter-spacing: 0.5px;">Envío<br>Asegurado</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Related Products Section (Venta Cruzada) -->
+            <div id="related-products-section"
+                style="display: none; margin-top: 100px; padding-top: 60px; border-top: 1px solid var(--glass-border);"
+                data-aos="fade-up">
+                <div class="section-title-wrapper">
+                    <h2 class="section-title" style="font-size: 2rem;">COMPLETA TU SISTEMA</h2>
+                    <div class="title-underline" style="margin-bottom: 40px;"></div>
+                </div>
+                <div id="related-grid" class="catalog-grid">
+                    <!-- Related products injected via JS -->
+                </div>
+            </div>
+
+        </main>
+
+        <!-- Footer -->
+        <footer id="contact" class="footer">
+            <div class="container footer-content">
+                <div class="footer-brand">
+                    <h3>ALFA <span>Audio</span></h3>
+                    <p>La máxima experiencia de sonido para tu vehículo.</p>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2026 ALFA Car Audio. Todos los derechos reservados.</p>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Mobile Sticky CTA (Only visible on mobile) -->
+        <div class="mobile-sticky-cta" id="mobile-sticky-cta">
+            <div class="msc-price" id="msc-price"><span>$</span>0.00</div>
+            <a href="#" id="msc-wa-btn" class="btn-red msc-btn" target="_blank"><i class="fa-brands fa-whatsapp"></i>
+                COMPRAR POR WA</a>
+        </div>
+    </div>
+
+    <!-- Data source strictly from catalog.js -->
+    <script src="catalog.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>window.ALFA_PAGE_MODE = 'PRODUCT';</script>
+    <script src="script.js"></script>
+</body>
+
+</html>

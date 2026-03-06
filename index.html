@@ -5,19 +5,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ALFA Car Audio | Premium Sound Systems</title>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;800&display=swap"
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;800&family=Oswald:wght@400;500;600;700&display=swap"
         rel="stylesheet">
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- AOS CSS for animations -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <!-- Fallback if JS is disabled or AOS completely fails -->
+    <!-- Cinematic Splash Screen -->
+    <div id="splash-screen" class="splash-screen">
+        <div class="splash-content">
+            <img src="PHOTO-2026-02-20-13-37-44.jpg" alt="ALFA Audio Loading" class="splash-logo-img">
+            <div class="splash-loader"></div>
+        </div>
+    </div>
+
     <noscript>
         <style>
             [data-aos] {
@@ -27,111 +31,290 @@
         </style>
     </noscript>
 
-    <!-- Navigation -->
-    <header class="navbar" id="navbar">
-        <div class="container nav-content">
-            <h1 class="logo">ALFA <span>Car Audio</span></h1>
-            <nav class="nav-links">
-                <a href="#home">Inicio</a>
-                <a href="#catalog">Catálogo</a>
-                <a href="#contact">Contacto</a>
-                <!-- Admin login trigger -->
-                <button id="btn-cuenta" class="btn-outline-gold"><i class="fa-solid fa-user"></i> Cuenta</button>
-            </nav>
-            <div class="mobile-menu-btn" id="mobile-menu-btn">
-                <i class="fa-solid fa-bars"></i>
-            </div>
-        </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-content" data-aos="fade-up">
-            <h2 class="hero-title">Tu Sonido, <br>Nuestra Pasión</h2>
-            <p class="hero-subtitle">Distribuidor Oficial de Sistemas de Audio Premium para Automóviles.</p>
-            <a href="#catalog" class="btn-gold">Ver Catálogo</a>
-        </div>
-        <div class="hero-overlay"></div>
-    </section>
-
-    <!-- Main Content -->
-    <main class="main-content">
-        <!-- Catalog Section -->
-        <section id="catalog" class="catalog-section container">
-            <div class="section-title-wrapper" data-aos="fade-up">
-                <h2 class="section-title">Nuestro Catálogo</h2>
-                <div class="title-underline"></div>
-            </div>
-
-            <!-- Dynamic Filters -->
-            <div class="filters-container" id="filters-container" data-aos="fade-up" data-aos-delay="100">
-                <button class="filter-btn active" data-filter="all">Todos</button>
-                <!-- Other filters injected via JS -->
-            </div>
-
-            <!-- Products Grid -->
-            <div id="gallery-grid" class="catalog-grid">
-                <!-- Products will be injected here via JS -->
-            </div>
-
-            <!-- Loading and Empty States -->
-            <div id="loading-spinner" class="spinner-container">
-                <div class="spinner"></div>
-            </div>
-
-            <div id="empty-state" class="empty-state" style="display: none;">
-                <i class="fa-solid fa-box-open fa-3x"></i>
-                <p>No se encontraron productos.</p>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer id="contact" class="footer">
-        <div class="container footer-content">
-            <div class="footer-brand">
-                <h3>ALFA <span>Car Audio</span></h3>
-                <p>Calidad de sonido inigualable para tu vehículo.</p>
-            </div>
-            <div class="footer-social">
-                <a href="#" class="social-link" id="footer-wa-link"><i class="fa-brands fa-whatsapp"></i></a>
-                <a href="#" class="social-link"><i class="fa-brands fa-instagram"></i></a>
-                <a href="#" class="social-link"><i class="fa-brands fa-facebook"></i></a>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 ALFA Car Audio. Todos los derechos reservados.</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Floating WhatsApp Button -->
-    <a href="#" class="floating-wa" id="floating-wa" target="_blank" aria-label="Contact us on WhatsApp">
-        <i class="fa-brands fa-whatsapp"></i>
-    </a>
-
-    <!-- Password Modal for Admin -->
-    <div id="login-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <div class="modal-header">
-                <h3>Acceso Empleados</h3>
-            </div>
-            <div class="modal-body">
-                <p>Ingrese la contraseña para acceder al panel de administración.</p>
-                <input type="password" id="admin-password" placeholder="Contraseña..." class="input-dark">
-                <p id="login-error" class="error-msg"></p>
-                <button id="btn-login-submit" class="btn-gold mt-4">Acceder</button>
-            </div>
-        </div>
+    <!-- Shooting Stars Background (15 Stars) -->
+    <div class="stars-container">
+        <div class="shooting-star star-1"></div>
+        <div class="shooting-star star-2"></div>
+        <div class="shooting-star star-3"></div>
+        <div class="shooting-star star-4"></div>
+        <div class="shooting-star star-5"></div>
+        <div class="shooting-star star-6"></div>
+        <div class="shooting-star star-7"></div>
+        <div class="shooting-star star-8"></div>
+        <div class="shooting-star star-9"></div>
+        <div class="shooting-star star-10"></div>
+        <div class="shooting-star star-11"></div>
+        <div class="shooting-star star-12"></div>
+        <div class="shooting-star star-13"></div>
+        <div class="shooting-star star-14"></div>
+        <div class="shooting-star star-15"></div>
     </div>
 
-    <!-- Data source strictly from catalog.js -->
+    <!-- Page Wrapper to sit on top of stars -->
+    <div class="page-wrapper">
+
+        <!-- Navigation Header -->
+        <header class="navbar" id="navbar">
+            <div class="container nav-content">
+                <!-- À Gauche : Search -->
+                <div class="nav-left">
+                    <div class="header-search">
+                        <i class="fa-solid fa-search search-icon"></i>
+                        <input type="text" id="header-search-input" class="search-input"
+                            placeholder="Buscar por código, nombre...">
+                    </div>
+                </div>
+
+                <!-- Au Centre : Navigation Menu & Logo -->
+                <div class="nav-center">
+                    <a href="index.html" class="logo">
+                        <img src="PHOTO-2026-02-20-13-37-44.jpg" alt="ALFA Audio Logo" class="logo-img">
+                    </a>
+                    <ul class="nav-links">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-cat="iluminacion">
+                                ILUMINACIÓN <i class="fa-solid fa-chevron-down nav-chevron"></i>
+                            </a>
+                            <div class="nav-dropdown" id="drop-iluminacion">
+                                <!-- JS injected -->
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-cat="audio">
+                                AUDIO <i class="fa-solid fa-chevron-down nav-chevron"></i>
+                            </a>
+                            <div class="nav-dropdown" id="drop-audio">
+                                <!-- JS injected -->
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-cat="seguridad">
+                                SEGURIDAD <i class="fa-solid fa-chevron-down nav-chevron"></i>
+                            </a>
+                            <div class="nav-dropdown" id="drop-seguridad">
+                                <!-- JS injected -->
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- À Droite : Cuenta -->
+                <div class="nav-right">
+                    <button id="btn-cuenta" class="btn-outline-red"><i class="fa-solid fa-user"></i> CUENTA VIP</button>
+                    <div class="mobile-menu-btn" id="mobile-menu-btn">
+                        <i class="fa-solid fa-bars"></i>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content (SPA Structure) -->
+        <main class="main-content">
+
+            <!-- Hero Section (Visible by default) -->
+            <section id="hero-section" class="hero-section">
+                <div class="hero-content" data-aos="fade-up" data-aos-duration="1200">
+                    <h1 class="hero-title">DOMINA LA OSCURIDAD.<br>SIENTE LA POTENCIA.</h1>
+                    <button id="btn-explore-catalog" class="btn-red hero-btn">EXPLORAR EL CATÁLOGO</button>
+                </div>
+            </section>
+
+            <!-- Universes Section (Brand Pillars) -->
+            <section class="universes-section">
+                <div class="container universes-grid">
+                    <!-- Universe 1: Iluminacion -->
+                    <div class="universe-item" data-aos="fade-up" data-aos-delay="100">
+                        <div class="universe-circle">
+                            <video class="universe-video" src="illu.mp4" autoplay loop muted playsinline></video>
+                        </div>
+                        <h3 class="universe-title">ILUMINACIÓN</h3>
+                        <p class="universe-desc">Potencia visual</p>
+                    </div>
+                    <!-- Universe 2: Audio -->
+                    <div class="universe-item" data-aos="fade-up" data-aos-delay="200">
+                        <div class="universe-circle" style="border-color: var(--red-sport);">
+                            <video class="universe-video" src="audio.mp4" autoplay loop muted playsinline></video>
+                        </div>
+                        <h3 class="universe-title" style="color: var(--red-sport);">AUDIO</h3>
+                        <p class="universe-desc">Sonido envolvente</p>
+                    </div>
+                    <!-- Universe 3: Seguridad -->
+                    <div class="universe-item" data-aos="fade-up" data-aos-delay="300">
+                        <div class="universe-circle">
+                            <video class="universe-video" src="secu.mp4" autoplay loop muted playsinline></video>
+                        </div>
+                        <h3 class="universe-title">SEGURIDAD</h3>
+                        <p class="universe-desc">Protección total</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Featured Products -->
+            <section id="featured-products" class="catalog-section container">
+                <div class="section-title-wrapper" data-aos="fade-up">
+                    <h2 class="section-title">VEDETTES</h2>
+                    <div class="title-underline"></div>
+                </div>
+                <div id="featured-grid" class="catalog-grid" style="margin-top: 40px;"></div>
+            </section>
+
+            <!-- Complete Catalog (Hidden by default, shown via SPA routing) -->
+            <section id="catalog-section" class="catalog-section container" style="display: none; padding-top: 40px;">
+                <div class="section-title-wrapper" data-aos="fade-up">
+                    <h2 class="section-title" id="catalog-title">RESULTADOS</h2>
+                    <div class="title-underline"></div>
+                </div>
+
+                <div id="dynamic-categories-menu" class="filter-controls"
+                    style="display: flex; gap: 10px; overflow-x: auto; padding-bottom: 15px; margin-bottom: 25px;">
+                    <!-- Categories injected via JS -->
+                </div>
+
+                <div id="gallery-grid" class="catalog-grid">
+                    <!-- Products injected via JS -->
+                </div>
+
+                <div id="empty-state" class="empty-state" style="display: none;">
+                    <i class="fa-solid fa-box-open fa-3x"></i>
+                    <p>No se encontraron productos.</p>
+                </div>
+            </section>
+
+            <!-- Avis Clients (Reviews) -->
+            <section class="reviews-section container">
+                <div class="section-title-wrapper" data-aos="fade-up">
+                    <h2 class="section-title">AVIS CLIENTS</h2>
+                    <div class="title-underline"></div>
+                </div>
+                <div class="reviews-grid" style="margin-top: 50px;">
+                    <div class="review-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="stars">★★★★★</div>
+                        <p class="review-text">"Excelente servicio en Guadalajara. Instalaron el kit LED en menos de une
+                            hora y el cambio es brutal. ¡Muy recomendados!"</p>
+                        <h4 class="review-author">Ricardo Jiménez</h4>
+                    </div>
+                    <div class="review-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="stars">★★★★★</div>
+                        <p class="review-text">"La mejor iluminación para mi coche. El envío a Monterrey fue súper
+                            rápido y el empaque muy premium. Calidad agencia."</p>
+                        <h4 class="review-author">Elena Martínez</h4>
+                    </div>
+                    <div class="review-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="stars">★★★★★</div>
+                        <p class="review-text">"Increíble sistema de audio. Es otra experiencia de manejo. La atención
+                            VIP por WhatsApp resolvió todas mis dudas de instalación."</p>
+                        <h4 class="review-author">Carlos Ortega</h4>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FAQ Section -->
+            <section class="faq-section container">
+                <div class="section-title-wrapper" data-aos="fade-up">
+                    <h2 class="section-title">FAQ</h2>
+                    <div class="title-underline"></div>
+                </div>
+                <div class="faq-accordion" style="margin-top: 50px;">
+                    <div class="faq-item" data-aos="fade-up">
+                        <div class="faq-question">¿Realizan instalaciones profesionales? <i
+                                class="fa-solid fa-plus"></i></div>
+                        <div class="faq-answer">Sí, contamos con un centro de instalación especializado en Guadalajara y
+                            alianzas certificadas en las principales ciudades del país.</div>
+                    </div>
+                    <div class="faq-item" data-aos="fade-up">
+                        <div class="faq-question">¿Qué garantía tienen los productos ALFA? <i
+                                class="fa-solid fa-plus"></i></div>
+                        <div class="faq-answer">Todos nuestros productos cuentan con garantía premium contra defectos de
+                            fabricación, asegurando los mismos estándares de agencias automotrices internacionales.
+                        </div>
+                    </div>
+                    <div class="faq-item" data-aos="fade-up">
+                        <div class="faq-question">¿Hacen envíos a toda la República? <i class="fa-solid fa-plus"></i>
+                        </div>
+                        <div class="faq-answer">Efectivamente, realizamos envíos blindados y prioritarios a todo México,
+                            garantizando que tu inversión llegue en perfectas condiciones en 24-48h hábiles.</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Localization Map -->
+            <section class="location-section">
+                <div class="container">
+                    <div class="section-title-wrapper" data-aos="fade-up">
+                        <h2 class="section-title">LOCALIZACIÓN</h2>
+                        <div class="title-underline"></div>
+                    </div>
+                    <div class="map-container"
+                        style="margin-top: 50px; height: 450px; border-radius: 15px; overflow: hidden; border: 1px solid var(--glass-border);"
+                        data-aos="zoom-in">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3733.456381005886!2d-103.33649!3d20.65095!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8428b23a78943f9f%3A0x6e788c6e2646279c!2sCalz.%20del%20Ej%C3%A9rcito%20619%2C%20Del%20Periodista%2C%2044430%20Guadalajara%2C%20Jal.!5e0!3m2!1ses!2smx!4v1710000000000!5m2!1ses!2smx"
+                            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <!-- Footer -->
+            <footer id="contact" class="footer">
+                <div class="container footer-content">
+                    <div class="footer-grid">
+                        <div class="footer-brand">
+                            <img src="PHOTO-2026-02-20-13-37-44.jpg" alt="ALFA" class="logo-img"
+                                style="margin-bottom: 20px; max-height: 40px; mix-blend-mode: screen;">
+                            <p>Luxe et performance sonore para tu vehículo. Domina la ruta con ALFA.</p>
+                            <div class="footer-social" style="margin-top: 20px;">
+                                <a href="#" class="social-link"><i class="fa-brands fa-whatsapp"></i></a>
+                                <a href="#" class="social-link"><i class="fa-brands fa-instagram"></i></a>
+                                <a href="#" class="social-link"><i class="fa-brands fa-facebook-f"></i></a>
+                            </div>
+                        </div>
+                        <div class="footer-info">
+                            <h4>CONTACTO</h4>
+                            <p><i class="fa-solid fa-phone"></i> +52 (33) XXXX XXXX</p>
+                            <p><i class="fa-solid fa-envelope"></i> info@alfacaraudio.com</p>
+                            <p><i class="fa-solid fa-location-dot"></i> Guadalajara, Jalisco, México</p>
+                        </div>
+                        <div class="footer-hours">
+                            <h4>HORARIOS</h4>
+                            <p>Lunes - Viernes: 9:00 - 18:30</p>
+                            <p>Sábado: 9:00 - 14:00</p>
+                            <p>Domingo: Cerrado</p>
+                        </div>
+                    </div>
+                    <div class="footer-bottom">
+                        <p>&copy; 2026 ALFA Car Audio. Todos los derechos reservados.</p>
+                    </div>
+                </div>
+            </footer>
+
+            <!-- Floating WhatsApp Button -->
+            <a href="#" class="floating-wa" id="floating-wa" target="_blank" aria-label="Contact us on WhatsApp">
+                <i class="fa-brands fa-whatsapp"></i>
+            </a>
+
+            <!-- Password Modal for Admin -->
+            <div id="login-modal" class="modal">
+                <div class="modal-content">
+                    <span class="close-modal"><i class="fa-solid fa-xmark"></i></span>
+                    <div class="modal-header">
+                        <h3>ACCESO RESTRINGIDO</h3>
+                    </div>
+                    <div class="modal-body">
+                        <input type="password" id="admin-password" placeholder="Código de autorización..."
+                            class="input-dark">
+                        <p id="login-error" class="error-msg"></p>
+                        <button id="btn-login-submit" class="btn-red"
+                            style="width: 100%; margin-top: 10px;">ACCEDER</button>
+                    </div>
+                </div>
+            </div>
+    </div> <!-- /page-wrapper -->
+
     <script src="catalog.js"></script>
-
-    <!-- Third-party Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
-    <!-- Application Logic -->
+    <script>window.ALFA_PAGE_MODE = 'HOME';</script>
     <script src="script.js"></script>
 </body>
 

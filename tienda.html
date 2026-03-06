@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALFA Car Audio | Catálogo Completo</title>
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;800&family=Oswald:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <noscript>
+        <style>
+            [data-aos] {
+                opacity: 1 !important;
+                transform: translate(0) scale(1) !important;
+            }
+        </style>
+    </noscript>
+
+    <!-- Shooting Stars Background (15 Stars) -->
+    <div class="stars-container">
+        <div class="shooting-star star-1"></div>
+        <div class="shooting-star star-2"></div>
+        <div class="shooting-star star-3"></div>
+        <div class="shooting-star star-4"></div>
+        <div class="shooting-star star-5"></div>
+        <div class="shooting-star star-6"></div>
+        <div class="shooting-star star-7"></div>
+        <div class="shooting-star star-8"></div>
+        <div class="shooting-star star-9"></div>
+        <div class="shooting-star star-10"></div>
+        <div class="shooting-star star-11"></div>
+        <div class="shooting-star star-12"></div>
+        <div class="shooting-star star-13"></div>
+        <div class="shooting-star star-14"></div>
+        <div class="shooting-star star-15"></div>
+    </div>
+
+    <div class="page-wrapper">
+        <!-- Navigation Header (Fixed) -->
+        <header class="navbar" id="navbar">
+            <div class="container nav-content">
+                <!-- À Gauche : Search -->
+                <div class="nav-left">
+                    <div class="header-search">
+                        <i class="fa-solid fa-search search-icon"></i>
+                        <input type="text" id="header-search-input" class="search-input"
+                            placeholder="Buscar por código, nombre...">
+                    </div>
+                </div>
+                <!-- Au Centre : Logo -->
+                <div class="nav-center">
+                    <a href="index.html" class="logo">
+                        <img src="PHOTO-2026-02-20-13-37-44.jpg" alt="ALFA Audio Logo" class="logo-img">
+                    </a>
+                </div>
+                <!-- À Droite : Cuenta -->
+                <div class="nav-right">
+                    <button id="btn-cuenta" class="btn-outline-red"><i class="fa-solid fa-user"></i> CUENTA VIP</button>
+                    <div class="mobile-menu-btn" id="mobile-menu-btn">
+                        <i class="fa-solid fa-bars"></i>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content" style="padding-top: 100px;">
+            <section id="catalog" class="catalog-section container" style="padding-top: 0;">
+                <div class="section-title-wrapper" data-aos="fade-up">
+                    <h2 class="section-title" id="catalog-title">COLECCIÓN COMPLETA</h2>
+                    <div class="title-underline"></div>
+                </div>
+
+                <!-- Dynamic Categories Menu -->
+                <div id="dynamic-categories-menu" class="filter-controls"
+                    style="display: flex; gap: 10px; overflow-x: auto; padding-bottom: 15px; margin-bottom: 25px;">
+                    <!-- Categories injected via JS -->
+                </div>
+
+                <!-- Products Grid -->
+                <!-- The search input is now strictly in the fixed header -->
+                <div id="gallery-grid" class="catalog-grid">
+                    <!-- Products injected via JS -->
+                </div>
+
+                <!-- Loading and Empty States -->
+                <div id="loading-spinner" class="spinner-container">
+                    <div class="spinner"></div>
+                </div>
+
+                <div id="empty-state" class="empty-state" style="display: none;">
+                    <i class="fa-solid fa-box-open fa-3x"></i>
+                    <p>No se encontraron productos.</p>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer id="contact" class="footer">
+            <div class="container footer-content">
+                <div class="footer-brand">
+                    <h3>ALFA <span>Audio</span></h3>
+                    <p>La máxima experiencia de sonido para tu vehículo.</p>
+                </div>
+                <div class="footer-social">
+                    <a href="#" class="social-link" id="footer-wa-link"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="#" class="social-link"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fa-brands fa-facebook-f"></i></a>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2026 ALFA Car Audio. Todos los derechos reservados.</p>
+                </div>
+            </div>
+        </footer>
+
+        <a href="#" class="floating-wa" id="floating-wa" target="_blank" aria-label="WhatsApp">
+            <i class="fa-brands fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <!-- Data source strictly from catalog.js -->
+    <script src="catalog.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>window.ALFA_PAGE_MODE = 'TIENDA';</script>
+    <script src="script.js"></script>
+</body>
+
+</html>

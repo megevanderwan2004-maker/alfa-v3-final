@@ -113,16 +113,31 @@ if (form) {
 }
 
 // Build list for the UI
-function renderTable() {
+function renderTable(searchTerm = "") {
     if (!tableBody) return;
     tableBody.innerHTML = '';
 
-    if (products.length === 0) {
+    // Create an array mapping to keep original index
+    let filteredItems = products.map((p, index) => ({ p, index }));
+
+    if (searchTerm) {
+        filteredItems = filteredItems.filter(item => {
+            const p = item.p;
+            return (p.nombre && p.nombre.toLowerCase().includes(searchTerm)) ||
+                (p.sku && p.sku.toLowerCase().includes(searchTerm)) ||
+                (p.categoria && p.categoria.toLowerCase().includes(searchTerm));
+        });
+    }
+
+    if (filteredItems.length === 0) {
         tableBody.innerHTML = '<tr><td colspan="6" style="text-align:center;">No hay productos.</td></tr>';
         return;
     }
 
-    products.forEach((p, index) => {
+    filteredItems.forEach((item) => {
+        const p = item.p;
+        const index = item.index;
+
         const tr = document.createElement('tr');
         const imgThumb = p.imagePath ? `<img src="${p.imagePath}" class="thumb" onerror="this.style.display='none'">` : '<div class="no-thumb">Sin Img</div>';
 
@@ -138,6 +153,15 @@ function renderTable() {
             </td>
         `;
         tableBody.appendChild(tr);
+    });
+}
+
+// Search field initialization
+const adminSearch = document.getElementById('admin-search');
+if (adminSearch) {
+    adminSearch.addEventListener('input', (e) => {
+        const term = e.target.value.toLowerCase().trim();
+        renderTable(term);
     });
 }
 
