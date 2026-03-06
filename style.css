@@ -736,6 +736,10 @@ h6 {
     box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.9), 0 15px 40px rgba(217, 4, 41, 0.2);
 }
 
+.universe-item.clickable-universe {
+    cursor: pointer;
+}
+
 .universe-video {
     width: 100%;
     height: 100%;
@@ -1701,6 +1705,285 @@ h6 {
 .footer-bottom p {
     color: #444;
     font-size: 0.9rem;
+}
+
+.btn-back-spa {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--bg-card);
+    border: 1px solid var(--glass-border);
+    color: var(--text-secondary);
+    padding: 10px 20px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-family: var(--font-heading);
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    margin-bottom: 25px;
+    transition: var(--transition-fast);
+}
+
+.btn-back-spa:hover {
+    border-color: var(--red-sport);
+    color: var(--text-primary);
+    transform: translateX(-5px);
+}
+
+/* SEARCH SUGGESTIONS DROPDOWN */
+.search-suggestions {
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 0;
+    width: 100%;
+    background: rgba(15, 15, 15, 0.95);
+    backdrop-filter: blur(15px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-md);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    max-height: 400px;
+    overflow-y: auto;
+    display: none;
+    padding: 10px 0;
+}
+
+.search-suggestions.active {
+    display: block;
+    animation: fadeInScale 0.2s ease-out;
+}
+
+.suggestion-item {
+    padding: 12px 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    transition: var(--transition-fast);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.suggestion-item:last-child {
+    border-bottom: none;
+}
+
+.suggestion-item:hover,
+.suggestion-item.selected {
+    background: rgba(217, 4, 41, 0.1);
+    padding-left: 25px;
+}
+
+.suggestion-item.selected {
+    border-left: 3px solid var(--red-sport);
+}
+
+.suggestion-img {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-sm);
+    object-fit: cover;
+    background: #222;
+}
+
+.suggestion-info {
+    flex: 1;
+}
+
+.suggestion-name {
+    display: block;
+    color: var(--text-primary);
+    font-family: var(--font-heading);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.suggestion-meta {
+    display: block;
+    color: var(--text-secondary);
+    font-size: 0.75rem;
+}
+
+/* PERFECT MATCH HIGHLIGHT */
+.perfect-match-card {
+    background: linear-gradient(135deg, rgba(217, 4, 41, 0.1) 0%, rgba(0, 0, 0, 0.4) 100%);
+    border: 2px solid var(--red-sport);
+    border-radius: var(--radius-lg);
+    padding: 30px;
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.perfect-match-card::before {
+    content: "EQUIPO IDEAL";
+    position: absolute;
+    top: 20px;
+    right: -30px;
+    background: var(--red-sport);
+    color: white;
+    padding: 5px 40px;
+    transform: rotate(45deg);
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.pm-image {
+    width: 300px;
+    height: 300px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 20px rgba(217, 4, 41, 0.3));
+}
+
+.pm-content {
+    flex: 1;
+}
+
+.pm-category {
+    color: var(--red-sport);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 0.8rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+}
+
+.pm-name {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.pm-price {
+    font-size: 2rem;
+    color: var(--text-primary);
+    font-family: var(--font-heading);
+    margin-bottom: 25px;
+}
+
+.pm-price span {
+    font-size: 1.2rem;
+    vertical-align: super;
+    margin-right: 5px;
+}
+
+/* UPSELL CAROUSEL */
+.upsell-title {
+    font-family: var(--font-heading);
+    color: var(--text-primary);
+    letter-spacing: 4px;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.upsell-title::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, var(--red-sport), transparent);
+}
+
+.carousel-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.upsell-carousel {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding: 10px 0;
+    scroll-snap-type: x mandatory;
+}
+
+.upsell-carousel::-webkit-scrollbar {
+    display: none;
+}
+
+.upsell-item {
+    flex: 0 0 280px;
+    scroll-snap-align: start;
+    transform: scale(0.98);
+    transition: var(--transition-fast);
+}
+
+.upsell-item:hover {
+    transform: scale(1);
+}
+
+.carousel-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(217, 4, 41, 0.8);
+    color: white;
+    border: none;
+    cursor: pointer;
+    z-index: 10;
+    transition: var(--transition-fast);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carousel-nav:hover {
+    background: var(--red-sport);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-nav.prev {
+    left: -25px;
+}
+
+.carousel-nav.next {
+    right: -25px;
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.95) translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+@media (max-width: 992px) {
+    .perfect-match-card {
+        flex-direction: column;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .pm-image {
+        width: 100%;
+        height: 200px;
+    }
+
+    .pm-name {
+        font-size: 1.8rem;
+    }
+
+    .carousel-nav {
+        display: none;
+    }
+
+    .upsell-item {
+        flex: 0 0 240px;
+    }
 }
 
 @media (max-width: 992px) {

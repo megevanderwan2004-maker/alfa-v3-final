@@ -62,6 +62,7 @@
                         <i class="fa-solid fa-search search-icon"></i>
                         <input type="text" id="header-search-input" class="search-input"
                             placeholder="Buscar por código, nombre...">
+                        <div id="search-suggestions" class="search-suggestions"></div>
                     </div>
                 </div>
 
@@ -115,7 +116,7 @@
             <section id="hero-section" class="hero-section">
                 <div class="hero-content" data-aos="fade-up" data-aos-duration="1200">
                     <h1 class="hero-title">DOMINA LA OSCURIDAD.<br>SIENTE LA POTENCIA.</h1>
-                    <button id="btn-explore-catalog" class="btn-red hero-btn">EXPLORAR EL CATÁLOGO</button>
+                    <button id="btn-explore-catalog" class="btn-red hero-btn">EXPLORAR CATÁLOGO</button>
                 </div>
             </section>
 
@@ -123,7 +124,8 @@
             <section class="universes-section">
                 <div class="container universes-grid">
                     <!-- Universe 1: Iluminacion -->
-                    <div class="universe-item" data-aos="fade-up" data-aos-delay="100">
+                    <div class="universe-item clickable-universe" data-aos="fade-up" data-aos-delay="100"
+                        data-universe="iluminacion">
                         <div class="universe-circle">
                             <video class="universe-video" src="illu.mp4" autoplay loop muted playsinline></video>
                         </div>
@@ -131,7 +133,8 @@
                         <p class="universe-desc">Potencia visual</p>
                     </div>
                     <!-- Universe 2: Audio -->
-                    <div class="universe-item" data-aos="fade-up" data-aos-delay="200">
+                    <div class="universe-item clickable-universe" data-aos="fade-up" data-aos-delay="200"
+                        data-universe="audio">
                         <div class="universe-circle" style="border-color: var(--red-sport);">
                             <video class="universe-video" src="audio.mp4" autoplay loop muted playsinline></video>
                         </div>
@@ -139,7 +142,8 @@
                         <p class="universe-desc">Sonido envolvente</p>
                     </div>
                     <!-- Universe 3: Seguridad -->
-                    <div class="universe-item" data-aos="fade-up" data-aos-delay="300">
+                    <div class="universe-item clickable-universe" data-aos="fade-up" data-aos-delay="300"
+                        data-universe="seguridad">
                         <div class="universe-circle">
                             <video class="universe-video" src="secu.mp4" autoplay loop muted playsinline></video>
                         </div>
@@ -152,7 +156,7 @@
             <!-- Featured Products -->
             <section id="featured-products" class="catalog-section container">
                 <div class="section-title-wrapper" data-aos="fade-up">
-                    <h2 class="section-title">VEDETTES</h2>
+                    <h2 class="section-title">LOS MÁS VENDIDOS</h2>
                     <div class="title-underline"></div>
                 </div>
                 <div id="featured-grid" class="catalog-grid" style="margin-top: 40px;"></div>
@@ -161,6 +165,8 @@
             <!-- Complete Catalog (Hidden by default, shown via SPA routing) -->
             <section id="catalog-section" class="catalog-section container" style="display: none; padding-top: 40px;">
                 <div class="section-title-wrapper" data-aos="fade-up">
+                    <button id="btn-back-to-home" class="btn-back-spa"><i class="fa-solid fa-arrow-left"></i> VOLVER AL
+                        INICIO</button>
                     <h2 class="section-title" id="catalog-title">RESULTADOS</h2>
                     <div class="title-underline"></div>
                 </div>
@@ -170,8 +176,25 @@
                     <!-- Categories injected via JS -->
                 </div>
 
-                <div id="gallery-grid" class="catalog-grid">
-                    <!-- Products injected via JS -->
+                <div id="catalog-results-area">
+                    <!-- Perfect Match Highlight -->
+                    <div id="perfect-match-area" style="display: none; margin-bottom: 40px;"></div>
+
+                    <!-- Upsell Carousel -->
+                    <div id="upsell-section" style="display: none; margin-bottom: 50px;">
+                        <h3 class="upsell-title">COMPLEMENTA TU EQUIPO (UPGRADE)</h3>
+                        <div class="carousel-wrapper">
+                            <button class="carousel-nav prev" id="upsell-prev"><i
+                                    class="fa-solid fa-chevron-left"></i></button>
+                            <div id="upsell-carousel" class="upsell-carousel"></div>
+                            <button class="carousel-nav next" id="upsell-next"><i
+                                    class="fa-solid fa-chevron-right"></i></button>
+                        </div>
+                    </div>
+
+                    <div id="gallery-grid" class="catalog-grid">
+                        <!-- Products injected via JS -->
+                    </div>
                 </div>
 
                 <div id="empty-state" class="empty-state" style="display: none;">
@@ -183,7 +206,7 @@
             <!-- Avis Clients (Reviews) -->
             <section class="reviews-section container">
                 <div class="section-title-wrapper" data-aos="fade-up">
-                    <h2 class="section-title">AVIS CLIENTS</h2>
+                    <h2 class="section-title">OPINIONES DE CLIENTES</h2>
                     <div class="title-underline"></div>
                 </div>
                 <div class="reviews-grid" style="margin-top: 50px;">
@@ -211,7 +234,7 @@
             <!-- FAQ Section -->
             <section class="faq-section container">
                 <div class="section-title-wrapper" data-aos="fade-up">
-                    <h2 class="section-title">FAQ</h2>
+                    <h2 class="section-title">PREGUNTAS FRECUENTES</h2>
                     <div class="title-underline"></div>
                 </div>
                 <div class="faq-accordion" style="margin-top: 50px;">
@@ -241,7 +264,7 @@
             <section class="location-section">
                 <div class="container">
                     <div class="section-title-wrapper" data-aos="fade-up">
-                        <h2 class="section-title">LOCALIZACIÓN</h2>
+                        <h2 class="section-title">UBICACIÓN</h2>
                         <div class="title-underline"></div>
                     </div>
                     <div class="map-container"
@@ -263,7 +286,7 @@
                         <div class="footer-brand">
                             <img src="PHOTO-2026-02-20-13-37-44.jpg" alt="ALFA" class="logo-img"
                                 style="margin-bottom: 20px; max-height: 40px; mix-blend-mode: screen;">
-                            <p>Luxe et performance sonore para tu vehículo. Domina la ruta con ALFA.</p>
+                            <p>Luxe y performance sonora para tu vehículo. Domina la ruta con ALFA.</p>
                             <div class="footer-social" style="margin-top: 20px;">
                                 <a href="#" class="social-link"><i class="fa-brands fa-whatsapp"></i></a>
                                 <a href="#" class="social-link"><i class="fa-brands fa-instagram"></i></a>
