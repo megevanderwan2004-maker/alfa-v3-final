@@ -654,8 +654,18 @@ function loadProductDetails(data) {
 
     if (containerEl) {
         containerEl.style.display = 'flex';
-        const imgSrc = product.imagePath && product.imagePath.trim() !== "" ? product.imagePath : '';
-        document.getElementById('sp-img').src = imgSrc;
+        // MISSION 1: ALIGNEMENT STRICT
+        let finalImgSrc = product.image || "";
+        if (finalImgSrc) {
+            finalImgSrc = finalImgSrc.toString().trim();
+            if (finalImgSrc.startsWith('./')) {
+                finalImgSrc = finalImgSrc.substring(1);
+            }
+            if (!finalImgSrc.startsWith('/') && !finalImgSrc.startsWith('http')) {
+                finalImgSrc = '/' + finalImgSrc;
+            }
+        }
+        document.getElementById('sp-img').src = finalImgSrc;
         document.getElementById('sp-img').onerror = function () { handleImageError(this); };
         document.getElementById('sp-title').textContent = product.nombre || 'Producto';
         document.getElementById('sp-category').textContent = product.categoria || 'GENERAL';
@@ -716,10 +726,19 @@ function renderProducts(products, container, isHero = false) {
         card.href = `producto.html?sku=${encodeURIComponent(product.sku)}`;
         // Extender el AOS Delay a módulos de 8 para una cascada más larga (800ms max)
         const delay = (index % 8) * 100;
-        card.setAttribute('data-aos', 'fade-up');
-        card.setAttribute('data-aos-delay', delay);
+        // MISSION 1: ALIGNEMENT STRICT (Fix mismatch)
+        let finalImgSrc = product.image || "";
 
-        const imgSrc = product.imagePath && product.imagePath.trim() !== "" ? product.imagePath : '';
+        if (finalImgSrc) {
+            finalImgSrc = finalImgSrc.toString().trim();
+            // Nettoyage chemin relatif pour Safari
+            if (finalImgSrc.startsWith('./')) {
+                finalImgSrc = finalImgSrc.substring(1);
+            }
+            if (!finalImgSrc.startsWith('/') && !finalImgSrc.startsWith('http')) {
+                finalImgSrc = '/' + finalImgSrc;
+            }
+        }
 
         // Determinar prefijo y estilos para precio
         let priceDisplay = '';
@@ -730,9 +749,11 @@ function renderProducts(products, container, isHero = false) {
         }
 
         card.innerHTML = `
-            <div class="product-image-container" style="position:relative;">
-                <img src="${imgSrc}" alt="${product.nombre}" class="product-img" onerror="handleImageError(this)">
-                <div class="img-fallback" style="display: ${imgSrc ? 'none' : 'flex'};">Imagen no disponible</div>
+            <div class="product-image-container">
+                <img src="${finalImgSrc}" 
+                     alt="${product.nombre}" 
+                     class="product-img" 
+                     onerror="handleImageError(this)">
             </div>
             <div class="product-info">
                 <div class="product-category">${product.categoria || 'N/A'}</div>
