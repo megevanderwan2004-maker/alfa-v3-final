@@ -330,13 +330,7 @@ function loadHome(data) {
         renderProducts(featured, grid);
     }
 
-    // Explore Catalog Button
-    const exploreBtn = document.getElementById('btn-explore-catalog');
-    if (exploreBtn) {
-        exploreBtn.addEventListener('click', () => {
-            window.location.href = 'tienda.html';
-        });
-    }
+    // Explore Catalog Button (Handled by HTML Anchor now)
 
     // Universes Clickable Logic
     const universeItems = document.querySelectorAll('.universe-item.clickable-universe');
@@ -654,17 +648,8 @@ function loadProductDetails(data) {
 
     if (containerEl) {
         containerEl.style.display = 'flex';
-        // MISSION 1: ALIGNEMENT STRICT
-        let finalImgSrc = product.image || "";
-        if (finalImgSrc) {
-            finalImgSrc = finalImgSrc.toString().trim();
-            if (finalImgSrc.startsWith('./')) {
-                finalImgSrc = finalImgSrc.substring(1);
-            }
-            if (!finalImgSrc.startsWith('/') && !finalImgSrc.startsWith('http')) {
-                finalImgSrc = '/' + finalImgSrc;
-            }
-        }
+        // RESTAURATION LOGIQUE D'ORIGINE
+        let finalImgSrc = product.imagePath && product.imagePath.trim() !== "" ? product.imagePath : '';
         document.getElementById('sp-img').src = finalImgSrc;
         document.getElementById('sp-img').onerror = function () { handleImageError(this); };
         document.getElementById('sp-title').textContent = product.nombre || 'Producto';
@@ -726,19 +711,8 @@ function renderProducts(products, container, isHero = false) {
         card.href = `producto.html?sku=${encodeURIComponent(product.sku)}`;
         // Extender el AOS Delay a módulos de 8 para una cascada más larga (800ms max)
         const delay = (index % 8) * 100;
-        // MISSION 1: ALIGNEMENT STRICT (Fix mismatch)
-        let finalImgSrc = product.image || "";
-
-        if (finalImgSrc) {
-            finalImgSrc = finalImgSrc.toString().trim();
-            // Nettoyage chemin relatif pour Safari
-            if (finalImgSrc.startsWith('./')) {
-                finalImgSrc = finalImgSrc.substring(1);
-            }
-            if (!finalImgSrc.startsWith('/') && !finalImgSrc.startsWith('http')) {
-                finalImgSrc = '/' + finalImgSrc;
-            }
-        }
+        // RESTAURATION LOGIQUE D'ORIGINE (imagePath)
+        let finalImgSrc = product.imagePath && product.imagePath.trim() !== "" ? product.imagePath : '';
 
         // Determinar prefijo y estilos para precio
         let priceDisplay = '';

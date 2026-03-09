@@ -2,6 +2,10 @@
    ALFA CAR AUDIO - HAUTE COUTURE LUXE
    ========================================= */
 
+html {
+    scroll-behavior: smooth;
+}
+
 :root {
     --bg-darker: #050505;
     /* Noir profond */
@@ -883,9 +887,10 @@ h6 {
     }
 
     .universe-title {
-        font-size: 1.4rem;
+        font-size: 1.5rem;
     }
 }
+
 
 /* =========================================
    Catalog Grid (Glassmorphism Cards)
@@ -955,8 +960,8 @@ h6 {
 
 .product-img {
     width: 100%;
-    height: 100% !important;
-    /* OBLIGATOIRE POUR SAFARI MOBILE */
+    height: auto;
+    min-height: 150px;
     object-fit: contain;
     display: block;
     image-rendering: -webkit-optimize-contrast;
