@@ -87,7 +87,7 @@ function handleImageError(img) {
 
     // Final Fallback: Default Logo
     img.onerror = null; // Prevent infinite loop
-    img.src = 'PHOTO-2026-02-20-13-37-44.jpg';
+    img.src = 'logo-alfa.png';
     img.classList.add('img-placeholder');
 }
 

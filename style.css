@@ -456,8 +456,6 @@ h6 {
     width: auto;
     object-fit: contain;
     display: block;
-    mix-blend-mode: screen;
-    /* Fusionne le fond noir du JPG avec le site */
 }
 
 .logo span {
