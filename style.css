@@ -456,6 +456,7 @@ h6 {
     width: auto;
     object-fit: contain;
     display: block;
+    mix-blend-mode: screen;
 }
 
 .logo span {
