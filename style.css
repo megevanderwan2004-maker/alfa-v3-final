@@ -494,14 +494,21 @@ h6 {
     margin-left: 8px;
     color: var(--text-secondary);
     transition: transform var(--transition-fast), color var(--transition-fast);
+    padding: 15px;
+    /* Increase tap area for mobile */
+    margin-top: -15px;
+    margin-bottom: -15px;
+    margin-right: -15px;
 }
 
 .nav-link:hover,
-.nav-item:hover .nav-link {
+.nav-item:hover .nav-link,
+.nav-item.active .nav-link {
     color: var(--red-sport);
 }
 
-.nav-item:hover .nav-chevron {
+.nav-item:hover .nav-chevron,
+.nav-item.active .nav-chevron {
     transform: rotate(180deg);
     color: var(--red-sport);
 }
@@ -1637,7 +1644,8 @@ h6 {
         display: none;
     }
 
-    .nav-item:hover .nav-dropdown {
+    .nav-item:hover .nav-dropdown,
+    .nav-item.active .nav-dropdown {
         display: block;
         opacity: 1;
         visibility: visible;
