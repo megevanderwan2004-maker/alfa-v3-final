@@ -505,15 +505,24 @@ h6 {
 }
 
 .nav-link:hover,
-.nav-item:hover .nav-link,
 .nav-item.active .nav-link {
     color: var(--red-sport);
 }
 
-.nav-item:hover .nav-chevron,
 .nav-item.active .nav-chevron {
     transform: rotate(180deg);
     color: var(--red-sport);
+}
+
+@media (min-width: 769px) {
+    .nav-item:hover .nav-link {
+        color: var(--red-sport);
+    }
+
+    .nav-item:hover .nav-chevron {
+        transform: rotate(180deg);
+        color: var(--red-sport);
+    }
 }
 
 .nav-dropdown {
@@ -535,11 +544,13 @@ h6 {
     pointer-events: none;
 }
 
-.nav-item:hover .nav-dropdown {
-    opacity: 1;
-    visibility: visible;
-    transform: translateX(-50%) translateY(0);
-    pointer-events: auto;
+@media (min-width: 769px) {
+    .nav-item:hover .nav-dropdown {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(-50%) translateY(0);
+        pointer-events: auto;
+    }
 }
 
 .nav-item.force-close .nav-dropdown {
@@ -1684,6 +1695,8 @@ h6 {
         transform: translateY(10px) !important;
         margin-top: 0;
         z-index: 999;
+        display: none;
+        /* Crucial for preventing iOS sticky hover! */
     }
 
     .nav-item.active .nav-dropdown {
