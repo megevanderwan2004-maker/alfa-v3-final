@@ -292,13 +292,30 @@
                             2025 en PDF</h2>
                         <p>Déjanos tu correo y recíbelo gratis al instante.</p>
                     </div>
-                    <div class="newsletter-form-container" style="flex: 1; max-width: 500px; width: 100%;">
-                        <iframe data-w-type="embedded" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
-                            src="https://1lisk.mjt.lu/wgt/1lisk/06rx/form?c=06678b93" width="100%"
-                            style="height: 0; min-height: 100px;"></iframe>
-                        <script type="text/javascript" src="https://app.mailjet.com/pas-nc-embedded-v1.js"></script>
-                        <p
-                            style="color: var(--text-secondary); font-size: 0.85rem; margin-top: 5px; width: 100%; text-align: left;">
+                    <div class="newsletter-form-container" style="flex: 1; width: 100%;">
+                        <form action="https://formsubmit.co/alfa@alfacaraudiomx.com" method="POST"
+                            class="pas-form alfa-custom-form" autocomplete="off">
+                            <input type="hidden" name="_next"
+                                value="https://drive.google.com/file/d/1UHAi3XOsHjMOjInNodlON3X6rThz8Ngv/view?usp=share_link">
+                            <input type="hidden" name="_captcha" value="false">
+                            <div class="alfa-form-row">
+                                <div class="pas-input">
+                                    <input class="pas-email" required="required" type="email" name="email" id="email"
+                                        placeholder="Tu correo electrónico..." autocomplete="email">
+                                </div>
+                                <label class="pas-optin" id="consent-label" for="consent">
+                                    <input id="consent" name="consent" required="true" type="checkbox">
+                                    <span class="optin-text">Acepto recibir el catálogo.</span>
+                                </label>
+                                <div class="pas-submit">
+                                    <button type="submit" class="btn-red btn-alfa-submit">
+                                        <span class="btn-text">Recibir</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                        <p id="mock-info-msg"
+                            style="color: var(--text-secondary); font-size: 0.85rem; margin-top: 15px; width: 100%; text-align: left;">
                             Recibirás el enlace de descarga en tu correo al instante.</p>
                     </div>
                 </div>

@@ -1815,11 +1815,96 @@ h6 {
 }
 
 .newsletter-form-container {
-    display: flex;
-    gap: 15px;
     flex: 1;
-    max-width: 500px;
+    max-width: 700px;
     background: transparent;
+}
+
+.alfa-custom-form {
+    width: 100%;
+}
+
+.alfa-form-row {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+}
+
+.pas-input {
+    flex: 1;
+}
+
+.pas-email {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 10px 0;
+    color: #fff;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    transition: var(--transition-fast);
+}
+
+.pas-email:focus {
+    outline: none;
+    border-bottom-color: var(--red-sport);
+}
+
+.pas-email::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.pas-optin {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.pas-optin input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+    background: transparent;
+    cursor: pointer;
+    position: relative;
+    transition: var(--transition-fast);
+}
+
+.pas-optin input[type="checkbox"]:checked {
+    background: var(--red-sport);
+    border-color: var(--red-sport);
+}
+
+.pas-optin input[type="checkbox"]:checked::after {
+    content: '✓';
+    position: absolute;
+    color: white;
+    font-size: 12px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.optin-text {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.btn-alfa-submit {
+    padding: 12px 25px;
+    white-space: nowrap;
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    letter-spacing: 1px;
 }
 
 iframe[src*="mailjet"] {
@@ -1830,10 +1915,44 @@ iframe[src*="mailjet"] {
     .newsletter-content {
         flex-direction: column;
         text-align: center;
+        overflow-x: hidden;
     }
 
     .newsletter-form-container {
         width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+        padding: 0;
+    }
+
+    .alfa-form-row {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 20px;
+    }
+
+    .pas-submit {
+        width: 100%;
+    }
+
+    .btn-alfa-submit {
+        width: 100%;
+    }
+
+    .pas-optin {
+        justify-content: center;
+        white-space: normal;
+        text-align: left;
+    }
+
+    .mailjet-wrapper {
+        width: 100% !important;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    .mailjet-wrapper iframe {
+        width: 100% !important;
     }
 }
 
