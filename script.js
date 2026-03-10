@@ -216,10 +216,24 @@ function initMegaMenu(data) {
                 e.preventDefault();
                 e.stopPropagation(); // Stop event from bubbling up to the link's click handler
 
-                // On mobile, the parent li holds the dropdown
                 const parentLi = link.closest('.nav-item');
                 if (parentLi) {
-                    parentLi.classList.toggle('active');
+                    const isMobile = window.innerWidth <= 768;
+
+                    if (isMobile) {
+                        parentLi.classList.toggle('active');
+                    } else {
+                        if (parentLi.classList.contains('force-close')) {
+                            parentLi.classList.remove('force-close');
+                        } else {
+                            parentLi.classList.add('force-close');
+
+                            // Remove force-close when mouse leaves so hover works normally the next time
+                            parentLi.addEventListener('mouseleave', () => {
+                                parentLi.classList.remove('force-close');
+                            }, { once: true });
+                        }
+                    }
                 }
             });
         }

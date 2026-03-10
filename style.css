@@ -539,6 +539,18 @@ h6 {
     pointer-events: auto;
 }
 
+.nav-item.force-close .nav-dropdown {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    display: none !important;
+}
+
+.nav-item.force-close .nav-chevron {
+    transform: rotate(0deg) !important;
+    color: var(--text-secondary) !important;
+}
+
 #drop-audio,
 #drop-iluminacion {
     max-height: 60vh;
@@ -1644,7 +1656,6 @@ h6 {
         display: none;
     }
 
-    .nav-item:hover .nav-dropdown,
     .nav-item.active .nav-dropdown {
         display: block;
         opacity: 1;
