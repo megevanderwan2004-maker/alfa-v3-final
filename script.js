@@ -101,12 +101,20 @@ function initNavbar() {
 
     if (!navbar) return;
 
+    // Fix mobile dropdown entrapment by tracking exact header height
+    const updateHeaderHeight = () => {
+        document.documentElement.style.setProperty('--header-height', `${navbar.offsetHeight}px`);
+    };
+    window.addEventListener('resize', updateHeaderHeight);
+    updateHeaderHeight(); // init
+
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
             navbar.classList.add('scrolled');
         } else {
             navbar.classList.remove('scrolled');
         }
+        updateHeaderHeight(); // height changes on scroll
     });
 
     if (mobileBtn && navLinks) {
@@ -245,6 +253,15 @@ function initMegaMenu(data) {
                 handleSpaNavigation(cat, 'mainCategory');
             }
         });
+    });
+
+    // Close mobile dropdowns when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.nav-content')) {
+            document.querySelectorAll('.nav-item.active').forEach(item => {
+                item.classList.remove('active');
+            });
+        }
     });
 
     // Sub-buttons on page

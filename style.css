@@ -487,6 +487,9 @@ h6 {
     transition: color var(--transition-fast);
     display: flex;
     align-items: center;
+    position: relative;
+    z-index: 100;
+    /* Ensure links and their chevrons sit above the absolute dropdown */
 }
 
 .nav-chevron {
@@ -1667,11 +1670,11 @@ h6 {
     }
 
     .nav-dropdown {
-        position: absolute;
+        position: fixed;
         width: 100vw;
         left: 0;
-        top: 100%;
-        /* Anchor to the bottom of the entire fixed navbar */
+        top: var(--header-height, 130px);
+        /* Fixed overlay starting directly underneath the dynamically measured navbar */
         border: none;
         border-radius: 0;
         border-top: 1px solid var(--glass-border);
@@ -1680,6 +1683,7 @@ h6 {
         background: rgba(10, 10, 10, 0.95);
         transform: translateY(10px) !important;
         margin-top: 0;
+        z-index: 999;
     }
 
     .nav-item.active .nav-dropdown {
