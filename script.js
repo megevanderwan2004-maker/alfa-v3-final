@@ -208,9 +208,25 @@ function initMegaMenu(data) {
 
     // Main links click handler (show all for that section)
     document.querySelectorAll('.nav-link').forEach(link => {
+        // Find the chevron inside this link if it exists
+        const chevron = link.querySelector('.nav-chevron');
+        if (chevron) {
+            chevron.addEventListener('click', (e) => {
+                // Prevent the link from navigating
+                e.preventDefault();
+                e.stopPropagation(); // Stop event from bubbling up to the link's click handler
+
+                // On mobile, the parent li holds the dropdown
+                const parentLi = link.closest('.nav-item');
+                if (parentLi) {
+                    parentLi.classList.toggle('active');
+                }
+            });
+        }
+
         link.addEventListener('click', (e) => {
             e.preventDefault();
-            const cat = e.target.getAttribute('data-cat');
+            const cat = e.target.getAttribute('data-cat') || link.getAttribute('data-cat');
             if (cat) {
                 handleSpaNavigation(cat, 'mainCategory');
             }

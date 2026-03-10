@@ -648,6 +648,23 @@ h6 {
     box-shadow: none !important;
 }
 
+.btn-secret-lock {
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.2);
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: var(--transition-fast);
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-secret-lock:hover {
+    color: rgba(255, 255, 255, 0.5);
+}
+
 /* =========================================
    Hero Section
    ========================================= */
