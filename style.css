@@ -2496,3 +2496,151 @@ iframe[src*="mailjet"] {
         font-size: 1.5rem;
     }
 }
+
+/* ========================================
+   CATALOGUE PRODUITS - STYLE ALFA PERFORMANCE
+   ======================================== */
+
+:root {
+    --red-sport: #E01E1E;
+    --dark-bg: #0A0A0A;
+    --card-bg: #151515;
+}
+
+#catalogue-produits {
+    background: linear-gradient(180deg, var(--dark-bg) 0%, #000000 100%);
+    padding: 80px 20px;
+    min-height: 100vh;
+}
+
+.catalogue-container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.category-section {
+    margin-bottom: 100px;
+}
+
+.category-section:last-child {
+    margin-bottom: 0;
+}
+
+.category-title {
+    color: #FFFFFF;
+    font-size: 3rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 50px;
+    padding-bottom: 20px;
+    border-bottom: 4px solid var(--red-sport);
+    position: relative;
+}
+
+.category-title::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 120px;
+    height: 4px;
+    background: #FFFFFF;
+}
+
+/* GRILLE PRODUITS */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+}
+
+/* CARD PRODUIT */
+.product-card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 2px solid transparent;
+}
+
+.product-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    object-fit: cover;
+}
+
+/* EFFET HOVER PREMIUM */
+.product-card:hover {
+    border-color: var(--red-sport);
+    box-shadow: 0 0 30px rgba(224, 30, 30, 0.4), 0 10px 40px rgba(0, 0, 0, 0.6);
+    transform: translateY(-8px);
+}
+
+.product-card:hover img {
+    transform: scale(1.05);
+}
+
+/* RESPONSIVE - TABLETTE */
+@media (max-width: 1024px) {
+    .products-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 25px;
+    }
+
+    .category-title {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 900px) {
+    .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+}
+
+/* RESPONSIVE - MOBILE (2 COLONNES IMPÉRATIF) */
+@media (max-width: 768px) {
+    #catalogue-produits {
+        padding: 60px 15px;
+    }
+
+    .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    .category-title {
+        font-size: 2rem;
+        letter-spacing: 2px;
+        margin-bottom: 30px;
+    }
+
+    .category-section {
+        margin-bottom: 60px;
+    }
+
+    .product-card {
+        border-radius: 8px;
+    }
+
+    /* Désactiver le hover sur mobile pour éviter les problèmes tactiles */
+    .product-card:hover {
+        transform: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .products-grid {
+        gap: 12px;
+    }
+
+    .category-title {
+        font-size: 1.75rem;
+    }
+}
