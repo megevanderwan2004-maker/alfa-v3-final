@@ -1,0 +1,1549 @@
+{
+  "total_in_catalog": 398,
+  "matched_with_pdf": 391,
+  "changes": [
+    {
+      "name": "KIT BILED ALFA M1 H4 Bicolor",
+      "sku": "KFOLEALM1H42C",
+      "old": 670.0,
+      "new": 620.0
+    },
+    {
+      "name": "KIT LED ALFA M1 9006 Bicolor",
+      "sku": "KFOLEALM1962C",
+      "old": 360.0,
+      "new": 300.0
+    },
+    {
+      "name": "KIT LED ALFA M1 9012 Bicolor",
+      "sku": "KFOLEALM190122C",
+      "old": 1060.0,
+      "new": 300.0
+    },
+    {
+      "name": "KIT LED ALFA M1 H7 Bicolor",
+      "sku": "KFOLEALM1H72C",
+      "old": 820.0,
+      "new": 300.0
+    },
+    {
+      "name": "KIT LED ALFA M1 H11 Bicolor",
+      "sku": "KFOLEALM1H112C",
+      "old": 1060.0,
+      "new": 360.0
+    },
+    {
+      "name": "KIT LED ALFA M1 H1 Bicolor",
+      "sku": "KFOLEALM1H12C",
+      "old": 300.0,
+      "new": 670.0
+    },
+    {
+      "name": "KIT LED ALFA M2 9006",
+      "sku": "KFOLEALM296",
+      "old": 820.0,
+      "new": 1060.0
+    },
+    {
+      "name": "KIT BILED ALFA M2 9007",
+      "sku": "KFOLEALM297",
+      "old": 1060.0,
+      "new": 820.0
+    },
+    {
+      "name": "KIT BILED ALFA M2 H1",
+      "sku": "KFOLEALM2H1",
+      "old": 820.0,
+      "new": 1060.0
+    },
+    {
+      "name": "KIT LED ALFA M2 H11",
+      "sku": "KFOLEALM2H11",
+      "old": 820.0,
+      "new": 1060.0
+    },
+    {
+      "name": "KIT LED ALFA M2 H13",
+      "sku": "KFOLEALM2H13",
+      "old": 1060.0,
+      "new": 820.0
+    },
+    {
+      "name": "KIT BILED ALFA M2 H4",
+      "sku": "KFOLEALM2H4",
+      "old": 820.0,
+      "new": 1060.0
+    },
+    {
+      "name": "KIT LED ALFA M2 9005",
+      "sku": "KFOLEALM295",
+      "old": 1160.0,
+      "new": 820.0
+    },
+    {
+      "name": "KIT LED ALFA M2 880",
+      "sku": "KFOLEALM2880",
+      "old": 1160.0,
+      "new": 820.0
+    },
+    {
+      "name": "KIT LED ALFA M2 5202",
+      "sku": "KFOLEALM25202",
+      "old": 1400.0,
+      "new": 820.0
+    },
+    {
+      "name": "KIT LED ALFA M2 H11 Tricolor",
+      "sku": "KFOLEALM2H113C",
+      "old": 1400.0,
+      "new": 1160.0
+    },
+    {
+      "name": "KIT BILED ALFA M2 H13 Tricolor",
+      "sku": "KFOLEALM2H133C",
+      "old": 1160.0,
+      "new": 1400.0
+    },
+    {
+      "name": "KIT LED ALFA M2 H1 Tricolor",
+      "sku": "KFOLEALM2H13C",
+      "old": 1400.0,
+      "new": 1160.0
+    },
+    {
+      "name": "KIT LED ALFA M2 H4 Tricolor",
+      "sku": "KFOLEALM2H43C",
+      "old": 1160.0,
+      "new": 1400.0
+    },
+    {
+      "name": "KIT LED ALFA M2 9007 Tricolor",
+      "sku": "KFOLEALM2973C",
+      "old": 1600.0,
+      "new": 1400.0
+    },
+    {
+      "name": "KIT LED ALFA M2 9006 Tricolor",
+      "sku": "KFOLEALM2963C",
+      "old": 1600.0,
+      "new": 1160.0
+    },
+    {
+      "name": "KIT LED ALFA M2 9005 Tricolor",
+      "sku": "KFOLEALM2953C",
+      "old": 1600.0,
+      "new": 1160.0
+    },
+    {
+      "name": "KIT LED ALFA M3 H1",
+      "sku": "KFOLEALM3H1",
+      "old": 2000.0,
+      "new": 1600.0
+    },
+    {
+      "name": "KIT LED ALFA M3 H3",
+      "sku": "KFOLEALM3H3",
+      "old": 2000.0,
+      "new": 1600.0
+    },
+    {
+      "name": "KIT BILED ALFA M3 H4",
+      "sku": "KFOLEALM3H4",
+      "old": 1600.0,
+      "new": 2000.0
+    },
+    {
+      "name": "KIT BILED ALFA M3 H13",
+      "sku": "KFOLEALM3H13",
+      "old": 1600.0,
+      "new": 2000.0
+    },
+    {
+      "name": "KIT LED ALFA M3 9005",
+      "sku": "KFOLEALM395",
+      "old": 2000.0,
+      "new": 1600.0
+    },
+    {
+      "name": "KIT LED ALFA M3 9006",
+      "sku": "KFOLEALM396",
+      "old": 1700.0,
+      "new": 1600.0
+    },
+    {
+      "name": "KIT BILED ALFA M3 9007",
+      "sku": "KFOLEALM397",
+      "old": 1700.0,
+      "new": 1600.0
+    },
+    {
+      "name": "KIT LED ALFA M3 5202",
+      "sku": "KFOLEALM35202",
+      "old": 2100.0,
+      "new": 2000.0
+    },
+    {
+      "name": "KIT LED ALFA M4 H4",
+      "sku": "KFOLEALM4H4",
+      "old": 1700.0,
+      "new": 2100.0
+    },
+    {
+      "name": "KIT BILED ALFA M4 H7",
+      "sku": "KFOLEALM4H7",
+      "old": 1600.0,
+      "new": 1700.0
+    },
+    {
+      "name": "KIT LED ALFA M4 9006",
+      "sku": "KFOLEALM496",
+      "old": 1600.0,
+      "new": 1700.0
+    },
+    {
+      "name": "KIT BILED ALFA M4 H11",
+      "sku": "KFOLEALM4H11",
+      "old": 1600.0,
+      "new": 1700.0
+    },
+    {
+      "name": "KIT LED ALFA P1 9005",
+      "sku": "KFOLEALP195",
+      "old": 2000.0,
+      "new": 1600.0
+    },
+    {
+      "name": "KIT BILED ALFA P1 H4",
+      "sku": "KFOLEALP1H4",
+      "old": 2500.0,
+      "new": 2000.0
+    },
+    {
+      "name": "KIT LED ALFA P1 H7",
+      "sku": "KFOLEALP1H7",
+      "old": 2000.0,
+      "new": 1600.0
+    },
+    {
+      "name": "KIT LED ALFA P1 H11",
+      "sku": "KFOLEALP1H11",
+      "old": 2500.0,
+      "new": 1600.0
+    },
+    {
+      "name": "KIT LED ALFA O1 9006",
+      "sku": "KFOLEALO196",
+      "old": 840.0,
+      "new": 680.0
+    },
+    {
+      "name": "KIT BILED ALFA O1 H1",
+      "sku": "KFOLEALO1H1",
+      "old": 1600.0,
+      "new": 680.0
+    },
+    {
+      "name": "KIT LED ALFA O1 H11",
+      "sku": "KFOLEALO1H11",
+      "old": 680.0,
+      "new": 840.0
+    },
+    {
+      "name": "KIT LED ALFA O1 H15",
+      "sku": "KFOLEALO1H15",
+      "old": 1600.0,
+      "new": 680.0
+    },
+    {
+      "name": "KIT LED ALFA O1 H4",
+      "sku": "KFOLEALO1H4",
+      "old": 1600.0,
+      "new": 840.0
+    },
+    {
+      "name": "KIT LED ALFA O1 H7",
+      "sku": "KFOLEALO1H7",
+      "old": 2500.0,
+      "new": 680.0
+    },
+    {
+      "name": "KIT LED ALFA D2S/D2R",
+      "sku": "KFOLEALD2",
+      "old": 1700.0,
+      "new": 3000.0
+    },
+    {
+      "name": "KIT LED ALFA D3S/D3R",
+      "sku": "KFOLEALD3",
+      "old": 1740.0,
+      "new": 2500.0
+    },
+    {
+      "name": "KIT LED ALFA D4S/D4R",
+      "sku": "KFOLEALD4",
+      "old": 3000.0,
+      "new": 2500.0
+    },
+    {
+      "name": "KIT LED ALFA D8S/D8R",
+      "sku": "KFOLEALD8",
+      "old": 1740.0,
+      "new": 2500.0
+    },
+    {
+      "name": "KIT XENON SLIM 9005",
+      "sku": "KFOXEAL55955K",
+      "old": 2140.0,
+      "new": 1700.0
+    },
+    {
+      "name": "KIT XENON SLIM 9006",
+      "sku": "KFOXEAL55965K",
+      "old": 2140.0,
+      "new": 1740.0
+    },
+    {
+      "name": "KIT XENON SLIM H3",
+      "sku": "KFOXEAL55H35K",
+      "old": 2320.0,
+      "new": 1740.0
+    },
+    {
+      "name": "KIT XENON SLIM H7",
+      "sku": "KFOXEAL55H75K",
+      "old": 1700.0,
+      "new": 2140.0
+    },
+    {
+      "name": "KIT XENON SLIM 5202",
+      "sku": "KFOXEAL55525K",
+      "old": 660.0,
+      "new": 2320.0
+    },
+    {
+      "name": "KIT BIXENON SLIM 9007",
+      "sku": "KFOBXAL55975K",
+      "old": 380.0,
+      "new": 1700.0
+    },
+    {
+      "name": "KIT BIXENON SLIM H13",
+      "sku": "KFOBXAL55H135K",
+      "old": 1700.0,
+      "new": 2140.0
+    },
+    {
+      "name": "KIT BIXENON SLIM H4",
+      "sku": "KFOBXAL55H45K",
+      "old": 480.0,
+      "new": 1700.0
+    },
+    {
+      "name": "KIT OSRAM COOL BLUE H3",
+      "sku": "KFOHAOS30322",
+      "old": 440.0,
+      "new": 660.0
+    },
+    {
+      "name": "KIT OSRAM COOL BLUE H4",
+      "sku": "KFOHAOS83526",
+      "old": 780.0,
+      "new": 440.0
+    },
+    {
+      "name": "KIT OSRAM COOL BLUE 9007",
+      "sku": "KFOHAOS85542",
+      "old": 1080.0,
+      "new": 780.0
+    },
+    {
+      "name": "KIT OSRAM COOL BLUE H7",
+      "sku": "KFOHAOS85570",
+      "old": 420.0,
+      "new": 480.0
+    },
+    {
+      "name": "KIT OSRAM COOL BLUE H1",
+      "sku": "KFOHAOS85571",
+      "old": 780.0,
+      "new": 380.0
+    },
+    {
+      "name": "KIT OSRAM COOL BLUE HB4",
+      "sku": "KFOHAOS86830",
+      "old": 1000.0,
+      "new": 420.0
+    },
+    {
+      "name": "KIT HALOGENO NIGHTBREAKER OSRAM H4",
+      "sku": "KFOHAOS86864",
+      "old": 1260.0,
+      "new": 1000.0
+    },
+    {
+      "name": "KIT HALOGENO COOLBLUE OSRAM H11",
+      "sku": "KFOHAOS86904",
+      "old": 6100.0,
+      "new": 1080.0
+    },
+    {
+      "name": "KIT OSRAM H7 (EQUIPO ORIGINAL)",
+      "sku": "KFOHAOS87129",
+      "old": 6100.0,
+      "new": 1260.0
+    },
+    {
+      "name": "KIT HALOGENO COOLBLUE OSRAM 9005 HB3",
+      "sku": "KFOHAOS87144",
+      "old": 1080.0,
+      "new": 780.0
+    },
+    {
+      "name": "KIT DE LAMPARA H11 OSRAM COOL BLUE INTENSE",
+      "sku": "KFOHAOS87838",
+      "old": 940.0,
+      "new": 1080.0
+    },
+    {
+      "name": "KIT OSRAM COOL BLUE INTENSE H13",
+      "sku": "KFOHAOS30320",
+      "old": 4980.0,
+      "new": 940.0
+    },
+    {
+      "name": "KIT LED OSRAM H11 EQUIPO ORIGINAL",
+      "sku": "KFOLEOS86272",
+      "old": 4420.0,
+      "new": 6100.0
+    },
+    {
+      "name": "KIT LED OSRAM H7 EQUIPO ORIGINAL",
+      "sku": "KFOLEOS86273",
+      "old": 5720.0,
+      "new": 4740.0
+    },
+    {
+      "name": "KIT LED COOL BLUE INTENSE OSRAM H7",
+      "sku": "KFOLEOS86711",
+      "old": 240.0,
+      "new": 3980.0
+    },
+    {
+      "name": "KIT LED COOL BLUE INTENSE OSRAM H4",
+      "sku": "KFOLEOS86712",
+      "old": 4740.0,
+      "new": 6100.0
+    },
+    {
+      "name": "KIT LED OSRAM 9005 DE NIEBLA EQUIPO ORIGINAL",
+      "sku": "KFOLESY34966",
+      "old": 3980.0,
+      "new": 4980.0
+    },
+    {
+      "name": "KIT LED OSRAM/SYLVANIA H11 EQUIPO ORIGINAL",
+      "sku": "KFOLESY37691",
+      "old": 6100.0,
+      "new": 4420.0
+    },
+    {
+      "name": "KIT LED OSRAM/SYLVANIA H4 EQUIPO ORIGINAL",
+      "sku": "KFOLESY37693",
+      "old": 320.0,
+      "new": 5720.0
+    },
+    {
+      "name": "KIT LED OSRAM 9006 (HB4) EQUIPO ORIGINAL",
+      "sku": "KFOLEOS86271",
+      "old": 500.0,
+      "new": 6100.0
+    },
+    {
+      "name": "KIT LAMPARA LED MINIATURA NEOLUX NT1061CW-02B",
+      "sku": "KFMLENE85222",
+      "old": 500.0,
+      "new": 240.0
+    },
+    {
+      "name": "KIT LAMPARA LED MINIATURA NEOLUX NP2260 CW-02B",
+      "sku": "KFMLENE85240",
+      "old": 700.0,
+      "new": 500.0
+    },
+    {
+      "name": "KIT LAMPARA LED MINIATURA NEOLUX NP2160W-02B",
+      "sku": "KFMLENE85246",
+      "old": 600.0,
+      "new": 500.0
+    },
+    {
+      "name": "KIT DE FOCO MINIATURA LED ALFA 1156",
+      "sku": "KFMLEAL1156",
+      "old": 240.0,
+      "new": 600.0
+    },
+    {
+      "name": "KIT DE FOCO MINIATURA LED ALFA S5-3157",
+      "sku": "KFMLEAL3157",
+      "old": 480.0,
+      "new": 600.0
+    },
+    {
+      "name": "KIT DE FOCO MINIATURA LED ALFA S5P-P21",
+      "sku": "KFMLEALS5P21",
+      "old": 640.0,
+      "new": 480.0
+    },
+    {
+      "name": "KIT DE FOCO MINIATURA LED ALFA S5-T16",
+      "sku": "KFMLEALS5T16",
+      "old": 600.0,
+      "new": 700.0
+    },
+    {
+      "name": "KIT DE FOCO MINIATURA LED ALFA T10",
+      "sku": "KFMLEALT10",
+      "old": 600.0,
+      "new": 240.0
+    },
+    {
+      "name": "KIT DE FOCO MINIATURA LED ALFA T15",
+      "sku": "KFMLEALT15",
+      "old": 130.0,
+      "new": 600.0
+    },
+    {
+      "name": "FOCO MINIATURA LED ALFA C5-31MM",
+      "sku": "PFMLEALC531B",
+      "old": 1300.0,
+      "new": 130.0
+    },
+    {
+      "name": "FOCO MINIATURA LED ALFA C5-37MM",
+      "sku": "PFMLEALC537B",
+      "old": 560.0,
+      "new": 120.0
+    },
+    {
+      "name": "FOCO MINIATURA LED ALFA C5-41MM",
+      "sku": "PFMLEALC541B",
+      "old": 120.0,
+      "new": 640.0
+    },
+    {
+      "name": "FOCO XENON D2C",
+      "sku": "PFOXEAL35D2C",
+      "old": 560.0,
+      "new": 1300.0
+    },
+    {
+      "name": "FOCO XENON D2R",
+      "sku": "PFOXEAL35D2R",
+      "old": 1960.0,
+      "new": 3560.0
+    },
+    {
+      "name": "FOCO XENON D1S NEOLUX",
+      "sku": "PFOXENE85253",
+      "old": 2000.0,
+      "new": 1960.0
+    },
+    {
+      "name": "FOCO XENON D2S NEOLUX H1",
+      "sku": "PFOXENE85254",
+      "old": 3560.0,
+      "new": 560.0
+    },
+    {
+      "name": "FOCO LED OSRAM D1S",
+      "sku": "PFOXEOS86176",
+      "old": 2000.0,
+      "new": 560.0
+    },
+    {
+      "name": "FOCO XENON OSRAM D2S",
+      "sku": "PFOXEOS86178",
+      "old": 3960.0,
+      "new": 2000.0
+    },
+    {
+      "name": "FOCO XENON D4S",
+      "sku": "PFOXEPH42402",
+      "old": 1270.0,
+      "new": 3960.0
+    },
+    {
+      "name": "FOCO XENON D3S",
+      "sku": "PFOXEPH92853",
+      "old": 1270.0,
+      "new": 2000.0
+    },
+    {
+      "name": "FOCO XENON PHILLIPS D5S",
+      "sku": "PFOXEPH92854",
+      "old": 1270.0,
+      "new": 500.0
+    },
+    {
+      "name": "BALASTRA D1/3 A2",
+      "sku": "PBLACAL35A2",
+      "old": 2000.0,
+      "new": 1270.0
+    },
+    {
+      "name": "BALASTRA D1/3 M4",
+      "sku": "PBLACAL35M4",
+      "old": 500.0,
+      "new": 1270.0
+    },
+    {
+      "name": "BALASTRA D1/3 M6",
+      "sku": "PBLACAL35M6",
+      "old": 1270.0,
+      "new": 2000.0
+    },
+    {
+      "name": "BALASTRA D1/3 V4",
+      "sku": "PBLACAL35V4",
+      "old": 1640.0,
+      "new": 1270.0
+    },
+    {
+      "name": "BALASTRA SLIM ALFA 55W",
+      "sku": "PBLACAL55",
+      "old": 420.0,
+      "new": 1270.0
+    },
+    {
+      "name": "BALASTRA ARRANCADOR DSC/D2R/D2S",
+      "sku": "PIGACAL35",
+      "old": 480.0,
+      "new": 1640.0
+    },
+    {
+      "name": "BARRA MINI 1X6 CON FLASHEADOR RECTA BLANCA",
+      "sku": "PBAALMIB018R",
+      "old": 560.0,
+      "new": 420.0
+    },
+    {
+      "name": "BARRA MINI RECTA BLANCA 1X18",
+      "sku": "PBAALMIB054R",
+      "old": 1020.0,
+      "new": 560.0
+    },
+    {
+      "name": "BARRA MINI RECTA BLANCA 1X24",
+      "sku": "PBAALMIB072R",
+      "old": 1030.0,
+      "new": 1020.0
+    },
+    {
+      "name": "BARRA MINI RECTA BLANCA 1X12",
+      "sku": "PBAALMIBL036R",
+      "old": 940.0,
+      "new": 480.0
+    },
+    {
+      "name": "KIT BARRA MINI RECTA BICOLOR 1X6",
+      "sku": "KBAALMIB018R",
+      "old": 1090.0,
+      "new": 940.0
+    },
+    {
+      "name": "KIT BARRA MINI RECTA BICOLOR 1X12",
+      "sku": "KBAALMIB036R",
+      "old": 1240.0,
+      "new": 1090.0
+    },
+    {
+      "name": "BARRA MINI RECTA BICOLOR 1X18",
+      "sku": "KBAALMIB054R",
+      "old": 1400.0,
+      "new": 1240.0
+    },
+    {
+      "name": "BARRA MINI RECTA BICOLOR 1X24",
+      "sku": "KBAALMIB072R",
+      "old": 730.0,
+      "new": 1400.0
+    },
+    {
+      "name": "BARRA SLIM 2X20",
+      "sku": "PBAALSL120R",
+      "old": 1420.0,
+      "new": 1500.0
+    },
+    {
+      "name": "BARRA SLIM RECTA 2X30",
+      "sku": "PBAALSL180R",
+      "old": 1500.0,
+      "new": 1030.0
+    },
+    {
+      "name": "BARRA SLIM CURVA 2X40",
+      "sku": "PBAALSL240C",
+      "old": 440.0,
+      "new": 730.0
+    },
+    {
+      "name": "BARRA SLIM RECTA 2X40",
+      "sku": "PBAALSL240R",
+      "old": 1740.0,
+      "new": 440.0
+    },
+    {
+      "name": "BARRA SLIM CURVA 2X50",
+      "sku": "PBAALSL300C",
+      "old": 2120.0,
+      "new": 1740.0
+    },
+    {
+      "name": "BARRA SLIM RECTA 2X50",
+      "sku": "PBAALSL300R",
+      "old": 6780.0,
+      "new": 1500.0
+    },
+    {
+      "name": "BARRA SLIM RECTA 2X6",
+      "sku": "PBAALSL36R",
+      "old": 600.0,
+      "new": 1420.0
+    },
+    {
+      "name": "BARRA SLIM RECTA 2X12",
+      "sku": "PBAALSL72R",
+      "old": 1500.0,
+      "new": 600.0
+    },
+    {
+      "name": "BARRA ALFA LED 90W 18\\",
+      "sku": "PBAAL1X9RBA",
+      "old": 3250.0,
+      "new": 2120.0
+    },
+    {
+      "name": "BARRA ALFA LED 90W 28\\",
+      "sku": "PBAAL1X15RBA",
+      "old": 4240.0,
+      "new": 6780.0
+    },
+    {
+      "name": "BARRA ALFA LED 90W 39\\",
+      "sku": "PBAAL1X21RBA",
+      "old": 5370.0,
+      "new": 4900.0
+    },
+    {
+      "name": "BARRA ALFA LED 90W 50\\",
+      "sku": "PBAAL1X27RBA",
+      "old": 2680.0,
+      "new": 5370.0
+    },
+    {
+      "name": "BARRA ALFA LED 90W 55\\",
+      "sku": "PBAAL1X30RBA",
+      "old": 4900.0,
+      "new": 3250.0
+    },
+    {
+      "name": "BARRA SYLVANIA 10\\",
+      "sku": "PBASY34026",
+      "old": 10280.0,
+      "new": 4240.0
+    },
+    {
+      "name": "BARRA SYLVANIA 20\\",
+      "sku": "PBASY34028",
+      "old": 640.0,
+      "new": 10280.0
+    },
+    {
+      "name": "BARRA SYLVANIA 10\\",
+      "sku": "PBASY34058",
+      "old": 320.0,
+      "new": 640.0
+    },
+    {
+      "name": "BARRA SYLVANIA 20\\",
+      "sku": "PBASY34060",
+      "old": 4300.0,
+      "new": 320.0
+    },
+    {
+      "name": "BARRA SYLVANIA 12\\",
+      "sku": "PBASY34044",
+      "old": 440.0,
+      "new": 4300.0
+    },
+    {
+      "name": "ARNES FLASHEADOR CON ANTENA ESPIRAL",
+      "sku": "KARALFLASH",
+      "old": 4880.0,
+      "new": 2680.0
+    },
+    {
+      "name": "MODULO FLASHEADOR",
+      "sku": "KMOALFLASH",
+      "old": 2600.0,
+      "new": 4880.0
+    },
+    {
+      "name": "MODULO DOBLE PARA 2 BARRAS LED SECUENCIAL",
+      "sku": "KANALNA102",
+      "old": 1480.0,
+      "new": 2600.0
+    },
+    {
+      "name": "KIT FARO REDONDO 9 LEDS",
+      "sku": "KFALEALRD015",
+      "old": 200.0,
+      "new": 440.0
+    },
+    {
+      "name": "KIT FAROS LED ALFA 7\\",
+      "sku": "KFEALEALRGB7Y4",
+      "old": 1900.0,
+      "new": 6640.0
+    },
+    {
+      "name": "FARO REDONDO 9 LEDS",
+      "sku": "PFALEALRD001",
+      "old": 1740.0,
+      "new": 1900.0
+    },
+    {
+      "name": "FARO LED ALFA REDONDO 9 LED SLIM",
+      "sku": "PFALEALRD003",
+      "old": 6640.0,
+      "new": 1480.0
+    },
+    {
+      "name": "FARO REDONDO ALFA 5\\",
+      "sku": "PFALEALRD006",
+      "old": 220.0,
+      "new": 200.0
+    },
+    {
+      "name": "FARO REDONDO 4\\",
+      "sku": "PFALESY34056",
+      "old": 400.0,
+      "new": 220.0
+    },
+    {
+      "name": "FARO REDONDO 3\\",
+      "sku": "PFALESY34084",
+      "old": 460.0,
+      "new": 400.0
+    },
+    {
+      "name": "KIT DE FAROS REDONDO 12 LEDS RGB CON LUZ DE DIA",
+      "sku": "KUNLEALRD004",
+      "old": 6240.0,
+      "new": 2020.0
+    },
+    {
+      "name": "KIT FARO REDONDO 7\\",
+      "sku": "KUNLEALRD007",
+      "old": 1540.0,
+      "new": 6240.0
+    },
+    {
+      "name": "FARO 3.5\\",
+      "sku": "PFALEALRD005",
+      "old": 2020.0,
+      "new": 1740.0
+    },
+    {
+      "name": "FARO 7\\",
+      "sku": "PFALEALRD002",
+      "old": 3700.0,
+      "new": 460.0
+    },
+    {
+      "name": "KIT DE FAROS PROYECTOR LUPA X8",
+      "sku": "KPRLEAL55X8",
+      "old": 260.0,
+      "new": 6780.0
+    },
+    {
+      "name": "KIT DE FAROS TIPO LUPA H5",
+      "sku": "KPRLEAL45H5",
+      "old": 400.0,
+      "new": 3700.0
+    },
+    {
+      "name": "KIT FAROS AUXILIARES REDONDOS LUZ BLANCA 3 LUNAS",
+      "sku": "KFALEALAU001",
+      "old": 440.0,
+      "new": 1540.0
+    },
+    {
+      "name": "KIT FAROS AUXILIARES REDONDOS LUZ BLANCA",
+      "sku": "KFALEALAU005",
+      "old": 5250.0,
+      "new": 440.0
+    },
+    {
+      "name": "KIT FARO CUADRADO 9 LEDS",
+      "sku": "KFALEALCU009",
+      "old": 1720.0,
+      "new": 400.0
+    },
+    {
+      "name": "KIT FARO CUADRADO 9 LED SLIM",
+      "sku": "KFALEALCU016",
+      "old": 6780.0,
+      "new": 1720.0
+    },
+    {
+      "name": "KIT FAROS SYLVANIA PODS DRL CUBE-X FLOOD",
+      "sku": "KFALESY34008",
+      "old": 6980.0,
+      "new": 5250.0
+    },
+    {
+      "name": "KIT FAROS PODS CUADRADO SYLVANIA 3\\",
+      "sku": "KFALESY34072",
+      "old": 220.0,
+      "new": 260.0
+    },
+    {
+      "name": "FARO CUADRADO 9 LEDS",
+      "sku": "PFALEALCU001",
+      "old": 490.0,
+      "new": 360.0
+    },
+    {
+      "name": "FARO 2X2 LEDS",
+      "sku": "PFALEALCU003",
+      "old": 360.0,
+      "new": 6980.0
+    },
+    {
+      "name": "FARO TIPO BARRA 2X3",
+      "sku": "PFALEALCU006",
+      "old": 260.0,
+      "new": 220.0
+    },
+    {
+      "name": "FARO CUADRADO LED ALFA 2X2 3\\",
+      "sku": "PFALEALCU007",
+      "old": 280.0,
+      "new": 260.0
+    },
+    {
+      "name": "FARO CUADRADO LED ALFA 2X2 3\\",
+      "sku": "PFALEALCU008",
+      "old": 360.0,
+      "new": 280.0
+    },
+    {
+      "name": "FARO TIPO BARRA 2X3 CON LATERALES AMBAR/BLANCO C/FLASH",
+      "sku": "PFALEALRC005",
+      "old": 2310.0,
+      "new": 1900.0
+    },
+    {
+      "name": "FARO FLASHEADOR TIPO BARRA 2X3",
+      "sku": "PFALEALRC010",
+      "old": 280.0,
+      "new": 240.0
+    },
+    {
+      "name": "FARO TIPO BARRA 2X3 BICOLOR CON FLASHEADOR",
+      "sku": "PFALEALRC012",
+      "old": 1900.0,
+      "new": 490.0
+    },
+    {
+      "name": "FARO CUADRADO 4\\",
+      "sku": "PFALESY34054",
+      "old": 240.0,
+      "new": 360.0
+    },
+    {
+      "name": "FARO CUADRADO 7\\",
+      "sku": "PUNLEALRC004",
+      "old": 420.0,
+      "new": 380.0
+    },
+    {
+      "name": "FARO LED ALFA 3\\",
+      "sku": "PFALEALRC007",
+      "old": 260.0,
+      "new": 3440.0
+    },
+    {
+      "name": "FARO LED ALFA RECTANGULAR 1X6 CREE",
+      "sku": "PFALEALRC011",
+      "old": 180.0,
+      "new": 620.0
+    },
+    {
+      "name": "FARO MODULAR 4\\",
+      "sku": "PFALEALRC001",
+      "old": 570.0,
+      "new": 260.0
+    },
+    {
+      "name": "FARO LED ALFA 4 LED 1X4 4.5\\",
+      "sku": "PFALEALRC006",
+      "old": 620.0,
+      "new": 280.0
+    },
+    {
+      "name": "FARO LED ALFA 6\\",
+      "sku": "PFALEALRC013",
+      "old": 570.0,
+      "new": 180.0
+    },
+    {
+      "name": "KIT FAROS LED ALFA 1X6 BLANCO/AMBAR CON ESTROBO",
+      "sku": "KFALEALRC008",
+      "old": 240.0,
+      "new": 570.0
+    },
+    {
+      "name": "KIT FAROS LED ALFA 1X6 AMBAR/AMBAR CON ESTROBO",
+      "sku": "KFALEALRC007",
+      "old": 240.0,
+      "new": 570.0
+    },
+    {
+      "name": "FARO LED ALFA 4 LED 1X4 4.5\\",
+      "sku": "PFALEALRC002",
+      "old": 370.0,
+      "new": 240.0
+    },
+    {
+      "name": "KIT FAROS LED ALFA 1X4 4.5\\",
+      "sku": "KFALEALRC001",
+      "old": 1490.0,
+      "new": 460.0
+    },
+    {
+      "name": "FARO LED ALFA 1X4 4.5\\",
+      "sku": "PFALEALRC008",
+      "old": 460.0,
+      "new": 240.0
+    },
+    {
+      "name": "FARO 2X3 CREE",
+      "sku": "PFALEALRC004",
+      "old": 2150.0,
+      "new": 370.0
+    },
+    {
+      "name": "KIT DE ILUMINACION EXTERIOR 4 ZONAS RGB",
+      "sku": "KFOLEAL4ZONA",
+      "old": 340.0,
+      "new": 1490.0
+    },
+    {
+      "name": "KIT DE ILUMINACION EXTERIOR 6 ZONAS RGB",
+      "sku": "KFOLEAL6ZONA",
+      "old": 360.0,
+      "new": 2150.0
+    },
+    {
+      "name": "KIT DE CALAVERA LED JEEP WRANGLER RUBICON 02",
+      "sku": "KCALEALJEE02",
+      "old": 7780.0,
+      "new": 3050.0
+    },
+    {
+      "name": "KIT DE CALAVERA LED JEEP WRANGLER RUBICON 04",
+      "sku": "KCALEALJEE04",
+      "old": 6600.0,
+      "new": 4270.0
+    },
+    {
+      "name": "FARO OSRAM H4656",
+      "sku": "PUNHASY30825",
+      "old": 380.0,
+      "new": 340.0
+    },
+    {
+      "name": "FARO OSRAM H6054",
+      "sku": "PUNHASY30832",
+      "old": 1420.0,
+      "new": 2310.0
+    },
+    {
+      "name": "UNIDAD CUADRADA GRANDE 7\\",
+      "sku": "PUNLEALRC001",
+      "old": 1440.0,
+      "new": 1420.0
+    },
+    {
+      "name": "UNIDAD CUADRADA CHICA 5\\",
+      "sku": "PUNLEALRC003",
+      "old": 2310.0,
+      "new": 360.0
+    },
+    {
+      "name": "UNIDAD CUADRADA 7\\",
+      "sku": "PUNLEALRC004",
+      "old": 420.0,
+      "new": 380.0
+    },
+    {
+      "name": "UNIDAD CUADRADA 7\\",
+      "sku": "PUNLEALRC005",
+      "old": 1420.0,
+      "new": 420.0
+    },
+    {
+      "name": "UNIDAD CUADRADA 7\\",
+      "sku": "PUNLEALRC006",
+      "old": 1860.0,
+      "new": 1420.0
+    },
+    {
+      "name": "UNIDAD REDONDA 7\\",
+      "sku": "PUNLEALRD001",
+      "old": 3050.0,
+      "new": 1860.0
+    },
+    {
+      "name": "UNIDAD REDONDA 7\\",
+      "sku": "PUNLEALRD002",
+      "old": 4270.0,
+      "new": 2080.0
+    },
+    {
+      "name": "UNIDAD REDONDA 7\\",
+      "sku": "PUNLEALRD003",
+      "old": 2080.0,
+      "new": 1440.0
+    },
+    {
+      "name": "AMPLIFICADOR ALFA 1200.1",
+      "sku": "PAMAL1200.1D",
+      "old": 4350.0,
+      "new": 6000.0
+    },
+    {
+      "name": "AMPLIFICADOR ALFA 600.5",
+      "sku": "PAMAL600.5D",
+      "old": 3890.0,
+      "new": 7780.0
+    },
+    {
+      "name": "AMPLIFICADOR ALFA 700.1",
+      "sku": "PAMAL700.1D",
+      "old": 3300.0,
+      "new": 6600.0
+    },
+    {
+      "name": "AMPLIFICADOR ALFA 700.2",
+      "sku": "PAMAL700.2D",
+      "old": 3000.0,
+      "new": 8700.0
+    },
+    {
+      "name": "AMPLIFICADOR ALFA 800.4",
+      "sku": "PAMAL800.4D",
+      "old": 3300.0,
+      "new": 1250.0
+    },
+    {
+      "name": "AMPLIFICADOR ALFA 500.4",
+      "sku": "PAMALMN500.4",
+      "old": 1100.0,
+      "new": 4450.0
+    },
+    {
+      "name": "AMPLIFICADOR ALFA 1000.1 FR",
+      "sku": "PAMALFR1000.1",
+      "old": 1360.0,
+      "new": 1550.0
+    },
+    {
+      "name": "AMPLIFICADOR ALFA 1000.1 MN",
+      "sku": "PAMALMN1000.1D",
+      "old": 1200.0,
+      "new": 6600.0
+    },
+    {
+      "name": "AMPLIFICADOR JX AUDIO 400/4D",
+      "sku": "PAMJX400.4",
+      "old": 950.0,
+      "new": 1900.0
+    },
+    {
+      "name": "AMPLIFICADOR JX AUDIO 500/2D",
+      "sku": "PAMJX500.2",
+      "old": 850.0,
+      "new": 1600.0
+    },
+    {
+      "name": "AMPLIFICADOR JX AUDIO 1000/1D",
+      "sku": "PAMJX1000.1",
+      "old": 1300.0,
+      "new": 2600.0
+    },
+    {
+      "name": "BOCINA ALFA 6.5",
+      "sku": "KBOALAP65.2",
+      "old": 660.0,
+      "new": 1320.0
+    },
+    {
+      "name": "KIT BOCINA ALFA MRLB65",
+      "sku": "KBOALMRLB65",
+      "old": 1040.0,
+      "new": 1580.0
+    },
+    {
+      "name": "KIT BOCINA ALFA MRA65",
+      "sku": "KBOALMRA65",
+      "old": 640.0,
+      "new": 1040.0
+    },
+    {
+      "name": "BOCINA ALFA MRXT65",
+      "sku": "PBOALMRXT65",
+      "old": 1160.0,
+      "new": 1120.0
+    },
+    {
+      "name": "KIT BOCINA ALFA MRXT65",
+      "sku": "KBOALMRXT65",
+      "old": 1560.0,
+      "new": 2240.0
+    },
+    {
+      "name": "BOCINA ALFA MREL80",
+      "sku": "PBOALMREL80",
+      "old": 1120.0,
+      "new": 760.0
+    },
+    {
+      "name": "BOCINA ALFA MRLB80",
+      "sku": "PBOALMRLB80",
+      "old": 760.0,
+      "new": 640.0
+    },
+    {
+      "name": "KIT BOCINA ALFA MRLB80",
+      "sku": "KBOALMRLB80",
+      "old": 2240.0,
+      "new": 1280.0
+    },
+    {
+      "name": "BOCINA ALFA MRA80",
+      "sku": "PBOALMRA80",
+      "old": 1280.0,
+      "new": 1160.0
+    },
+    {
+      "name": "BOCINA ALFA MRXT80",
+      "sku": "PBOALMRXT80",
+      "old": 1250.0,
+      "new": 1560.0
+    },
+    {
+      "name": "KIT BOCINA ALFA MRXT80",
+      "sku": "KBOALMRXT80",
+      "old": 2500.0,
+      "new": 3120.0
+    },
+    {
+      "name": "BOCINA ALFA PRO 65 CON TWEETER",
+      "sku": "PBOALCXPRO65",
+      "old": 1540.0,
+      "new": 1250.0
+    },
+    {
+      "name": "KIT BOCINA ALFA PRO 65 CON TWEETER",
+      "sku": "KBOALCXPRO65",
+      "old": 1370.0,
+      "new": 2500.0
+    },
+    {
+      "name": "BOCINA ALFA PRO 69 CON TWEETER",
+      "sku": "PBOALCXPRO69",
+      "old": 3120.0,
+      "new": 3080.0
+    },
+    {
+      "name": "BOCINA ALFA PRO 80 CON TWEETER",
+      "sku": "PBOALCXPRO80",
+      "old": 1600.0,
+      "new": 1370.0
+    },
+    {
+      "name": "KIT BOCINA ALFA PRO 80 CON TWEETER",
+      "sku": "KBOALCXPRO80",
+      "old": 1330.0,
+      "new": 2740.0
+    },
+    {
+      "name": "KIT BOCINA Y TWEETER ALFA",
+      "sku": "KBTALPROCS65",
+      "old": 2390.0,
+      "new": 1330.0
+    },
+    {
+      "name": "SUBWOOFER ALFA CT10D2",
+      "sku": "PSWALCT10D2",
+      "old": 2740.0,
+      "new": 1600.0
+    },
+    {
+      "name": "SUBWOOFER ALFA CT12D2",
+      "sku": "PSWALCT12D2",
+      "old": 1780.0,
+      "new": 3570.0
+    },
+    {
+      "name": "SUBWOOFER ALFA CT12D4",
+      "sku": "PSWALCT12D4",
+      "old": 1600.0,
+      "new": 1780.0
+    },
+    {
+      "name": "SUBWOOFER ALFA ST65D2",
+      "sku": "PSWALST65D2",
+      "old": 3570.0,
+      "new": 2390.0
+    },
+    {
+      "name": "SUBWOOFER ALFA ST80D2",
+      "sku": "PSWALST80D2",
+      "old": 3570.0,
+      "new": 1600.0
+    },
+    {
+      "name": "SUBWOOFER ALFA ST80D4",
+      "sku": "PSWALST80D4",
+      "old": 4720.0,
+      "new": 5360.0
+    },
+    {
+      "name": "SUBWOOFER ALFA ST10D2",
+      "sku": "PSWALST10D2",
+      "old": 4720.0,
+      "new": 5360.0
+    },
+    {
+      "name": "SUBWOOFER ALFA ST10D4",
+      "sku": "PSWALST10D4",
+      "old": 1790.0,
+      "new": 4720.0
+    },
+    {
+      "name": "SUBWOOFER ALFA ST12D2",
+      "sku": "PSWALST12D2",
+      "old": 5360.0,
+      "new": 3570.0
+    },
+    {
+      "name": "SUBWOOFER ALFA ST12D4",
+      "sku": "PSWALST12D4",
+      "old": 5360.0,
+      "new": 4720.0
+    },
+    {
+      "name": "SUBWOOFER ALFA MT65D2",
+      "sku": "PSWALMT65D2",
+      "old": 2560.0,
+      "new": 1790.0
+    },
+    {
+      "name": "SUBWOOFER ALFA MT65D4",
+      "sku": "PSWALMT65D4",
+      "old": 1790.0,
+      "new": 2560.0
+    },
+    {
+      "name": "SUBWOOFER ALFA MT80D2",
+      "sku": "PSWALMT80D2",
+      "old": 2820.0,
+      "new": 1790.0
+    },
+    {
+      "name": "SUBWOOFER ALFA MT10D2",
+      "sku": "PSWALMT10D2",
+      "old": 2560.0,
+      "new": 2820.0
+    },
+    {
+      "name": "SUBWOOFER ALFA MT10D4",
+      "sku": "PSWALMT10D4",
+      "old": 2980.0,
+      "new": 2560.0
+    },
+    {
+      "name": "SUBWOOFER ALFA MT12D2",
+      "sku": "PSWALMT12D2",
+      "old": 2710.0,
+      "new": 2980.0
+    },
+    {
+      "name": "SUBWOOFER ALFA MT12D4",
+      "sku": "PSWALMT12D4",
+      "old": 2980.0,
+      "new": 2710.0
+    },
+    {
+      "name": "ALARMA JX 709",
+      "sku": "KALJX709",
+      "old": 365.0,
+      "new": 30.0
+    },
+    {
+      "name": "KIT RELAY CON ARNES 5 PATAS",
+      "sku": "KREAL5PIN",
+      "old": 300.0,
+      "new": 240.0
+    },
+    {
+      "name": "ARNES CORRECTOR DE FALLA",
+      "sku": "KARALCORR",
+      "old": 100.0,
+      "new": 300.0
+    },
+    {
+      "name": "ARNES SOCKET D2",
+      "sku": "PARALHED2",
+      "old": 420.0,
+      "new": 100.0
+    },
+    {
+      "name": "ARNES UNIVERSAL PARA MOTO Y CARRO",
+      "sku": "PARALCAMO",
+      "old": 240.0,
+      "new": 420.0
+    },
+    {
+      "name": "ARNES BIXENON H4",
+      "sku": "PARBXH4",
+      "old": 30.0,
+      "new": 240.0
+    },
+    {
+      "name": "TERMINAL CONECTOR CALIBRE 16-14 AWG",
+      "sku": "PTEALBVW2",
+      "old": 140.0,
+      "new": 80.0
+    },
+    {
+      "name": "TERMINAL CONECTOR CALIBRE 12-10 AWG",
+      "sku": "PTEALBVW5",
+      "old": 160.0,
+      "new": 40.0
+    },
+    {
+      "name": "TERMINAL CONECTOR NYLON CALIBRE 16-14 AWG",
+      "sku": "PTEALBNYF2",
+      "old": 140.0,
+      "new": 160.0
+    },
+    {
+      "name": "TERMINAL CHUPON CALIBRE 16-14 AWG",
+      "sku": "PTEALCE2",
+      "old": 80.0,
+      "new": 30.0
+    },
+    {
+      "name": "TERMINAL CHUPON CALIBRE 14-12 AWG",
+      "sku": "PTEALCE5",
+      "old": 40.0,
+      "new": 140.0
+    },
+    {
+      "name": "TERMINAL ZAPATA NYLON CALIBRE 16-14 AWG",
+      "sku": "PTEALFDFN2",
+      "old": 80.0,
+      "new": 140.0
+    },
+    {
+      "name": "TERMINAL ZAPATA VINYL CALIBRE 16-14 AWG",
+      "sku": "PTEALFDFV2",
+      "old": 110.0,
+      "new": 80.0
+    },
+    {
+      "name": "TERMINAL ZAPATA SEMIFORRADA 110 CALIBRE 16-14",
+      "sku": "PTEALFDV2-110",
+      "old": 25.0,
+      "new": 50.0
+    },
+    {
+      "name": "TERMINAL ZAPATA SEMIFORRADA 205 CALIBRE 16-14",
+      "sku": "PTEALFDV2-205",
+      "old": 50.0,
+      "new": 48.0
+    },
+    {
+      "name": "TERMINAL ZAPATA SEMIFORRADA 250 CALIBRE 16-14",
+      "sku": "PTEALFDV2-250",
+      "old": 55.0,
+      "new": 110.0
+    },
+    {
+      "name": "TERMINAL ZAPATA SEMIFORRADA 312 CALIBRE 16-14",
+      "sku": "PTEALFDV2-312",
+      "old": 80.0,
+      "new": 160.0
+    },
+    {
+      "name": "TERMINAL ESPADA CALIBRE 16-14 AWG",
+      "sku": "PTEALSV2-5",
+      "old": 24.0,
+      "new": 100.0
+    },
+    {
+      "name": "TERMINAL ESPADA 3.7 CALIBRE 16-14 AWG",
+      "sku": "PTEALSVL2-3.7",
+      "old": 40.0,
+      "new": 80.0
+    },
+    {
+      "name": "TERMINAL ESPADA VINYL CALIBRE 22-16 AWG",
+      "sku": "PTEALTFDFD1.25",
+      "old": 47.0,
+      "new": 94.0
+    },
+    {
+      "name": "TERMINAL OJILLO CALIBRE 16-14 AWG",
+      "sku": "PTEALRV2-3.5",
+      "old": 22.0,
+      "new": 130.0
+    },
+    {
+      "name": "TERMINAL OJILLO 3.7 CALIBRE 16-14 AWG",
+      "sku": "PTEALRVM2-3.7",
+      "old": 40.0,
+      "new": 80.0
+    },
+    {
+      "name": "TERMINAL PARA CABLE CALIBRE 0 10MM 100% COBRE",
+      "sku": "PTEALSCJGK-50",
+      "old": 110.0,
+      "new": 44.0
+    },
+    {
+      "name": "TERMINAL PARA CABLE CALIBRE 4 10MM 100% COBRE",
+      "sku": "PTEALSCJGK-25",
+      "old": 65.0,
+      "new": 130.0
+    },
+    {
+      "name": "TERMINAL PARA CABLE CALIBRE 8 10MM 100% COBRE",
+      "sku": "PTEALSCJGK-10",
+      "old": 35.0,
+      "new": 70.0
+    }
+  ],
+  "unmatched_pdf_skus": [
+    "PCBCY1X0RO",
+    "PCBCY1X18AZ",
+    "PCBCY1X18NG",
+    "PCBCY1X18RO",
+    "PFUPO85AMP"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "catalog_count": 394,
+  "pdf_count": 394,
+  "in_both": 393,
+  "in_catalog_not_pdf": [
+    "#KFALESY34008"
+  ],
+  "in_pdf_not_catalog": [
+    "#KFALESY3400"
+  ],
+  "duplicates_catalog": [
+    "#PCBCY2X14TR",
+    "#PCBCY2X16TR",
+    "#PCBCY2X18BI",
+    "#PUNLEALRC004"
+  ]
+}

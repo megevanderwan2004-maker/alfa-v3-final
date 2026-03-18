@@ -1,0 +1,28 @@
+{
+  "name": "alfa-v3-propre",
+  "version": "1.0.0",
+  "main": "admin.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://megevanderwan2004-maker@github.com/megevanderwan2004-maker/alfa-v3-final.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/megevanderwan2004-maker/alfa-v3-final/issues"
+  },
+  "homepage": "https://github.com/megevanderwan2004-maker/alfa-v3-final#readme",
+  "description": "",
+  "dependencies": {
+    "axios": "^1.13.6",
+    "cheerio": "^1.2.0",
+    "fs-extra": "^11.3.4",
+    "image-size": "^2.0.2",
+    "pdf-parse": "^2.4.5",
+    "puppeteer": "^24.39.1"
+  }
+}

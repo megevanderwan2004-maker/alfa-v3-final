@@ -1,0 +1,14 @@
+=== RAPPORT MISE À JOUR IMAGES ===
+Date : 2026-03-18 12:10
+
+ÉTAPE 1 — État initial
+  Produits avec image : 320
+  Produits sans image : 74
+
+ÉTAPE 2+3 — Sources utilisées
+  Copiés depuis images_alfaperf/ : 18 SKUs
+  Extraits depuis cat-alfa.pdf   : 56 SKUs
+  Toujours manquants             : 0 SKUs
+
+IMAGES TOUJOURS MANQUANTES :
+  Aucune — tout est résolu !
