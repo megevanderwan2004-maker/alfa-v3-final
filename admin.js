@@ -1,302 +1,212 @@
-import catalog from './catalog.js';
+// Supabase Configuration
+const SUPABASE_URL = 'https://egfurglzwuthkixwrvou.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVnZnVyZ2x6d3V0aGtpeHdydm91Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM5NDY4OTEsImV4cCI6MjA4OTUyMjg5MX0.pjsQlCYIpx03CbkYcrO1I33zeyzEXCbrr8xMXEW3WPc';
+const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-let products = [...catalog];
-// Initialize featuredSkus from local storage or fallback if not in catalog.js
-// Note: We'll stop using localStorage soon, but for now we keep it or use a default.
-window.featuredSkus = ["#KALAL838512", "#KBOALCXPRO80", "#KFOLEALM1H13"];
+let products = [];
+let promoSkus = ["", "", ""]; // Managed via _CONFIG_PROMOS_ row
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+    const { data: { session } } = await _supabase.auth.getSession();
+    if (!session) {
+        window.location.href = 'login.html';
+        return;
+    }
+
+    await fetchCatalog();
     initTabs();
-    renderTable();
-    renderPromotions();
+    initImageUpload();
 });
+
+async function fetchCatalog() {
+    const { data, error } = await _supabase
+        .from('catalog')
+        .select('*')
+        .order('nombre', { ascending: true });
+
+    if (error) {
+        console.error("Error:", error);
+    } else {
+        // Filter out system config rows from the main product list
+        products = data.filter(p => !p.sku.startsWith('_CONFIG_'));
+        
+        // Find Promo Config
+        const config = data.find(p => p.sku === '_CONFIG_PROMOS_');
+        if (config) {
+            promoSkus = (config.descripcion || "").split(',').map(s => s.trim());
+            // Ensure exactly 3 slots
+            while(promoSkus.length < 3) promoSkus.push("");
+            promoSkus = promoSkus.slice(0, 3);
+        }
+
+        renderTable();
+        renderPromotions();
+    }
+}
 
 const tableBody = document.getElementById('table-body');
 const modal = document.getElementById('product-modal');
 const form = document.getElementById('product-form');
 const btnAdd = document.getElementById('btn-add-product');
-const btnExport = document.getElementById('btn-export-catalog');
 const btnLogout = document.getElementById('btn-logout');
-
 const fImg = document.getElementById('prod-image');
 const preview = document.getElementById('img-preview');
 
-// Logout feature
 if (btnLogout) {
-    btnLogout.addEventListener('click', () => {
-        sessionStorage.removeItem('alfa_admin_auth');
-        window.location.href = 'index.html';
-    });
+    btnLogout.onclick = async () => {
+        await _supabase.auth.signOut();
+        window.location.href = 'login.html';
+    };
 }
 
-// Open Add Modal
 if (btnAdd) {
-    btnAdd.addEventListener('click', () => {
+    btnAdd.onclick = () => {
         form.reset();
         document.getElementById('prod-id').value = '';
         document.getElementById('modal-title').textContent = 'Agregar Producto';
         preview.innerHTML = '';
         modal.classList.add('active');
-
-        // Default category suggestion if empty
         document.getElementById('prod-category').value = "Nuevos Productos";
-    });
+    };
 }
 
-// Close Modal
 const closeModalBtn = document.querySelector('.close-modal');
-if (closeModalBtn) {
-    closeModalBtn.addEventListener('click', () => {
-        modal.classList.remove('active');
-    });
-}
+if (closeModalBtn) closeModalBtn.onclick = () => modal.classList.remove('active');
 
-// Close clicking outside the overlay
-window.addEventListener('click', (e) => {
-    if (e.target === modal) {
-        modal.classList.remove('active');
-    }
-});
+window.onclick = (e) => { if (e.target === modal) modal.classList.remove('active'); };
 
-// Input change preview for image based on text
 if (fImg) {
-    fImg.addEventListener('input', () => {
+    fImg.oninput = () => {
         const val = fImg.value.trim();
-        if (val) {
-            preview.innerHTML = `<img src="./images/${val}" onerror="this.style.display='none'">`;
-        } else {
-            preview.innerHTML = '';
-        }
-    });
+        preview.innerHTML = val ? `<img src="${val}" onerror="this.src='PHOTO-2026-02-20-13-37-44.jpg'">` : '';
+    };
 }
 
-// Form Submit: Add or Edit
 if (form) {
-    form.addEventListener('submit', (e) => {
+    form.onsubmit = async (e) => {
         e.preventDefault();
+        const sku = document.getElementById('prod-sku').value.trim();
+        const saveBtn = form.querySelector('button[type="submit"]');
+        saveBtn.disabled = true; saveBtn.textContent = 'Guardando...';
 
-        const idVal = document.getElementById('prod-id').value;
-        const imgName = fImg.value.trim();
-
-        // Format image path correctly
-        const imgPath = imgName ? (imgName.startsWith('./images/') ? imgName : `./images/${imgName}`) : "";
-
-        // Extracting data exactly under the expected format (nombre, sku, precio, categoria, description, imagePath)
-        const newProd = {
+        const productData = {
+            sku: sku,
             nombre: document.getElementById('prod-name').value.trim(),
-            sku: document.getElementById('prod-sku').value.trim(),
             precio: parseFloat(document.getElementById('prod-price').value),
             categoria: document.getElementById('prod-category').value.trim(),
-            description: document.getElementById('prod-desc').value.trim() || undefined,
-            imagePath: imgPath
+            descripcion: document.getElementById('prod-desc').value.trim() || '',
+            image_url: fImg.value.trim()
         };
 
-        // Remove undefined descriptions for clean JSON 
-        if (!newProd.description) delete newProd.description;
-
-        // Since we don't have unique IDs inside the products array anymore, 
-        // we use the array index stored inside "prod-id" hidden field.
-        if (idVal !== '') {
-            const idx = parseInt(idVal, 10);
-            if (idx >= 0 && idx < products.length) {
-                products[idx] = newProd;
-            }
-        } else {
-            products.push(newProd);
-        }
-
-        renderTable();
-        modal.classList.remove('active');
-        alert('Cambios guardados en memoria.\n¡IMPORTANTE: Haz clic en "SAUVEGARDER LES MODIFICATIONS" para grabar permanentemente!');
-    });
+        const { error } = await _supabase.from('catalog').upsert(productData, { onConflict: 'sku' });
+        if (error) alert('Error: ' + error.message);
+        else { await fetchCatalog(); modal.classList.remove('active'); }
+        saveBtn.disabled = false; saveBtn.textContent = 'GUARDAR CAMBIOS';
+    };
 }
 
-// Build list for the UI
 function renderTable(searchTerm = "") {
     if (!tableBody) return;
     tableBody.innerHTML = '';
-
-    // Create an array mapping to keep original index
-    let filteredItems = products.map((p, index) => ({ p, index }));
-
+    let filtered = products.map((p, index) => ({ p, index }));
     if (searchTerm) {
-        filteredItems = filteredItems.filter(item => {
-            const p = item.p;
-            return (p.nombre && p.nombre.toLowerCase().includes(searchTerm)) ||
-                (p.sku && p.sku.toLowerCase().includes(searchTerm)) ||
-                (p.categoria && p.categoria.toLowerCase().includes(searchTerm));
-        });
+        filtered = filtered.filter(item => 
+            item.p.nombre.toLowerCase().includes(searchTerm) || 
+            item.p.sku.toLowerCase().includes(searchTerm) || 
+            item.p.categoria.toLowerCase().includes(searchTerm)
+        );
     }
-
-    if (filteredItems.length === 0) {
+    if (!filtered.length) {
         tableBody.innerHTML = '<tr><td colspan="6" style="text-align:center;">No hay productos.</td></tr>';
         return;
     }
-
-    filteredItems.forEach((item) => {
+    filtered.forEach((item) => {
         const p = item.p;
-        const index = item.index;
-
+        const imgThumb = p.image_url ? `<img src="${p.image_url}" class="thumb" onerror="this.src='PHOTO-2026-02-20-13-37-44.jpg'">` : '<div class="no-thumb">Sin Img</div>';
+        const isFeatured = promoSkus.includes(p.sku);
         const tr = document.createElement('tr');
-        const imgThumb = p.imagePath ? `<img src="${p.imagePath}" class="thumb" onerror="this.style.display='none'">` : '<div class="no-thumb">Sin Img</div>';
-
         tr.innerHTML = `
             <td>${imgThumb}</td>
             <td>${p.sku || '-'}</td>
-            <td><strong>${p.nombre || '-'}</strong></td>
+            <td><strong>${p.nombre || '-'}</strong> ${isFeatured ? '⭐' : ''}</td>
             <td><span class="badge">${p.categoria || '-'}</span></td>
             <td>$${p.precio || '0'}</td>
             <td>
-                <button class="btn-action edit" onclick="editProduct(${index})"><i class="fa-solid fa-pen"></i></button>
-                <button class="btn-action delete" onclick="deleteProduct(${index})"><i class="fa-solid fa-trash"></i></button>
-            </td>
-        `;
+                <button class="btn-action edit" onclick="editProduct(${item.index})"><i class="fa-solid fa-pen"></i></button>
+                <button class="btn-action delete" onclick="deleteProduct(${item.index})"><i class="fa-solid fa-trash"></i></button>
+            </td>`;
         tableBody.appendChild(tr);
     });
 }
 
-// Search field initialization
 const adminSearch = document.getElementById('admin-search');
-if (adminSearch) {
-    adminSearch.addEventListener('input', (e) => {
-        const term = e.target.value.toLowerCase().trim();
-        renderTable(term);
-    });
-}
+if (adminSearch) adminSearch.oninput = (e) => renderTable(e.target.value.toLowerCase().trim());
 
-// Global functions for inline onclick handlers inside table
 window.editProduct = (index) => {
     const p = products[index];
-    if (!p) return;
-
     document.getElementById('modal-title').textContent = 'Editar Producto';
     document.getElementById('prod-id').value = index;
     document.getElementById('prod-name').value = p.nombre || '';
     document.getElementById('prod-sku').value = p.sku || '';
     document.getElementById('prod-price').value = p.precio || '0';
     document.getElementById('prod-category').value = p.categoria || '';
-    document.getElementById('prod-desc').value = p.description || '';
-
-    // Extract purely filename, assuming format starts with './images/'
-    let fileName = '';
-    if (p.imagePath) {
-        fileName = p.imagePath.replace('./images/', '');
-    }
-    fImg.value = fileName;
-
-    if (fileName) {
-        preview.innerHTML = `<img src="./images/${fileName}" onerror="this.style.display='none'">`;
-    } else {
-        preview.innerHTML = '';
-    }
-
+    document.getElementById('prod-desc').value = p.descripcion || '';
+    fImg.value = p.image_url || '';
+    preview.innerHTML = p.image_url ? `<img src="${p.image_url}" onerror="this.src='PHOTO-2026-02-20-13-37-44.jpg'">` : '';
     modal.classList.add('active');
 };
 
-window.deleteProduct = (index) => {
-    // Basic array removal via splice
-    if (confirm('¿Seguro que deseas eliminar este producto?')) {
-        products.splice(index, 1);
-        renderTable();
-    }
+window.deleteProduct = async (index) => {
+    const p = products[index];
+    if (!confirm(`¿Eliminar ${p.sku}?`)) return;
+    const { error } = await _supabase.from('catalog').delete().eq('sku', p.sku);
+    if (error) alert('Error: ' + error.message);
+    else await fetchCatalog();
 };
 
-if (btnExport) {
-    btnExport.addEventListener('click', async () => {
-        try {
-            const response = await fetch('http://localhost:3001/save-catalog', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ catalog: products })
-            });
-            const result = await response.json();
-            if (result.success) {
-                alert(`✅ ${result.count} produits sauvegardés dans catalog.js`);
-            } else {
-                alert('❌ Erreur : ' + result.error);
-            }
-        } catch (error) {
-            console.error('Save error:', error);
-            alert('❌ Erreur de comunicación con el servidor');
-        }
-    });
-}
-
-/**
- * NEW: Tab Switcher Logic
- */
 function initTabs() {
     const tabs = document.querySelectorAll('.nav-link-tab');
     const contents = document.querySelectorAll('.tab-content');
     const adminTitle = document.getElementById('admin-title');
-
     tabs.forEach(tab => {
-        tab.addEventListener('click', (e) => {
+        tab.onclick = (e) => {
             e.preventDefault();
             const target = tab.getAttribute('data-target');
-
             tabs.forEach(t => t.classList.remove('active'));
             tab.classList.add('active');
-
             contents.forEach(c => c.style.display = 'none');
-            const targetEl = document.getElementById(target);
-            if (targetEl) targetEl.style.display = 'block';
-
-            if (adminTitle) {
-                adminTitle.textContent = target === 'products-panel' ? 'Gestión de Catálogo' : 'Promoción del Mes';
-            }
-
-            // Hide/Show "Add Product" button
+            document.getElementById(target).style.display = 'block';
+            if (adminTitle) adminTitle.textContent = target === 'products-panel' ? 'Gestión de Catálogo' : 'Promoción del Mes';
             if (btnAdd) btnAdd.style.display = target === 'products-panel' ? 'inline-flex' : 'none';
-        });
+        }
     });
 }
 
-/**
- * NEW: Promotions Management
- */
 function renderPromotions() {
     const container = document.getElementById('promotions-slots');
     if (!container) return;
-
     container.innerHTML = '';
-    const currentFeatured = window.featuredSkus || [];
 
     for (let i = 0; i < 3; i++) {
-        const sku = currentFeatured[i];
-        const product = products.find(p => String(p.sku).trim() === String(sku).trim());
-
+        const sku = promoSkus[i];
+        const p = products.find(prod => prod.sku === sku);
         const slot = document.createElement('div');
         slot.className = 'promo-slot';
-        
-        if (product) {
+        if (p) {
             slot.innerHTML = `
                 <h4>Slot ${i + 1}</h4>
-                <div class="promo-preview">
-                    <img src="${product.imagePath}" onerror="this.src='PHOTO-2026-02-20-13-37-44.jpg'">
-                </div>
-                <div class="promo-info">
-                    <span class="promo-name">${product.nombre}</span>
-                    <span class="promo-sku">SKU: ${product.sku}</span>
-                </div>
+                <div class="promo-preview"><img src="${p.image_url}" onerror="this.src='PHOTO-2026-02-20-13-37-44.jpg'"></div>
+                <div class="promo-info"><span class="promo-name">${p.nombre}</span><span class="promo-sku">SKU: ${p.sku}</span></div>
                 <div class="promo-actions">
-                    <button class="btn-promo-assign" onclick="openSelectModal(${i})">Cambiar</button>
-                    <button class="btn-promo-clear" onclick="clearSlot(${i})">Eliminar</button>
-                </div>
-            `;
+                    <button class="btn-promo-action btn-promo-assign" onclick="openSelectModal(${i})">Cambiar</button>
+                    <button class="btn-promo-action btn-promo-clear" onclick="clearSlotPromocion(${i})">Quitar</button>
+                </div>`;
         } else {
             slot.innerHTML = `
                 <h4>Slot ${i + 1}</h4>
-                <div class="promo-preview">
-                    <span class="empty-slot-msg">Vacio</span>
-                </div>
-                <div class="promo-info">
-                    <span class="promo-name">- Ninguno -</span>
-                </div>
-                <div class="promo-actions">
-                    <button class="btn-promo-assign" onclick="openSelectModal(${i})">Asignar Producto</button>
-                </div>
-            `;
+                <div class="promo-preview"><span class="empty-slot-msg">Sin asignar</span></div>
+                <div class="promo-info"><span class="promo-name">- Vacío -</span></div>
+                <div class="promo-actions"><button class="btn-promo-action btn-promo-assign" onclick="openSelectModal(${i})">Asignar Producto</button></div>`;
         }
         container.appendChild(slot);
     }
@@ -310,50 +220,90 @@ const closeSelectModal = document.querySelector('.close-select-modal');
 
 window.openSelectModal = (index) => {
     activeSlotIndex = index;
-    if (selectModal) selectModal.classList.add('active');
+    selectModal.classList.add('active');
     renderSelectTable();
 };
 
-window.clearSlot = (index) => {
-    if (window.featuredSkus) {
-        window.featuredSkus[index] = null;
-        renderPromotions();
+window.clearSlotPromocion = async (index) => {
+    promoSkus[index] = "";
+    await savePromoConfig();
+};
+
+window.assignProductToSlot = async (sku) => {
+    if (activeSlotIndex !== null) {
+        promoSkus[activeSlotIndex] = sku;
+        await savePromoConfig();
+        selectModal.classList.remove('active');
     }
 };
 
-if (closeSelectModal) {
-    closeSelectModal.onclick = () => selectModal.classList.remove('active');
-}
-
-if (selectSearch) {
-    selectSearch.oninput = (e) => renderSelectTable(e.target.value.toLowerCase().trim());
+async function savePromoConfig() {
+    const csv = promoSkus.join(',');
+    const { error } = await _supabase
+        .from('catalog')
+        .update({ descripcion: csv })
+        .eq('sku', '_CONFIG_PROMOS_');
+    
+    if (error) alert("Error actualizando promociones: " + error.message);
+    else await fetchCatalog();
 }
 
 function renderSelectTable(term = "") {
     if (!selectTableBody) return;
     selectTableBody.innerHTML = '';
-
-    const filtered = products.filter(p => 
-        p.nombre.toLowerCase().includes(term) || 
-        (p.sku && p.sku.toLowerCase().includes(term))
-    );
-
+    const filtered = products.filter(p => (p.nombre && p.nombre.toLowerCase().includes(term)) || (p.sku && p.sku.toLowerCase().includes(term))).slice(0, 50);
     filtered.forEach(p => {
         const tr = document.createElement('tr');
         tr.innerHTML = `
-            <td><img src="${p.imagePath}" class="thumb" onerror="this.style.display='none'"></td>
+            <td><img src="${p.image_url}" class="thumb" onerror="this.src='PHOTO-2026-02-20-13-37-44.jpg'"></td>
             <td>${p.sku}</td>
             <td>${p.nombre}</td>
-            <td><button class="btn-gold" style="padding: 5px 10px; font-size: 0.8rem;" onclick="assignProductToSlot('${p.sku}')">Seleccionar</button></td>
-        `;
+            <td><button class="btn-gold" style="padding: 5px 10px; font-size: 0.8rem;" onclick="assignProductToSlot('${p.sku}')">Seleccionar</button></td>`;
         selectTableBody.appendChild(tr);
     });
 }
 
-window.assignProductToSlot = (sku) => {
-    if (activeSlotIndex !== null && window.featuredSkus) {
-        window.featuredSkus[activeSlotIndex] = sku;
-        renderPromotions();
-        selectModal.classList.remove('active');
+if (closeSelectModal) closeSelectModal.onclick = () => selectModal.classList.remove('active');
+if (selectSearch) selectSearch.oninput = (e) => renderSelectTable(e.target.value.toLowerCase().trim());
+
+function initImageUpload() {
+    const uploadArea = document.getElementById('upload-area');
+    const fileInput = document.getElementById('file-input');
+    const btnImport = document.getElementById('btn-import-drive');
+    if (!uploadArea || !fileInput) return;
+    uploadArea.onclick = () => fileInput.click();
+    fileInput.onchange = (e) => { if (e.target.files.length > 0) handleFileUpload(e.target.files[0]); };
+    if (btnImport) {
+        btnImport.onclick = async () => {
+            const url = document.getElementById('drive-link').value.trim();
+            if (!url) return;
+            btnImport.disabled = true; btnImport.textContent = "...";
+            try {
+                let directUrl = url;
+                if (url.includes('drive.google.com')) {
+                    const id = url.match(/\/d\/(.+?)\//);
+                    if (id) directUrl = `https://lh3.googleusercontent.com/d/${id[1]}`;
+                }
+                const response = await fetch(directUrl);
+                const blob = await response.blob();
+                const file = new File([blob], `drive-${Date.now()}.jpg`, { type: blob.type });
+                await handleFileUpload(file);
+                document.getElementById('drive-link').value = "";
+            } catch (err) { alert("Error importando imagen."); }
+            btnImport.disabled = false; btnImport.textContent = "IMPORTAR";
+        };
     }
-};
+}
+
+async function handleFileUpload(file) {
+    const sku = document.getElementById('prod-sku').value.trim();
+    if (!sku) { alert("Ingresa el SKU primero."); return; }
+    const fileName = `${sku.replace('#', '')}-${Date.now()}.jpg`;
+    const { data, error } = await _supabase.storage.from('product-images').upload(fileName, file);
+    if (error) alert("Error subiendo imagen: " + error.message);
+    else {
+        const { data: { publicUrl } } = _supabase.storage.from('product-images').getPublicUrl(fileName);
+        fImg.value = publicUrl;
+        preview.innerHTML = `<img src="${publicUrl}">`;
+    }
+}

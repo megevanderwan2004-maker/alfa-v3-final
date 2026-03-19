@@ -13,12 +13,7 @@
 </head>
 
 <body>
-    <script>
-        // Auth check before rendering body content
-        if (sessionStorage.getItem('alfa_admin_auth') !== 'true') {
-            window.location.href = 'index.html';
-        }
-    </script>
+    <!-- Auth check is now handled inside admin.js using Supabase -->
 
     <div class="admin-layout">
         <!-- Sidebar -->
@@ -117,11 +112,28 @@
                 </div>
 
                 <div class="form-group">
-                    <label>Nom du fichier image (ex: maphoto.jpg)</label>
-                    <input type="text" id="prod-image" placeholder="ex: KFOLEALS2880.jpg">
-                    <small>Le fichier doit être placé manuellement dans le dossier /images/.</small>
-                    <div id="img-preview" class="img-preview"></div>
+                    <label for="prod-image">URL de Imagen (o nombre en Supabase)</label>
+                    <input type="text" id="prod-image" placeholder="https://..." readonly>
                 </div>
+
+                <!-- NEW: Upload Area -->
+                <div class="upload-container" id="upload-area">
+                    <div class="upload-box">
+                        <i class="fa-solid fa-cloud-arrow-up"></i>
+                        <p>Arrastra una imagen aquí o <span>haz clic para subir</span></p>
+                        <input type="file" id="file-input" hidden accept="image/*">
+                    </div>
+                </div>
+
+                <!-- NEW: Google Drive Bridge -->
+                <div class="input-group" style="margin-top:15px;">
+                    <label>Importar desde Google Drive / Link</label>
+                    <div style="display:flex; gap:10px;">
+                        <input type="text" id="drive-link" placeholder="Pega el link de la imagen aquí...">
+                        <button type="button" id="btn-import-drive" class="btn-gold" style="padding:5px 15px;">IMPORTAR</button>
+                    </div>
+                </div>
+                <div id="img-preview" class="img-preview" style="margin-top:10px;"></div>
 
                 <button type="submit" class="btn-save">Guardar Cambios</button>
             </form>
@@ -157,7 +169,7 @@
     </div>
 
     <!-- Load data -->
-    <script type="module" src="catalog.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
     <script type="module" src="admin.js"></script>
 </body>

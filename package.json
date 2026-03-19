@@ -1,6 +1,7 @@
 {
   "name": "alfa-v3-propre",
   "version": "1.0.0",
+  "type": "module",
   "main": "admin.js",
   "scripts": {
     "start": "node server.js",
@@ -19,9 +20,11 @@
   "homepage": "https://github.com/megevanderwan2004-maker/alfa-v3-final#readme",
   "description": "",
   "dependencies": {
+    "@supabase/supabase-js": "^2.99.3",
     "axios": "^1.13.6",
     "cheerio": "^1.2.0",
     "cors": "^2.8.6",
+    "dotenv": "^17.3.1",
     "express": "^4.22.1",
     "fs-extra": "^11.3.4",
     "image-size": "^2.0.2",
