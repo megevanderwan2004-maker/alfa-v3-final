@@ -30,31 +30,28 @@
                 </a>
             </div>
             <nav class="sidebar-nav">
-                <a href="#" class="active"><i class="fa-solid fa-box"></i> Productos</a>
+                <a href="#" class="nav-link-tab active" data-target="products-panel"><i class="fa-solid fa-box"></i> Productos</a>
+                <a href="#" class="nav-link-tab" data-target="promotions-panel"><i class="fa-solid fa-star"></i> Promoción del Mes</a>
             </nav>
             <div class="sidebar-footer">
-                <button id="btn-logout" class="btn-sidebar"><i class="fa-solid fa-sign-out-alt"></i> Cerrar
-                    Sesión</button>
+                <button id="btn-logout" class="btn-sidebar"><i class="fa-solid fa-sign-out-alt"></i> Cerrar Sesión</button>
             </div>
         </aside>
 
         <!-- Main Content -->
         <main class="admin-main">
             <header class="topbar">
-                <h1>Gestión de Catálogo</h1>
+                <h1 id="admin-title">Gestión de Catálogo</h1>
                 <div class="topbar-actions">
-                    <button class="btn-gold" id="btn-add-product"><i class="fa-solid fa-plus"></i> Nuevo
-                        Producto</button>
-                    <button class="btn-gold" id="btn-export-catalog"
-                        style="margin-left: 10px; background: #fff; color: #000;"><i class="fa-solid fa-save"></i>
-                        SAUVEGARDER LES MODIFICATIONS</button>
+                    <button class="btn-gold" id="btn-add-product"><i class="fa-solid fa-plus"></i> Nuevo Producto</button>
+                    <button class="btn-gold" id="btn-export-catalog" style="margin-left: 10px; background: #fff; color: #000;"><i class="fa-solid fa-save"></i> SAUVEGARDER LES MODIFICATIONS</button>
                 </div>
             </header>
 
-            <div class="content-panel">
+            <!-- Products Management Panel -->
+            <div id="products-panel" class="content-panel tab-content active">
                 <div class="admin-search-bar" style="margin-bottom: 20px;">
-                    <input type="text" id="admin-search" placeholder="🔍 Buscar por nombre, SKU o categoría..."
-                        class="input-dark" style="max-width: 400px; padding-left: 15px; background: #000;">
+                    <input type="text" id="admin-search" placeholder="🔍 Buscar por nombre, SKU o categoría..." class="input-dark" style="max-width: 400px; padding-left: 15px; background: #000;">
                 </div>
                 <div class="table-container">
                     <table id="products-table">
@@ -72,6 +69,14 @@
                             <!-- Injected via JS -->
                         </tbody>
                     </table>
+                </div>
+            </div>
+
+            <!-- Promotions Management Panel -->
+            <div id="promotions-panel" class="content-panel tab-content" style="display:none;">
+                <p style="margin-bottom: 30px; color: var(--text-secondary);">Selecciona los 3 productos que se mostrarán en la sección "PROMOCIÓN DEL MES" de la página de inicio.</p>
+                <div class="promotions-grid" id="promotions-slots" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+                    <!-- 3 Slots injected via JS -->
                 </div>
             </div>
         </main>
@@ -123,10 +128,38 @@
         </div>
     </div>
 
-    <!-- Load data -->
-    <script src="catalog.js" defer></script>
+    </div>
 
-    <script src="admin.js" defer></script>
+    <!-- Product Selection Modal (for Promotions) -->
+    <div id="product-select-modal" class="modal">
+        <div class="modal-content" style="max-width: 800px;">
+            <span class="close-select-modal" style="position: absolute; top: 15px; right: 20px; font-size: 1.5rem; cursor: pointer; color: var(--text-secondary);">&times;</span>
+            <h3 style="margin-bottom: 20px; color: var(--gold-primary);">Seleccionar Producto</h3>
+            <div class="admin-search-bar" style="margin-bottom: 20px;">
+                <input type="text" id="select-search" placeholder="🔍 Buscar producto..." class="input-dark" style="width: 100%; background: #000;">
+            </div>
+            <div class="table-container" style="max-height: 400px; overflow-y: auto;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Imagen</th>
+                            <th>SKU</th>
+                            <th>Nombre</th>
+                            <th>Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody id="select-table-body">
+                        <!-- Injected via JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Load data -->
+    <script type="module" src="catalog.js"></script>
+
+    <script type="module" src="admin.js"></script>
 </body>
 
 </html>

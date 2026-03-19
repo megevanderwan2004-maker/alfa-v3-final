@@ -1,6 +1,10 @@
+import catalog from './catalog.js';
+
 // =========================================
 // ALFA CAR AUDIO - Haute Couture Script
 // =========================================
+
+// ... (rest of the code stays similar, but we access catalog directly)
 
 const CONFIG = {
     whatsappNumber: "523315686159",
@@ -366,13 +370,13 @@ function loadHome(data) {
     const grid = document.getElementById('featured-grid');
     if (!grid) return;
 
-    // Fixed Featured SKUs - Final Selection
-    const featuredSkus = ["#KALAL838512", "#KBOALCXPRO80", "#KFOLEALM1H13"];
-    const featured = data.filter(p => featuredSkus.includes(String(p.sku).trim()));
-
+    // Dynamic Featured: Use products that have a 'featured' property or just the first 3
+    const featured = data.filter(p => p.featured === true || p.isFeatured === true);
+    
     if (featured.length === 0) {
-        const randomFeatured = data.slice(0, 3);
-        renderProducts(randomFeatured, grid);
+        // Fallback to first 3 products if no featured property is found
+        const fallbackFeatured = data.slice(0, 3);
+        renderProducts(fallbackFeatured, grid);
     } else {
         renderProducts(featured, grid);
     }

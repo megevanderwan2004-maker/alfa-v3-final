@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "admin.js",
   "scripts": {
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -20,6 +21,8 @@
   "dependencies": {
     "axios": "^1.13.6",
     "cheerio": "^1.2.0",
+    "cors": "^2.8.6",
+    "express": "^4.22.1",
     "fs-extra": "^11.3.4",
     "image-size": "^2.0.2",
     "pdf-parse": "^2.4.5",

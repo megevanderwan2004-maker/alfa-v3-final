@@ -1,15 +1,14 @@
-// =========================================
-// ALFA CAR AUDIO - ADMIN LOGIC
-// =========================================
+import catalog from './catalog.js';
 
-let products = [];
+let products = [...catalog];
+// Initialize featuredSkus from local storage or fallback if not in catalog.js
+// Note: We'll stop using localStorage soon, but for now we keep it or use a default.
+window.featuredSkus = ["#KALAL838512", "#KBOALCXPRO80", "#KFOLEALM1H13"];
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Inject the actual catalog data from catalog.js if available
-    if (typeof catalog !== 'undefined') {
-        products = [...catalog];
-    }
+    initTabs();
     renderTable();
+    renderPromotions();
 });
 
 const tableBody = document.getElementById('table-body');
@@ -108,7 +107,7 @@ if (form) {
 
         renderTable();
         modal.classList.remove('active');
-        alert('Cambios guardados en memoria.\\n¡IMPORTANTE: Haz clic en "SAUVEGARDER LES MODIFICATIONS" para grabar permanentemente!');
+        alert('Cambios guardados en memoria.\n¡IMPORTANTE: Haz clic en "SAUVEGARDER LES MODIFICATIONS" para grabar permanentemente!');
     });
 }
 
@@ -202,29 +201,159 @@ window.deleteProduct = (index) => {
     }
 };
 
-// Export functionality to re-generate the entire catalog.js file
 if (btnExport) {
-    btnExport.addEventListener('click', () => {
-        // Construct the formatted string.
-        let jsContent = "const catalog = [\n";
-
-        products.forEach((p, index) => {
-            const isLast = index === products.length - 1;
-            jsContent += `  ${JSON.stringify(p)}`;
-            jsContent += isLast ? "\n" : ",\n";
-        });
-
-        jsContent += "];\n";
-
-        const blob = new Blob([jsContent], { type: 'text/javascript' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        // Forces browser to download the custom generated blob
-        a.download = 'catalog.js';
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        URL.revokeObjectURL(url);
+    btnExport.addEventListener('click', async () => {
+        try {
+            const response = await fetch('http://localhost:3001/save-catalog', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ catalog: products })
+            });
+            const result = await response.json();
+            if (result.success) {
+                alert(`✅ ${result.count} produits sauvegardés dans catalog.js`);
+            } else {
+                alert('❌ Erreur : ' + result.error);
+            }
+        } catch (error) {
+            console.error('Save error:', error);
+            alert('❌ Erreur de comunicación con el servidor');
+        }
     });
 }
+
+/**
+ * NEW: Tab Switcher Logic
+ */
+function initTabs() {
+    const tabs = document.querySelectorAll('.nav-link-tab');
+    const contents = document.querySelectorAll('.tab-content');
+    const adminTitle = document.getElementById('admin-title');
+
+    tabs.forEach(tab => {
+        tab.addEventListener('click', (e) => {
+            e.preventDefault();
+            const target = tab.getAttribute('data-target');
+
+            tabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+
+            contents.forEach(c => c.style.display = 'none');
+            const targetEl = document.getElementById(target);
+            if (targetEl) targetEl.style.display = 'block';
+
+            if (adminTitle) {
+                adminTitle.textContent = target === 'products-panel' ? 'Gestión de Catálogo' : 'Promoción del Mes';
+            }
+
+            // Hide/Show "Add Product" button
+            if (btnAdd) btnAdd.style.display = target === 'products-panel' ? 'inline-flex' : 'none';
+        });
+    });
+}
+
+/**
+ * NEW: Promotions Management
+ */
+function renderPromotions() {
+    const container = document.getElementById('promotions-slots');
+    if (!container) return;
+
+    container.innerHTML = '';
+    const currentFeatured = window.featuredSkus || [];
+
+    for (let i = 0; i < 3; i++) {
+        const sku = currentFeatured[i];
+        const product = products.find(p => String(p.sku).trim() === String(sku).trim());
+
+        const slot = document.createElement('div');
+        slot.className = 'promo-slot';
+        
+        if (product) {
+            slot.innerHTML = `
+                <h4>Slot ${i + 1}</h4>
+                <div class="promo-preview">
+                    <img src="${product.imagePath}" onerror="this.src='PHOTO-2026-02-20-13-37-44.jpg'">
+                </div>
+                <div class="promo-info">
+                    <span class="promo-name">${product.nombre}</span>
+                    <span class="promo-sku">SKU: ${product.sku}</span>
+                </div>
+                <div class="promo-actions">
+                    <button class="btn-promo-assign" onclick="openSelectModal(${i})">Cambiar</button>
+                    <button class="btn-promo-clear" onclick="clearSlot(${i})">Eliminar</button>
+                </div>
+            `;
+        } else {
+            slot.innerHTML = `
+                <h4>Slot ${i + 1}</h4>
+                <div class="promo-preview">
+                    <span class="empty-slot-msg">Vacio</span>
+                </div>
+                <div class="promo-info">
+                    <span class="promo-name">- Ninguno -</span>
+                </div>
+                <div class="promo-actions">
+                    <button class="btn-promo-assign" onclick="openSelectModal(${i})">Asignar Producto</button>
+                </div>
+            `;
+        }
+        container.appendChild(slot);
+    }
+}
+
+let activeSlotIndex = null;
+const selectModal = document.getElementById('product-select-modal');
+const selectSearch = document.getElementById('select-search');
+const selectTableBody = document.getElementById('select-table-body');
+const closeSelectModal = document.querySelector('.close-select-modal');
+
+window.openSelectModal = (index) => {
+    activeSlotIndex = index;
+    if (selectModal) selectModal.classList.add('active');
+    renderSelectTable();
+};
+
+window.clearSlot = (index) => {
+    if (window.featuredSkus) {
+        window.featuredSkus[index] = null;
+        renderPromotions();
+    }
+};
+
+if (closeSelectModal) {
+    closeSelectModal.onclick = () => selectModal.classList.remove('active');
+}
+
+if (selectSearch) {
+    selectSearch.oninput = (e) => renderSelectTable(e.target.value.toLowerCase().trim());
+}
+
+function renderSelectTable(term = "") {
+    if (!selectTableBody) return;
+    selectTableBody.innerHTML = '';
+
+    const filtered = products.filter(p => 
+        p.nombre.toLowerCase().includes(term) || 
+        (p.sku && p.sku.toLowerCase().includes(term))
+    );
+
+    filtered.forEach(p => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+            <td><img src="${p.imagePath}" class="thumb" onerror="this.style.display='none'"></td>
+            <td>${p.sku}</td>
+            <td>${p.nombre}</td>
+            <td><button class="btn-gold" style="padding: 5px 10px; font-size: 0.8rem;" onclick="assignProductToSlot('${p.sku}')">Seleccionar</button></td>
+        `;
+        selectTableBody.appendChild(tr);
+    });
+}
+
+window.assignProductToSlot = (sku) => {
+    if (activeSlotIndex !== null && window.featuredSkus) {
+        window.featuredSkus[activeSlotIndex] = sku;
+        renderPromotions();
+        selectModal.classList.remove('active');
+    }
+};
