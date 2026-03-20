@@ -105,9 +105,48 @@ if (form) {
     };
 }
 
+// =========================================
+// UNIVERSE MAPPING (Same as script.js)
+// =========================================
+const categoryMap = {
+    iluminacion: ["LED", "ILUMINACION", "ILUMINACIÓN", "FOCO", "LUPA", "XENON", "FARO", "HALOGENO", "UNIDADES", "BARRA", "BALASTRA", "KIT"],
+    seguridad: ["ALARMA", "SEGURIDAD", "SENSOR", "CAMARA", "GPS", "CERRADURA", "RADAR", "RELAY", "SWITCH"],
+    audio: ["AUDIO", "AMPLIFICADOR", "SUBWOOFER", "BOCINA", "ESTEREO", "TWEETER", "PROCESADOR", "COMPLEMENTO"]
+};
+
+function normalizeText(text) {
+    if (!text) return "";
+    return text.toString().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
+}
+
+function getUniverseForCategory(catName) {
+    const uCat = normalizeText(catName);
+    for (const [main, keywords] of Object.entries(categoryMap)) {
+        if (keywords.some(kw => uCat.includes(normalizeText(kw)))) return main;
+    }
+    return "otros";
+}
+
+let activeUniverse = "all";
+const catalogContainer = document.getElementById('catalog-container');
+const universeTabs = document.getElementById('universe-tabs');
+
+if (universeTabs) {
+    universeTabs.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.onclick = () => {
+            universeTabs.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            activeUniverse = btn.getAttribute('data-universe');
+            renderTable(document.getElementById('admin-search')?.value.toLowerCase().trim() || "");
+        };
+    });
+}
+
 function renderTable(searchTerm = "") {
-    if (!tableBody) return;
-    tableBody.innerHTML = '';
+    if (!catalogContainer) return;
+    catalogContainer.innerHTML = '';
+
+    // 1. Filter products
     let filtered = products.map((p, index) => ({ p, index }));
     if (searchTerm) {
         filtered = filtered.filter(item => 
@@ -116,28 +155,111 @@ function renderTable(searchTerm = "") {
             item.p.categoria.toLowerCase().includes(searchTerm)
         );
     }
-    if (!filtered.length) {
-        tableBody.innerHTML = '<tr><td colspan="6" style="text-align:center;">No hay productos.</td></tr>';
-        return;
-    }
-    filtered.forEach((item) => {
-        const p = item.p;
-        const imgThumb = p.image_url ? `<img src="${p.image_url}" class="thumb" onerror="this.src='PHOTO-2026-02-20-13-37-44.jpg'">` : '<div class="no-thumb">Sin Img</div>';
-        const isFeatured = promoSkus.includes(p.sku);
-        const tr = document.createElement('tr');
-        tr.innerHTML = `
-            <td>${imgThumb}</td>
-            <td>${p.sku || '-'}</td>
-            <td><strong>${p.nombre || '-'}</strong> ${isFeatured ? '⭐' : ''}</td>
-            <td><span class="badge">${p.categoria || '-'}</span></td>
-            <td>$${p.precio || '0'}</td>
-            <td>
-                <button class="btn-action edit" onclick="editProduct(${item.index})"><i class="fa-solid fa-pen"></i></button>
-                <button class="btn-action delete" onclick="deleteProduct(${item.index})"><i class="fa-solid fa-trash"></i></button>
-            </td>`;
-        tableBody.appendChild(tr);
+
+    // 2. Group by Universe
+    const groups = { iluminacion: {}, audio: {}, seguridad: {}, otros: {} };
+    filtered.forEach(item => {
+        const universe = getUniverseForCategory(item.p.categoria);
+        const cat = item.p.categoria || "Sin Categoría";
+        if (!groups[universe][cat]) groups[universe][cat] = [];
+        groups[universe][cat].push(item);
     });
+
+    // 3. Render
+    const universesToRender = activeUniverse === "all" 
+        ? ["iluminacion", "audio", "seguridad", "otros"] 
+        : [activeUniverse];
+
+    let totalRendered = 0;
+
+    universesToRender.forEach(univKey => {
+        const cats = groups[univKey];
+        const catKeys = Object.keys(cats).sort();
+        if (catKeys.length === 0) return;
+
+        const univSection = document.createElement('div');
+        univSection.className = 'universe-section';
+        
+        const univTitle = univKey.charAt(0).toUpperCase() + univKey.slice(1);
+        const count = Object.values(cats).reduce((acc, curr) => acc + curr.length, 0);
+        totalRendered += count;
+
+        univSection.innerHTML = `
+            <div class="universe-header" onclick="toggleSection('${univKey}')">
+                <h2><i class="fa-solid fa-${getIconForUniv(univKey)}"></i> ${univTitle}</h2>
+                <span class="count">${count} productos</span>
+            </div>
+            <div id="content-${univKey}" class="universe-content">
+                <!-- Sub-categories go here -->
+            </div>
+        `;
+
+        const contentDiv = univSection.querySelector('.universe-content');
+
+        catKeys.forEach(catName => {
+            const catGroup = document.createElement('div');
+            catGroup.className = 'category-group';
+            catGroup.innerHTML = `<h3 class="category-title"><i class="fa-solid fa-folder-open"></i> ${catName.toUpperCase()}</h3>`;
+            
+            const tableContainer = document.createElement('div');
+            tableContainer.className = 'table-container';
+            
+            const table = document.createElement('table');
+            table.innerHTML = `
+                <thead>
+                    <tr>
+                        <th>Imagen</th>
+                        <th>SKU</th>
+                        <th>Nombre</th>
+                        <th>Precio ($)</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody-${univKey}-${normalizeText(catName)}"></tbody>
+            `;
+            
+            const tbody = table.querySelector('tbody');
+            cats[catName].forEach(item => {
+                const p = item.p;
+                const imgThumb = p.image_url ? `<img src="${p.image_url}" class="thumb" onerror="this.src='PHOTO-2026-02-20-13-37-44.jpg'">` : '<div class="no-thumb">Sin Img</div>';
+                const isFeatured = promoSkus.includes(p.sku);
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${imgThumb}</td>
+                    <td>${p.sku || '-'}</td>
+                    <td><strong>${p.nombre || '-'}</strong> ${isFeatured ? '⭐' : ''}</td>
+                    <td>$${p.precio || '0'}</td>
+                    <td>
+                        <button class="btn-action edit" onclick="editProduct(${item.index})"><i class="fa-solid fa-pen"></i></button>
+                        <button class="btn-action delete" onclick="deleteProduct(${item.index})"><i class="fa-solid fa-trash"></i></button>
+                    </td>`;
+                tbody.appendChild(tr);
+            });
+            
+            tableContainer.appendChild(table);
+            catGroup.appendChild(tableContainer);
+            contentDiv.appendChild(catGroup);
+        });
+
+        catalogContainer.appendChild(univSection);
+    });
+
+    if (totalRendered === 0) {
+        catalogContainer.innerHTML = '<div style="text-align:center; padding: 50px; color: var(--text-secondary);">No se encontraron productos en esta sección.</div>';
+    }
 }
+
+function getIconForUniv(univ) {
+    if (univ === 'iluminacion') return 'lightbulb';
+    if (univ === 'audio') return 'volume-high';
+    if (univ === 'seguridad') return 'shield-halved';
+    return 'layer-group';
+}
+
+window.toggleSection = (id) => {
+    const el = document.getElementById(`content-${id}`);
+    if (el) el.classList.toggle('hidden');
+};
 
 const adminSearch = document.getElementById('admin-search');
 if (adminSearch) adminSearch.oninput = (e) => renderTable(e.target.value.toLowerCase().trim());

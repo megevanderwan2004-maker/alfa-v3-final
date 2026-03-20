@@ -177,9 +177,16 @@ function handleSpaNavigation(value, type) {
     else if (type === 'mainCategory') {
         const keywords = categoryMap[value] || [];
         filtered = catalog.filter(p => keywords.some(kw => normalizeText(p.categoria || '').includes(normalizeText(kw))));
+    } else if (type === 'search') {
+        const term = normalizeText(value);
+        filtered = catalog.filter(p => 
+            normalizeText(p.nombre).includes(term) || 
+            normalizeText(p.sku).includes(term) || 
+            normalizeText(p.categoria).includes(term)
+        );
     } else if (type === 'all') filtered = catalog;
 
-    if (catalogTitle) catalogTitle.textContent = value.toUpperCase();
+    if (catalogTitle) catalogTitle.textContent = type === 'search' ? `RESULTADOS PARA: "${value.toUpperCase()}"` : value.toUpperCase();
     renderProducts(filtered, grid);
 }
 
@@ -233,7 +240,18 @@ function loadTienda(data) {
         const filtered = data.filter(item => keywords.some(kw => normalizeText(item.categoria || '').includes(normalizeText(kw))));
         renderProducts(filtered, grid);
     } else {
-        if (!params.get('q')) renderProducts(data, grid);
+        const q = params.get('q');
+        if (q) {
+            const term = normalizeText(q);
+            const filtered = data.filter(p => 
+                normalizeText(p.nombre).includes(term) || 
+                normalizeText(p.sku).includes(term) || 
+                normalizeText(p.categoria).includes(term)
+            );
+            renderProducts(filtered, grid);
+        } else {
+            renderProducts(data, grid);
+        }
     }
 }
 
@@ -294,34 +312,126 @@ function initSmartSearch(data) {
     const searchInput = document.getElementById('header-search-input');
     const suggestionsEl = document.getElementById('search-suggestions');
     if (!searchInput || !suggestionsEl) return;
+
     searchInput.addEventListener('input', throttle((e) => {
         const term = e.target.value.toLowerCase().trim();
         if (term.length < 2) { suggestionsEl.classList.remove('active'); return; }
         const matches = data.filter(p => normalizeText(p.nombre).includes(term) || normalizeText(p.sku).includes(term)).slice(0, 5);
-        if (matches.length) {
-            suggestionsEl.innerHTML = matches.map(p => `
+        
+        let html = '';
+        if (matches.length > 0) {
+            html += `<div class="suggestion-item search-all" onclick="handleSpaNavigation('${term}', 'search')">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <div class="suggestion-info"><strong>Ver todos los resultados para "${term}"</strong></div>
+                    </div>`;
+            
+            html += matches.map(p => `
                 <div class="suggestion-item" onclick="window.location.href='producto.html?sku=${p.sku}'">
                     <img src="${p.image_url || ''}" class="suggestion-img" onerror="this.src='PHOTO-2026-02-20-13-37-44.jpg'">
                     <div class="suggestion-info"><span>${p.nombre}</span><small>${p.sku}</small></div>
                 </div>`).join('');
+            
+            suggestionsEl.innerHTML = html;
             suggestionsEl.classList.add('active');
-        } else suggestionsEl.classList.remove('active');
+        } else {
+            suggestionsEl.innerHTML = `<div class="suggestion-item no-results">No se encontraron resultados</div>`;
+            suggestionsEl.classList.add('active');
+        }
     }, 300));
+
+    searchInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+            const term = searchInput.value.trim();
+            if (term.length >= 2) {
+                suggestionsEl.classList.remove('active');
+                handleSpaNavigation(term, 'search');
+            }
+        }
+    });
+
+    document.addEventListener('click', (e) => {
+        if (!searchInput.contains(e.target) && !suggestionsEl.contains(e.target)) {
+            suggestionsEl.classList.remove('active');
+        }
+    });
 }
 
 function loadProductDetails(data) {
     const sku = new URLSearchParams(window.location.search).get('sku');
-    if (!sku) return;
+    const container = document.getElementById('single-product-container');
+    const errorEl = document.getElementById('error-state');
+    const spinner = document.getElementById('loading-spinner');
+
+    if (!sku) {
+        if (spinner) spinner.style.display = 'none';
+        if (errorEl) errorEl.style.display = 'block';
+        return;
+    }
+
     const p = data.find(p => String(p.sku).toLowerCase() === decodeURIComponent(sku).toLowerCase());
-    if (!p) return;
-    document.getElementById('sp-img').src = p.image_url || '';
-    document.getElementById('sp-title').textContent = p.nombre;
-    document.getElementById('sp-category').textContent = p.categoria;
-    document.getElementById('sp-sku-val').textContent = p.sku;
-    document.getElementById('sp-price').innerHTML = p.precio ? `<span>$</span>${p.precio}` : 'Consultar';
-    document.getElementById('sp-desc-val').textContent = p.descripcion || 'Producto premium ALFA Car Audio.';
-    const waMsg = encodeURIComponent(`Hola, me interesa ${p.nombre} (SKU: ${p.sku})`);
-    document.getElementById('sp-wa-btn').href = `https://wa.me/${CONFIG.whatsappNumber}?text=${waMsg}`;
+    
+    if (spinner) spinner.style.display = 'none';
+
+    if (!p) {
+        if (errorEl) errorEl.style.display = 'block';
+        return;
+    }
+
+    // Populate fields
+    const spImg = document.getElementById('sp-img');
+    const spTitle = document.getElementById('sp-title');
+    const spCat = document.getElementById('sp-category');
+    const spSku = document.getElementById('sp-sku-val');
+    const spPrice = document.getElementById('sp-price');
+    const spDesc = document.getElementById('sp-desc-val');
+    const spWaBtn = document.getElementById('sp-wa-btn');
+
+    if (spImg) spImg.src = p.image_url || 'PHOTO-2026-02-20-13-37-44.jpg';
+    if (spTitle) spTitle.textContent = p.nombre;
+    if (spCat) spCat.textContent = p.categoria || 'ALFA';
+    if (spSku) spSku.textContent = p.sku;
+    if (spPrice) spPrice.innerHTML = p.precio ? `<span>$</span>${p.precio}` : 'Consultar precio';
+    if (spDesc) spDesc.innerHTML = (p.descripcion || 'Producto de alto rendimiento ALFA Car Audio. Diseñado para ofrecer la mejor experiencia sonora y durabilidad en tu vehículo.').replace(/\n/g, '<br>');
+
+    const waMsg = encodeURIComponent(`Hola ALFA Car Audio, me interesa el producto: ${p.nombre} (SKU: ${p.sku})`);
+    const waUrl = `https://wa.me/${CONFIG.whatsappNumber}?text=${waMsg}`;
+    if (spWaBtn) spWaBtn.href = waUrl;
+
+    // Mobile Sticky CTA
+    const mscPrice = document.getElementById('msc-price');
+    const mscWaBtn = document.getElementById('msc-wa-btn');
+    if (mscPrice) mscPrice.innerHTML = p.precio ? `<span>$</span>${p.precio}` : 'Consultar';
+    if (mscWaBtn) mscWaBtn.href = waUrl;
+
+    // Show main container
+    if (container) {
+        container.style.display = 'grid';
+        if (typeof AOS !== 'undefined') AOS.refresh();
+    }
+
+    // Load related
+    loadRelatedProducts(p, data);
+}
+
+function loadRelatedProducts(currentProd, allData) {
+    const relatedSection = document.getElementById('related-products-section');
+    const relatedGrid = document.getElementById('related-grid');
+    if (!relatedSection || !relatedGrid) return;
+
+    const related = allData.filter(p => 
+        p.categoria === currentProd.categoria && p.sku !== currentProd.sku
+    ).slice(0, 4);
+
+    if (related.length > 0) {
+        relatedSection.style.display = 'block';
+        renderProducts(related, relatedGrid);
+        
+        // Hide "Ver más" in related grid if it appears
+        setTimeout(() => {
+            const btn = relatedGrid.parentElement.querySelector('#btn-load-more');
+            if (btn) btn.style.display = 'none';
+        }, 100);
+    }
 }
 
 function initParallax() {
@@ -339,6 +449,18 @@ function initParallax() {
             }
         });
     }, 50));
+}
+
+function initUniverseClicks() {
+    document.querySelectorAll('.clickable-universe').forEach(item => {
+        item.onclick = (e) => {
+            e.preventDefault();
+            const universe = item.getAttribute('data-universe');
+            if (universe) {
+                handleSpaNavigation(universe, 'mainCategory');
+            }
+        };
+    });
 }
 
 function initSplashScreen() {
@@ -361,6 +483,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initWhatsAppLinks();
     loadCatalogRouter();
     initParallax();
+    initUniverseClicks();
     const btnLock = document.getElementById('btn-cuenta');
     if (btnLock) btnLock.onclick = () => window.location.href = 'login.html';
 });
