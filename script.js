@@ -1,3 +1,5 @@
+import localCatalog from './catalog.js';
+
 // Supabase Configuration
 const SUPABASE_URL = 'https://egfurglzwuthkixwrvou.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVnZnVyZ2x6d3V0aGtpeHdydm91Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM5NDY4OTEsImV4cCI6MjA4OTUyMjg5MX0.pjsQlCYIpx03CbkYcrO1I33zeyzEXCbrr8xMXEW3WPc';
@@ -146,6 +148,21 @@ function initMegaMenu(data) {
 
     document.querySelectorAll('.nav-link').forEach(link => {
         link.onclick = (e) => {
+            const chevron = e.target.closest('.nav-chevron');
+            if (chevron) {
+                const parentItem = link.closest('.nav-item');
+                // Only toggle if on mobile
+                if (parentItem && window.innerWidth <= 768) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const isActive = parentItem.classList.contains('active');
+                    // Close other open categories
+                    document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+                    if (!isActive) parentItem.classList.add('active');
+                    return;
+                }
+            }
+            // Normal navigation for the link text or tablet/desktop
             if (e.target.closest('.nav-chevron')) return;
             e.preventDefault();
             const cat = link.getAttribute('data-cat');
@@ -197,8 +214,29 @@ async function loadCatalogRouter() {
         const { data, error } = await _supabase.from('catalog').select('*').order('nombre', { ascending: true });
         if (error) throw error;
         
-        // Separamos productos de config
-        catalog = data.filter(p => !p.sku.startsWith('_CONFIG_'));
+        // ==========================================
+        // LOCAL DEVELOPMENT FALLBACK
+        // Merge local catalog.js data to ensure local images are visible
+        // useful for verification before updating Supabase.
+        // ==========================================
+        const localData = localCatalog.map(p => ({
+            ...p,
+            image_url: p.imagePath || p.image_url 
+        }));
+
+        catalog = [...data.filter(p => !p.sku.startsWith('_CONFIG_'))];
+        
+        localData.forEach(lp => {
+            const index = catalog.findIndex(p => p.sku === lp.sku);
+            if (index !== -1) {
+                // Prioritize local imagePath for verification
+                catalog[index] = { ...catalog[index], ...lp };
+            } else {
+                catalog.push(lp);
+            }
+        });
+        // ==========================================
+
         const configPromos = data.find(p => p.sku === '_CONFIG_PROMOS_');
         
         if (spinner) spinner.style.display = 'none';
