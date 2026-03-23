@@ -214,27 +214,7 @@ async function loadCatalogRouter() {
         const { data, error } = await _supabase.from('catalog').select('*').order('nombre', { ascending: true });
         if (error) throw error;
         
-        // ==========================================
-        // LOCAL DEVELOPMENT FALLBACK
-        // Merge local catalog.js data to ensure local images are visible
-        // useful for verification before updating Supabase.
-        // ==========================================
-        const localData = localCatalog.map(p => ({
-            ...p,
-            image_url: p.imagePath || p.image_url 
-        }));
-
-        catalog = [...data.filter(p => !p.sku.startsWith('_CONFIG_'))];
-        
-        localData.forEach(lp => {
-            const index = catalog.findIndex(p => p.sku === lp.sku);
-            if (index !== -1) {
-                // Prioritize local imagePath for verification
-                catalog[index] = { ...catalog[index], ...lp };
-            } else {
-                catalog.push(lp);
-            }
-        });
+        catalog = data.filter(p => !p.sku.startsWith('_CONFIG_'));
         // ==========================================
 
         const configPromos = data.find(p => p.sku === '_CONFIG_PROMOS_');
