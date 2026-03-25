@@ -1,4 +1,3 @@
-import localCatalog from './catalog.js';
 
 // Supabase Configuration
 const SUPABASE_URL = 'https://egfurglzwuthkixwrvou.supabase.co';
@@ -164,9 +163,11 @@ function initMegaMenu(data) {
             }
             // Normal navigation for the link text or tablet/desktop
             if (e.target.closest('.nav-chevron')) return;
-            e.preventDefault();
             const cat = link.getAttribute('data-cat');
-            if (cat) handleSpaNavigation(cat, 'mainCategory');
+            if (cat) {
+                e.preventDefault();
+                handleSpaNavigation(cat, 'mainCategory');
+            }
         };
     });
 }
@@ -227,8 +228,17 @@ async function loadCatalogRouter() {
         
         initSmartSearch(catalog, document.getElementById('gallery-grid'));
     } catch (err) {
-        console.error(err);
-        if (spinner) spinner.style.display = 'none';
+        console.warn("Supabase load failed, using local fallback:", err);
+        if (typeof ALFA_CATALOG_FALLBACK !== 'undefined') {
+            catalog = ALFA_CATALOG_FALLBACK;
+            if (spinner) spinner.style.display = 'none';
+            if (mode === 'HOME') loadHome(catalog, null);
+            else if (mode === 'TIENDA') loadTienda(catalog);
+            else if (mode === 'PRODUCT') loadProductDetails(catalog);
+            initSmartSearch(catalog, document.getElementById('gallery-grid'));
+        } else {
+            if (spinner) spinner.style.display = 'none';
+        }
     }
 }
 
@@ -248,13 +258,35 @@ function loadHome(data, config) {
     initMegaMenu(data);
 }
 
+function renderCategoryMenu(data, activeFilter = null) {
+    const menu = document.getElementById('dynamic-categories-menu');
+    if (!menu) return;
+
+    // Use the 3 main categories + TODOS for consistency
+    const mainCategories = ['TODOS', 'ILUMINACIÓN', 'AUDIO', 'SEGURIDAD'];
+    
+    menu.innerHTML = mainCategories.map(cat => {
+        const filterVal = cat === 'TODOS' ? '' : normalizeText(cat);
+        const isActive = (!activeFilter && cat === 'TODOS') || 
+                        (activeFilter && normalizeText(activeFilter) === filterVal);
+        
+        return `<button class="filter-btn ${isActive ? 'active' : ''}" 
+                        onclick="window.location.href='tienda.html${filterVal ? '?filter=' + filterVal : ''}'">
+                    ${cat}
+                </button>`;
+    }).join('');
+}
+
 function loadTienda(data) {
     const grid = document.getElementById('gallery-grid');
     if (!grid) return;
     const params = new URLSearchParams(window.location.search);
     const filterParam = params.get('filter');
+    
+    renderCategoryMenu(data, filterParam);
+
     if (filterParam) {
-        const keywords = categoryMap[filterParam] || [filterParam];
+        const keywords = categoryMap[normalizeText(filterParam)] || [filterParam];
         const filtered = data.filter(item => keywords.some(kw => normalizeText(item.categoria || '').includes(normalizeText(kw))));
         renderProducts(filtered, grid);
     } else {

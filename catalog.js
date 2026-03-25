@@ -1,4 +1,4 @@
-const catalog = [
+const ALFA_CATALOG_FALLBACK = [
   {
     "nombre": "KIT LED ALFA S2 880",
     "sku": "#KFOLEALS2880",
@@ -3183,5 +3183,3 @@ const catalog = [
     "imagePath": "./images/PFUPO65AMP.jpg"
   }
 ];
-
-export default catalog;

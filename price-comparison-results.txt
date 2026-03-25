@@ -1,0 +1,535 @@
+[dotenv@17.3.1] injecting env (3) from .env -- tip: 🤖 agentic secret storage: https://dotenvx.com/as2
+✅ Prix corrects: 111
+❌ Anomalies: 265
+
+DÉTAIL DES ANOMALIES:
+#KFOLEALM2973C | KIT LED ALFA M2 9007 Tricolor
+   Site: $1600 | Catalogue: $1400 | Écart: +200
+#KFOLEALM2H113C | KIT LED ALFA M2 H11 Tricolor
+   Site: $1400 | Catalogue: $820 | Écart: +580
+#PARAL5PIN | ARNES PARA RELAY DE 5 PATAS
+   Site: $240 | Catalogue: $24 | Écart: +216
+#KFOLEALM1H4 | KIT BILED ALFA M1 H4
+   Site: $620 | Catalogue: $750 | Écart: -130
+#KFOLEALM2H3 | KIT LED ALFA M2 H3
+   Site: $820 | Catalogue: $1060 | Écart: -240
+#KFOLEALM3H4 | KIT BILED ALFA M3 H4
+   Site: $1600 | Catalogue: $2000 | Écart: -400
+#KFOLEALM35202 | KIT LED ALFA M3 5202
+   Site: $2100 | Catalogue: $1600 | Écart: +500
+#KFOLEALM4H11 | KIT BILED ALFA M4 H11
+   Site: $1600 | Catalogue: $1700 | Écart: -100
+#PFOXEOS86178 | FOCO XENON OSRAM D2S
+   Site: $3960 | Catalogue: $1300 | Écart: +2660
+#KFOLEOS86712 | KIT LED COOL BLUE INTENSE OSRAM H4
+   Site: $4740 | Catalogue: $4980 | Écart: -240
+#KFOBXAL55H45K | KIT BIXENON SLIM H4
+   Site: $480 | Catalogue: $2140 | Écart: -1660
+#KFOXEAL558805K | KIT XENON SLIM 880
+   Site: $1740 | Catalogue: $1700 | Écart: +40
+#KFOLEALO1H1 | KIT BILED ALFA O1 H1
+   Site: $1600 | Catalogue: $680 | Écart: +920
+#KFOXEAL55965K | KIT XENON SLIM 9006
+   Site: $2140 | Catalogue: $1740 | Écart: +400
+#KFOHAOS85570 | KIT OSRAM COOL BLUE H7
+   Site: $420 | Catalogue: $480 | Écart: -60
+#KFOHAOS86904 | KIT HALOGENO COOLBLUE OSRAM H11
+   Site: $6100 | Catalogue: $1080 | Écart: +5020
+#KFOHAOS87838 | KIT DE LAMPARA H11 OSRAM COOL BLUE INTENSE
+   Site: $940 | Catalogue: $780 | Écart: +160
+#KFMLENE85222 | KIT LAMPARA LED MINIATURA NEOLUX NT1061CW-02B
+   Site: $500 | Catalogue: $240 | Écart: +260
+#KFMLEAL3157 | KIT DE FOCO MINIATURA LED ALFA S5-3157
+   Site: $480 | Catalogue: $600 | Écart: -120
+#KFMLEALT20 | KIT DE FOCO MINIATURA LED ALFA T20
+   Site: $130 | Catalogue: $640 | Écart: -510
+#KARALFLASH | ARNES FLASHEADOR CON ANTENA ESPIRAL
+   Site: $4880 | Catalogue: $640 | Écart: +4240
+#PFALEALCU007 | FARO CUADRADO LED ALFA 2X2 3" AMARILLO
+   Site: $280 | Catalogue: $490 | Écart: -210
+#PFALEALRD006 | FARO REDONDO ALFA 5"
+   Site: $220 | Catalogue: $200 | Écart: +20
+#PFALEALRD002 | FARO 7" OVALADO 12 LEDS TIPO LUPA
+   Site: $3700 | Catalogue: $460 | Écart: +3240
+#PFALEALCU003 | FARO 2X2 LEDS
+   Site: $360 | Catalogue: $260 | Écart: +100
+#PBLACAL55 | BALASTRA SLIM ALFA 55W
+   Site: $420 | Catalogue: $500 | Écart: -80
+#PBAALMIBL036R | BARRA MINI RECTA BLANCA 1X12
+   Site: $940 | Catalogue: $420 | Écart: +520
+#PBAALSL240R | BARRA SLIM RECTA 2X40
+   Site: $1740 | Catalogue: $1420 | Écart: +320
+#PBASY34026 | BARRA SYLVANIA 10" LED LIGHT BAR SPOT BX
+   Site: $10280 | Catalogue: $4900 | Écart: +5380
+#KMOALFLASH | MODULO FLASHEADOR
+   Site: $2600 | Catalogue: $320 | Écart: +2280
+#KBAALMIB072R | BARRA MINI RECTA BICOLOR 1X24
+   Site: $730 | Catalogue: $1400 | Écart: -670
+#PBAAL1X9RBA | BARRA ALFA LED 90W 18" 9 LEDS BLANCA CON LATERALES AMBAR
+   Site: $3250 | Catalogue: $2120 | Écart: +1130
+#PBOALMRLB80 | BOCINA ALFA MRLB80
+   Site: $760 | Catalogue: $640 | Écart: +120
+#PFALEALRC012 | FARO TIPO BARRA 2X3 BICOLOR CON FLASHEADOR
+   Site: $1900 | Catalogue: $280 | Écart: +1620
+#PFALEALRC001 | FARO MODULAR 4" 2 LED
+   Site: $570 | Catalogue: $180 | Écart: +390
+#KFALEALRC007 | KIT FAROS LED ALFA 1X6 AMBAR/AMBAR CON ESTROBO
+   Site: $240 | Catalogue: $570 | Écart: -330
+#KFOLEAL4ZONA | KIT DE ILUMINACION EXTERIOR 4 ZONAS RGB
+   Site: $340 | Catalogue: $1490 | Écart: -1150
+#PUNHASY30825 | FARO OSRAM H4656
+   Site: $380 | Catalogue: $340 | Écart: +40
+#PUNLEALRD001 | UNIDAD REDONDA 7" 13 LEDS CON 2 TIRAS
+   Site: $3050 | Catalogue: $1860 | Écart: +1190
+#PAMAL700.1D | AMPLIFICADOR ALFA 700.1
+   Site: $3300 | Catalogue: $6600 | Écart: -3300
+#PBOALCXPRO65 | BOCINA ALFA PRO 65 CON TWEETER
+   Site: $1540 | Catalogue: $1250 | Écart: +290
+#PBAALMIB054R | BARRA MINI RECTA BLANCA 1X18
+   Site: $1020 | Catalogue: $560 | Écart: +460
+#KREAL5PIN | KIT RELAY CON ARNES 5 PATAS
+   Site: $300 | Catalogue: $52 | Écart: +248
+#PSWALCT10D4 | SUBWOOFER ALFA CT10D4
+   Site: $2390 | Catalogue: $1600 | Écart: +790
+#PSWALMT10D4 | SUBWOOFER ALFA MT10D4
+   Site: $2980 | Catalogue: $2820 | Écart: +160
+#PTEALFDV2-110 | TERMINAL ZAPATA SEMIFORRADA 110 CALIBRE 16-14
+   Site: $25 | Catalogue: $50 | Écart: -25
+#PTEALTFDFD1.25 | TERMINAL ESPADA VINYL CALIBRE 22-16 AWG
+   Site: $47 | Catalogue: $94 | Écart: -47
+#PTEALBNYF2 | TERMINAL CONECTOR NYLON CALIBRE 16-14 AWG
+   Site: $140 | Catalogue: $160 | Écart: -20
+#KARALCORR | ARNES CORRECTOR DE FALLA
+   Site: $100 | Catalogue: $300 | Écart: -200
+#KFOLEALP1H11 | KIT LED ALFA P1 H11
+   Site: $2500 | Catalogue: $1600 | Écart: +900
+#PAREAL5PIN | RELAY DE 5 PATAS
+   Site: $52 | Catalogue: $40 | Écart: +12
+#PSWALMT65D2 | SUBWOOFER ALFA MT65D2
+   Site: $2560 | Catalogue: $1790 | Écart: +770
+#PDCAL2AFS | DISTRIBUIDOR DE CORRIENTE CON PORTA FUSIBLE 2 VIAS
+   Site: $150 | Catalogue: $190 | Écart: -40
+#PCBALRCACCA3 | CABLE RCA ALFA 100% COBRE CCA 3 PIES
+   Site: $240 | Catalogue: $60 | Écart: +180
+#PARBXH4 | ARNES BIXENON H4
+   Site: $30 | Catalogue: $240 | Écart: -210
+#PCBCY2X22BI | CABLE BICOLOR 2X22
+   Site: $58 | Catalogue: $14 | Écart: +44
+#PTEALFDV2-250 | TERMINAL ZAPATA SEMIFORRADA 250 CALIBRE 16-14
+   Site: $55 | Catalogue: $110 | Écart: -55
+#PSWALST80D4 | SUBWOOFER ALFA ST80D4
+   Site: $4720 | Catalogue: $3570 | Écart: +1150
+#KFOHAOS30322 | KIT OSRAM COOL BLUE H3
+   Site: $440 | Catalogue: $660 | Écart: -220
+#PAWALLJ79 | SWITCH CON PUERTO USB SUPER CARGA 4.8
+   Site: $200 | Catalogue: $380 | Écart: -180
+#KFOLEALM195 | KIT LED ALFA M1 9005
+   Site: $750 | Catalogue: $620 | Écart: +130
+#KFOLEALM1880 | KIT LED ALFA M1 880
+   Site: $1060 | Catalogue: $620 | Écart: +440
+#KFOLEALM1H32C | KIT BILED ALFA M1 H3 Bicolor
+   Site: $300 | Catalogue: $360 | Écart: -60
+#KFOLEALM1H72C | KIT LED ALFA M1 H7 Bicolor
+   Site: $820 | Catalogue: $300 | Écart: +520
+#KFOLEALM1H12C | KIT LED ALFA M1 H1 Bicolor
+   Site: $300 | Catalogue: $670 | Écart: -370
+#KFOLEALM2H11 | KIT LED ALFA M2 H11
+   Site: $820 | Catalogue: $1060 | Écart: -240
+#KFOLEALM1H42C | KIT BILED ALFA M1 H4 Bicolor
+   Site: $670 | Catalogue: $1060 | Écart: -390
+#KFOLEALM190122C | KIT LED ALFA M1 9012 Bicolor
+   Site: $1060 | Catalogue: $300 | Écart: +760
+#KFOLEALM2H4 | KIT BILED ALFA M2 H4
+   Site: $820 | Catalogue: $1060 | Écart: -240
+#KFOLEALM1H112C | KIT LED ALFA M1 H11 Bicolor
+   Site: $1060 | Catalogue: $300 | Écart: +760
+#KFOLEALM1H13 | KIT LED ALFA M1 H13
+   Site: $620 | Catalogue: $750 | Écart: -130
+#KFOLEALM295 | KIT LED ALFA M2 9005
+   Site: $1160 | Catalogue: $820 | Écart: +340
+#KFOLEALM25202 | KIT LED ALFA M2 5202
+   Site: $1400 | Catalogue: $820 | Écart: +580
+#KFOLEALM2H133C | KIT BILED ALFA M2 H13 Tricolor
+   Site: $1160 | Catalogue: $1400 | Écart: -240
+#KFOLEALM2H73C | KIT LED ALFA M2 H7 Tricolor
+   Site: $1160 | Catalogue: $1400 | Écart: -240
+#KFOLEALM2963C | KIT LED ALFA M2 9006 Tricolor
+   Site: $1600 | Catalogue: $1160 | Écart: +440
+#KFOLEALM3H1 | KIT LED ALFA M3 H1
+   Site: $2000 | Catalogue: $1600 | Écart: +400
+#KFOLEALM395 | KIT LED ALFA M3 9005
+   Site: $2000 | Catalogue: $1600 | Écart: +400
+#KFOLEALM397 | KIT BILED ALFA M3 9007
+   Site: $1700 | Catalogue: $2000 | Écart: -300
+#KFOLEALM4H7 | KIT BILED ALFA M4 H7
+   Site: $1600 | Catalogue: $1700 | Écart: -100
+#KFOLEALM496 | KIT LED ALFA M4 9006
+   Site: $1600 | Catalogue: $1700 | Écart: -100
+#KFOLEALM2880 | KIT LED ALFA M2 880
+   Site: $1160 | Catalogue: $820 | Écart: +340
+#KFOLEALM2H13C | KIT LED ALFA M2 H1 Tricolor
+   Site: $1400 | Catalogue: $1160 | Écart: +240
+#KFOLEALM2H43C | KIT LED ALFA M2 H4 Tricolor
+   Site: $1160 | Catalogue: $1400 | Écart: -240
+#KFOLEALM2953C | KIT LED ALFA M2 9005 Tricolor
+   Site: $1600 | Catalogue: $1160 | Écart: +440
+#KFOLEALM3H3 | KIT LED ALFA M3 H3
+   Site: $2000 | Catalogue: $1600 | Écart: +400
+#KFOLEALM396 | KIT LED ALFA M3 9006
+   Site: $1700 | Catalogue: $1600 | Écart: +100
+#KFOLEALM4H4 | KIT LED ALFA M4 H4
+   Site: $1700 | Catalogue: $2100 | Écart: -400
+#KFOLEALP1H7 | KIT LED ALFA P1 H7
+   Site: $2000 | Catalogue: $1600 | Écart: +400
+#KFOLEALP195 | KIT LED ALFA P1 9005
+   Site: $2000 | Catalogue: $1600 | Écart: +400
+#KFOLEALP1H4 | KIT BILED ALFA P1 H4
+   Site: $2500 | Catalogue: $2000 | Écart: +500
+#KFOLEALO1H4 | KIT LED ALFA O1 H4
+   Site: $1600 | Catalogue: $840 | Écart: +760
+#KFOLEALD3 | KIT LED ALFA D3S/D3R
+   Site: $1740 | Catalogue: $2500 | Écart: -760
+#KFOHAOS83526 | KIT OSRAM COOL BLUE H4
+   Site: $780 | Catalogue: $380 | Écart: +400
+#KFOHAOS86830 | KIT OSRAM COOL BLUE HB4
+   Site: $1000 | Catalogue: $780 | Écart: +220
+#KFOHAOS87144 | KIT HALOGENO COOLBLUE OSRAM 9005 HB3
+   Site: $1080 | Catalogue: $780 | Écart: +300
+#KFOHAOS30320 | KIT OSRAM COOL BLUE INTENSE H13
+   Site: $4980 | Catalogue: $780 | Écart: +4200
+#KFOLEOS86273 | KIT LED OSRAM H7 EQUIPO ORIGINAL
+   Site: $5720 | Catalogue: $6100 | Écart: -380
+#KFOBXAL55975K | KIT BIXENON SLIM 9007
+   Site: $380 | Catalogue: $2140 | Écart: -1760
+#KFOLEALO1H7 | KIT LED ALFA O1 H7
+   Site: $2500 | Catalogue: $680 | Écart: +1820
+#KFOLEALD4 | KIT LED ALFA D4S/D4R
+   Site: $3000 | Catalogue: $2500 | Écart: +500
+#KFOXEAL55955K | KIT XENON SLIM 9005
+   Site: $2140 | Catalogue: $1740 | Écart: +400
+#KFOXEAL55525K | KIT XENON SLIM 5202
+   Site: $660 | Catalogue: $1700 | Écart: -1040
+#KFOHAOS85542 | KIT OSRAM COOL BLUE 9007
+   Site: $1080 | Catalogue: $420 | Écart: +660
+#KFOHAOS85571 | KIT OSRAM COOL BLUE H1
+   Site: $780 | Catalogue: $440 | Écart: +340
+#KFOHAOS87129 | KIT OSRAM H7 (EQUIPO ORIGINAL)
+   Site: $6100 | Catalogue: $1260 | Écart: +4840
+#KFOLESY34966 | KIT LED OSRAM 9005 DE NIEBLA EQUIPO ORIGINAL
+   Site: $3980 | Catalogue: $4740 | Écart: -760
+#KFOLESY37693 | KIT LED OSRAM/SYLVANIA H4 EQUIPO ORIGINAL
+   Site: $320 | Catalogue: $5720 | Écart: -5400
+#KFOHAOS86864 | KIT HALOGENO NIGHTBREAKER OSRAM H4
+   Site: $1260 | Catalogue: $1000 | Écart: +260
+#KFOLEOS86711 | KIT LED COOL BLUE INTENSE OSRAM H7
+   Site: $240 | Catalogue: $3980 | Écart: -3740
+#KFOLEOS86272 | KIT LED OSRAM H11 EQUIPO ORIGINAL
+   Site: $4420 | Catalogue: $6100 | Écart: -1680
+#KFOBXAL55H135K | KIT BIXENON SLIM H13
+   Site: $1700 | Catalogue: $2140 | Écart: -440
+#KFOXEAL55H115K | KIT XENON SLIM H11
+   Site: $1700 | Catalogue: $1740 | Écart: -40
+#KFOXEAL55H35K | KIT XENON SLIM H3
+   Site: $2320 | Catalogue: $1740 | Écart: +580
+#KFOLESY37691 | KIT LED OSRAM/SYLVANIA H11 EQUIPO ORIGINAL
+   Site: $6100 | Catalogue: $4420 | Écart: +1680
+#KFOLEOS86271 | KIT LED OSRAM 9006 (HB4) EQUIPO ORIGINAL
+   Site: $500 | Catalogue: $6100 | Écart: -5600
+#KFMLENE85234 | KIT LAMPARA LED MINIATURA NEOLUX NF6441CW
+   Site: $320 | Catalogue: $500 | Écart: -180
+#KFMLEAL1156 | KIT DE FOCO MINIATURA LED ALFA 1156
+   Site: $240 | Catalogue: $600 | Écart: -360
+#KFMLEALS5P21 | KIT DE FOCO MINIATURA LED ALFA S5P-P21
+   Site: $640 | Catalogue: $600 | Écart: +40
+#KFMLEALT10 | KIT DE FOCO MINIATURA LED ALFA T10
+   Site: $600 | Catalogue: $240 | Écart: +360
+#PFMLEALC537B | FOCO MINIATURA LED ALFA C5-37MM
+   Site: $560 | Catalogue: $120 | Écart: +440
+#PBLACAL35M4 | BALASTRA D1/3 M4
+   Site: $500 | Catalogue: $1270 | Écart: -770
+#PBLACAL35V4 | BALASTRA D1/3 V4
+   Site: $1640 | Catalogue: $1270 | Écart: +370
+#PFOXEPH42402 | FOCO XENON D4S
+   Site: $1270 | Catalogue: $3960 | Écart: -2690
+#PFOXEPH92854 | FOCO XENON PHILLIPS D5S
+   Site: $1270 | Catalogue: $2000 | Écart: -730
+#KFMLENE85240 | KIT LAMPARA LED MINIATURA NEOLUX NP2260 CW-02B
+   Site: $700 | Catalogue: $320 | Écart: +380
+#KFMLENE85246 | KIT LAMPARA LED MINIATURA NEOLUX NP2160W-02B
+   Site: $600 | Catalogue: $500 | Écart: +100
+#KFMLEALS5T16 | KIT DE FOCO MINIATURA LED ALFA S5-T16
+   Site: $600 | Catalogue: $700 | Écart: -100
+#KFMLEALT15 | KIT DE FOCO MINIATURA LED ALFA T15
+   Site: $130 | Catalogue: $480 | Écart: -350
+#PFMLEALC531B | FOCO MINIATURA LED ALFA C5-31MM
+   Site: $1300 | Catalogue: $130 | Écart: +1170
+#PFOXENE85254 | FOCO XENON D2S NEOLUX H1
+   Site: $3560 | Catalogue: $1300 | Écart: +2260
+#PBLACAL35A2 | BALASTRA D1/3 A2
+   Site: $2000 | Catalogue: $1270 | Écart: +730
+#PIGACAL35 | BALASTRA ARRANCADOR DSC/D2R/D2S
+   Site: $480 | Catalogue: $2000 | Écart: -1520
+#PFOXEAL35D2R | FOCO XENON D2R
+   Site: $1960 | Catalogue: $560 | Écart: +1400
+#PFOXEPH92853 | FOCO XENON D3S
+   Site: $1270 | Catalogue: $2000 | Écart: -730
+#PFMLEALC541B | FOCO MINIATURA LED ALFA C5-41MM
+   Site: $120 | Catalogue: $130 | Écart: -10
+#PBAALMIB018R | BARRA MINI 1X6 CON FLASHEADOR RECTA BLANCA
+   Site: $560 | Catalogue: $480 | Écart: +80
+#PBAALMIB072R | BARRA MINI RECTA BLANCA 1X24
+   Site: $1030 | Catalogue: $1020 | Écart: +10
+#KBAALMIB018R | KIT BARRA MINI RECTA BICOLOR 1X6
+   Site: $1090 | Catalogue: $940 | Écart: +150
+#KBAALMIB054R | BARRA MINI RECTA BICOLOR 1X18
+   Site: $1400 | Catalogue: $1240 | Écart: +160
+#PBAALSL72R | BARRA SLIM RECTA 2X12
+   Site: $1500 | Catalogue: $600 | Écart: +900
+#KFALEALRD015 | KIT FARO REDONDO 9 LEDS
+   Site: $200 | Catalogue: $440 | Écart: -240
+#PBAALSL120R | BARRA SLIM 2X20
+   Site: $1420 | Catalogue: $730 | Écart: +690
+#PBAALSL180R | BARRA SLIM RECTA 2X30
+   Site: $1500 | Catalogue: $1030 | Écart: +470
+#PBAALSL300R | BARRA SLIM RECTA 2X50
+   Site: $6780 | Catalogue: $1500 | Écart: +5280
+#PBASY34058 | BARRA SYLVANIA 10" SLIM LED LIGHTBAR
+   Site: $320 | Catalogue: $2680 | Écart: -2360
+#KBAALMIB036R | KIT BARRA MINI RECTA BICOLOR 1X12
+   Site: $1240 | Catalogue: $1090 | Écart: +150
+#PBAALSL240C | BARRA SLIM CURVA 2X40
+   Site: $440 | Catalogue: $1500 | Écart: -1060
+#PBAALSL36R | BARRA SLIM RECTA 2X6
+   Site: $600 | Catalogue: $440 | Écart: +160
+#KFEALEALRGB7Y4 | KIT FAROS LED ALFA 7" 2 LUNAS 2 LUPAS
+   Site: $1900 | Catalogue: $6640 | Écart: -4740
+#PFALEALRD001 | FARO REDONDO 9 LEDS
+   Site: $1740 | Catalogue: $220 | Écart: +1520
+#PFALEALRD003 | FARO LED ALFA REDONDO 9 LED SLIM
+   Site: $6640 | Catalogue: $1480 | Écart: +5160
+#PBAAL1X21RBA | BARRA ALFA LED 90W 39" 21 LEDS BLANCA CON LATERALES AMBAR
+   Site: $5370 | Catalogue: $4240 | Écart: +1130
+#PBAAL1X30RBA | BARRA ALFA LED 90W 55" 30 LEDS BLANCA CON LATERALES AMBAR
+   Site: $4900 | Catalogue: $6780 | Écart: -1880
+#PBAALSL300C | BARRA SLIM CURVA 2X50
+   Site: $2120 | Catalogue: $1740 | Écart: +380
+#PBASY34028 | BARRA SYLVANIA 20" LED LIGHTBAR SPOT
+   Site: $640 | Catalogue: $10280 | Écart: -9640
+#KANALNA102 | MODULO DOBLE PARA 2 BARRAS LED SECUENCIAL
+   Site: $1480 | Catalogue: $2600 | Écart: -1120
+#PFALESY34056 | FARO REDONDO 4" SYLVANIA RUGUSO
+   Site: $400 | Catalogue: $1900 | Écart: -1500
+#PFALEALRD005 | FARO 3.5" REDONDO FLOR 6 LEDS
+   Site: $2020 | Catalogue: $400 | Écart: +1620
+#KPRLEAL55X8 | KIT DE FAROS PROYECTOR LUPA X8
+   Site: $260 | Catalogue: $6780 | Écart: -6520
+#KFALESY34008 | KIT FAROS SYLVANIA PODS DRL CUBE-X FLOOD
+   Site: $6980 | Catalogue: $5250 | Écart: +1730
+#PFALEALCU001 | FARO CUADRADO 9 LEDS
+   Site: $490 | Catalogue: $220 | Écart: +270
+#PFALEALRC005 | FARO TIPO BARRA 2X3 CON LATERALES AMBAR/BLANCO C/FLASH
+   Site: $2310 | Catalogue: $360 | Écart: +1950
+#PFALEALRC011 | FARO LED ALFA RECTANGULAR 1X6 CREE
+   Site: $180 | Catalogue: $620 | Écart: -440
+#PFALEALRC006 | FARO LED ALFA 4 LED 1X4 4.5"
+   Site: $620 | Catalogue: $280 | Écart: +340
+#PUNLEALRC004 | UNIDAD CUADRADA 7" LISA CON ALTA Y BAJA
+   Site: $420 | Catalogue: $2310 | Écart: -1890
+#PFALEALRC013 | FARO LED ALFA 6" AZUL/ROJO CON ESTROBO
+   Site: $570 | Catalogue: $260 | Écart: +310
+#KUNLEALRD004 | KIT DE FAROS REDONDO 12 LEDS RGB CON LUZ DE DIA
+   Site: $6240 | Catalogue: $2020 | Écart: +4220
+#KFALEALAU001 | KIT FAROS AUXILIARES REDONDOS LUZ BLANCA 3 LUNAS
+   Site: $440 | Catalogue: $1540 | Écart: -1100
+#PFALESY34084 | FARO REDONDO 3" SYLVANIA RUGUSO
+   Site: $460 | Catalogue: $1740 | Écart: -1280
+#KPRLEAL45H5 | KIT DE FAROS TIPO LUPA H5
+   Site: $400 | Catalogue: $6240 | Écart: -5840
+#KFALESY34072 | KIT FAROS PODS CUADRADO SYLVANIA 3" ULTRA CUBE
+   Site: $220 | Catalogue: $6980 | Écart: -6760
+#PFALELALCU002 | FARO 1X1 LEDS CREE
+   Site: $490 | Catalogue: $260 | Écart: +230
+#PFALEALCU006 | FARO TIPO BARRA 2X3
+   Site: $260 | Catalogue: $360 | Écart: -100
+#PFALEALRC010 | FARO FLASHEADOR TIPO BARRA 2X3
+   Site: $280 | Catalogue: $240 | Écart: +40
+#PFALESY34054 | FARO CUADRADO 4" SYLVANIA RUGUSO
+   Site: $240 | Catalogue: $1900 | Écart: -1660
+#PFALEALRC007 | FARO LED ALFA 3" 1X2 BLANCO
+   Site: $260 | Catalogue: $3440 | Écart: -3180
+#KFALEALCU016 | KIT FARO CUADRADO 9 LED SLIM
+   Site: $6780 | Catalogue: $440 | Écart: +6340
+#KUNLEALRD007 | KIT FARO REDONDO 7" 2 LUPAS 2 LUNAS Y DRL
+   Site: $1540 | Catalogue: $3700 | Écart: -2160
+#KFALEALAU005 | KIT FAROS AUXILIARES REDONDOS LUZ BLANCA
+   Site: $5250 | Catalogue: $1720 | Écart: +3530
+#KFALEALRC008 | KIT FAROS LED ALFA 1X6 BLANCO/AMBAR CON ESTROBO
+   Site: $240 | Catalogue: $570 | Écart: -330
+#PFALEALRC002 | FARO LED ALFA 4 LED 1X4 4.5" BLANCO CON ESTROBO
+   Site: $370 | Catalogue: $240 | Écart: +130
+#KCALEALJEE02 | KIT DE CALAVERA LED JEEP WRANGLER RUBICON 02
+   Site: $7780 | Catalogue: $3050 | Écart: +4730
+#PUNLEALRC001 | UNIDAD CUADRADA GRANDE 7" 3X5
+   Site: $1440 | Catalogue: $420 | Écart: +1020
+#PUNLEALRC006 | UNIDAD CUADRADA 7" 2 LUNAS 4 LEDS Y LUZ DE DIA
+   Site: $1860 | Catalogue: $1420 | Écart: +440
+#PAMAL1200.1D | AMPLIFICADOR ALFA 1200.1
+   Site: $4350 | Catalogue: $8700 | Écart: -4350
+#PAMAL800.4D | AMPLIFICADOR ALFA 800.4
+   Site: $3300 | Catalogue: $6600 | Écart: -3300
+#PUNLEALRD002 | UNIDAD REDONDA 7" ALTA Y BAJA LISO
+   Site: $4270 | Catalogue: $2080 | Écart: +2190
+#PAMALFR1000.1 | AMPLIFICADOR ALFA 1000.1 FR
+   Site: $1360 | Catalogue: $1550 | Écart: -190
+#PAMJX1000.1 | AMPLIFICADOR JX AUDIO 1000/1D
+   Site: $1300 | Catalogue: $2600 | Écart: -1300
+#PFALEALRC004 | FARO 2X3 CREE
+   Site: $2150 | Catalogue: $370 | Écart: +1780
+#KFOLEAL6ZONA | KIT DE ILUMINACION EXTERIOR 6 ZONAS RGB
+   Site: $360 | Catalogue: $2150 | Écart: -1790
+#KCALEALJEE04 | KIT DE CALAVERA LED JEEP WRANGLER RUBICON 04
+   Site: $6600 | Catalogue: $4270 | Écart: +2330
+#PUNHASY30832 | FARO OSRAM H6054
+   Site: $1420 | Catalogue: $380 | Écart: +1040
+#PUNLEALRC003 | UNIDAD CUADRADA CHICA 5" 3X5
+   Site: $2310 | Catalogue: $360 | Écart: +1950
+#PUNLEALRD003 | UNIDAD REDONDA 7" 12 LEDS CON LUZ DE DIA
+   Site: $2080 | Catalogue: $1440 | Écart: +640
+#PAMAL600.5D | AMPLIFICADOR ALFA 600.5
+   Site: $3890 | Catalogue: $7780 | Écart: -3890
+#PAMAL700.2D | AMPLIFICADOR ALFA 700.2
+   Site: $3000 | Catalogue: $6000 | Écart: -3000
+#PAMALMN500.4 | AMPLIFICADOR ALFA 500.4
+   Site: $1100 | Catalogue: $1250 | Écart: -150
+#PAMJX500.2 | AMPLIFICADOR JX AUDIO 500/2D
+   Site: $850 | Catalogue: $1600 | Écart: -750
+#PBOALMRXT65 | BOCINA ALFA MRXT65
+   Site: $1160 | Catalogue: $1120 | Écart: +40
+#KBOALMRLB80 | KIT BOCINA ALFA MRLB80
+   Site: $2240 | Catalogue: $1280 | Écart: +960
+#PBOALMRXT80 | BOCINA ALFA MRXT80
+   Site: $1250 | Catalogue: $1560 | Écart: -310
+#PBOALCXPRO69 | BOCINA ALFA PRO 69 CON TWEETER
+   Site: $3120 | Catalogue: $3080 | Écart: +40
+#KBOALCXPRO80 | KIT BOCINA ALFA PRO 80 CON TWEETER
+   Site: $1330 | Catalogue: $2740 | Écart: -1410
+#PBOALMREL80 | BOCINA ALFA MREL80
+   Site: $1120 | Catalogue: $760 | Écart: +360
+#PSWALCT10D2 | SUBWOOFER ALFA CT10D2
+   Site: $2740 | Catalogue: $1600 | Écart: +1140
+#KBOALMRXT65 | KIT BOCINA ALFA MRXT65
+   Site: $1560 | Catalogue: $2240 | Écart: -680
+#KBTALPROCS65 | KIT BOCINA Y TWEETER ALFA
+   Site: $2390 | Catalogue: $1330 | Écart: +1060
+#PBOALCXPRO80 | BOCINA ALFA PRO 80 CON TWEETER
+   Site: $1600 | Catalogue: $1370 | Écart: +230
+#KBOALMRXT80 | KIT BOCINA ALFA MRXT80
+   Site: $2500 | Catalogue: $3120 | Écart: -620
+#KBOALCXPRO65 | KIT BOCINA ALFA PRO 65 CON TWEETER
+   Site: $1370 | Catalogue: $2500 | Écart: -1130
+#PSWALCT12D4 | SUBWOOFER ALFA CT12D4
+   Site: $1600 | Catalogue: $1780 | Écart: -180
+#PSWALMT80D4 | SUBWOOFER ALFA MT80D4
+   Site: $2820 | Catalogue: $2560 | Écart: +260
+#PSWALST65D4 | SUBWOOFER ALFA ST65D4
+   Site: $1780 | Catalogue: $2390 | Écart: -610
+#PSWALST10D4 | SUBWOOFER ALFA ST10D4
+   Site: $1790 | Catalogue: $4720 | Écart: -2930
+#PDTALDB9 | DISTRIBUIDOR DE TIERRA 4 VIAS
+   Site: $190 | Catalogue: $150 | Écart: +40
+#PSWALMT12D2 | SUBWOOFER ALFA MT12D2
+   Site: $2710 | Catalogue: $2980 | Écart: -270
+#PSWALMT80D2 | SUBWOOFER ALFA MT80D2
+   Site: $2820 | Catalogue: $2560 | Écart: +260
+#PCBALRCAOFC17 | CABLE RCA ALFA 100% COBRE OFC 17 PIES
+   Site: $60 | Catalogue: $310 | Écart: -250
+#PSWALST65D2 | SUBWOOFER ALFA ST65D2
+   Site: $3570 | Catalogue: $2390 | Écart: +1180
+#PBAAL1X15RBA | BARRA ALFA LED 90W 28" 15 LEDS BLANCA CON LATERALES AMBAR
+   Site: $4240 | Catalogue: $3250 | Écart: +990
+#PBASY34044 | BARRA SYLVANIA 12" LED SLIM COMBO LIGHTBAR SPOT/FLOOD
+   Site: $440 | Catalogue: $4300 | Écart: -3860
+#PFALEALCU008 | FARO CUADRADO LED ALFA 2X2 3" BLANCO C/FLASH
+   Site: $360 | Catalogue: $490 | Écart: -130
+#PCBALRCAOFC3 | CABLE RCA ALFA 100% COBRE OFC 3 PIES
+   Site: $170 | Catalogue: $240 | Écart: -70
+#PCBCY1X8RO | CABLE PARA INSTALACIÓN CALIBRE 8
+   Site: $10 | Catalogue: $130 | Écart: -120
+#PARALHED2 | ARNES SOCKET D2
+   Site: $420 | Catalogue: $100 | Écart: +320
+#PCIAISNITO | CINTA AISLANTE ELECTRICA DE PVC NEGRA
+   Site: $2000 | Catalogue: $80 | Écart: +1920
+#PCIAISTESA50M | CINTA DE TELA AISLANTE TESA GRANDE 2CM
+   Site: $1170 | Catalogue: $100 | Écart: +1070
+#PTEALFDFN2 | TERMINAL ZAPATA NYLON CALIBRE 16-14 AWG
+   Site: $80 | Catalogue: $140 | Écart: -60
+#PTEALSCJGK-10 | TERMINAL PARA CABLE CALIBRE 8 10MM 100% COBRE
+   Site: $35 | Catalogue: $70 | Écart: -35
+#PTEALSCJGK-50 | TERMINAL PARA CABLE CALIBRE 0 10MM 100% COBRE
+   Site: $110 | Catalogue: $220 | Écart: -110
+#PTEALRVM2-3.7 | TERMINAL OJILLO 3.7 CALIBRE 16-14 AWG
+   Site: $40 | Catalogue: $80 | Écart: -40
+#PTEALSV2-5 | TERMINAL ESPADA CALIBRE 16-14 AWG
+   Site: $24 | Catalogue: $48 | Écart: -24
+#PTEALBVW5 | TERMINAL CONECTOR CALIBRE 12-10 AWG
+   Site: $160 | Catalogue: $140 | Écart: +20
+#PTEALCE2 | TERMINAL CHUPON CALIBRE 16-14 AWG
+   Site: $80 | Catalogue: $30 | Écart: +50
+#PSWALLJ10 | SWITCH PARA BARRA LED
+   Site: $380 | Catalogue: $200 | Écart: +180
+#PARALCAMO | ARNES UNIVERSAL PARA MOTO Y CARRO
+   Site: $240 | Catalogue: $420 | Écart: -180
+#PCBCY2X14TR | CABLE PARA INSTALACIÓN CALIBRE 14 2 PUNTAS
+   Site: $14 | Catalogue: $58 | Écart: -44
+#PCBCY1X4RO | CABLE PARA INSTALACIÓN CALIBRE 4
+   Site: $10 | Catalogue: $310 | Écart: -300
+#PTEALFDFV2 | TERMINAL ZAPATA VINYL CALIBRE 16-14 AWG
+   Site: $110 | Catalogue: $80 | Écart: +30
+#PTEALFDV2-312 | TERMINAL ZAPATA SEMIFORRADA 312 CALIBRE 16-14
+   Site: $80 | Catalogue: $160 | Écart: -80
+#PTEALFDV2-205 | TERMINAL ZAPATA SEMIFORRADA 205 CALIBRE 16-14
+   Site: $50 | Catalogue: $100 | Écart: -50
+#PTEALRV2-3.5 | TERMINAL OJILLO CALIBRE 16-14 AWG
+   Site: $22 | Catalogue: $44 | Écart: -22
+#PTEALSVL2-3.7 | TERMINAL ESPADA 3.7 CALIBRE 16-14 AWG
+   Site: $40 | Catalogue: $80 | Écart: -40
+#PTEALBVW2 | TERMINAL CONECTOR CALIBRE 16-14 AWG
+   Site: $140 | Catalogue: $80 | Écart: +60
+#PBAAL1X27RBA | BARRA ALFA LED 90W 50" 27 LEDS BLANCA CON LATERALES AMBAR
+   Site: $2680 | Catalogue: $5370 | Écart: -2690
+#PBASY34060 | BARRA SYLVANIA 20" SLIM LED LIGHTBAR
+   Site: $4300 | Catalogue: $4880 | Écart: -580
+#PFALEALRC008 | FARO LED ALFA 1X4 4.5" AZUL/ROJO CON ESTROBO
+   Site: $460 | Catalogue: $240 | Écart: +220
+#KFALEALCU009 | KIT FARO CUADRADO 9 LEDS
+   Site: $1720 | Catalogue: $400 | Écart: +1320
+#KFALEALRC001 | KIT FAROS LED ALFA 1X4 4.5" BLANCO CON ESTROBO
+   Site: $1490 | Catalogue: $460 | Écart: +1030
+#PFOXEOS86176 | FOCO LED OSRAM D1S
+   Site: $2000 | Catalogue: $1300 | Écart: +700
+#KFOLEALM1962C | KIT LED ALFA M1 9006 Bicolor
+   Site: $360 | Catalogue: $300 | Écart: +60
+#KFOLEALM1H11 | KIT LED ALFA M1 H11
+   Site: $750 | Catalogue: $620 | Écart: +130
+#PALALREST | LIQUIDO RESTAURADOR DE MICAS
+   Site: $100 | Catalogue: $1170 | Écart: -1070
+#KFOLEALO196 | KIT LED ALFA O1 9006
+   Site: $840 | Catalogue: $680 | Écart: +160
+#KFOLEALO1H15 | KIT LED ALFA O1 H15
+   Site: $1600 | Catalogue: $840 | Écart: +760
+#KFOLEALD8 | KIT LED ALFA D8S/D8R
+   Site: $1740 | Catalogue: $2500 | Écart: -760
+#KFOLEALD2 | KIT LED ALFA D2S/D2R
+   Site: $1700 | Catalogue: $2500 | Écart: -800
+#PAMALMN1000.1D | AMPLIFICADOR ALFA 1000.1 MN
+   Site: $1200 | Catalogue: $2400 | Écart: -1200
+#PAMJX400.4 | AMPLIFICADOR JX AUDIO 400/4D
+   Site: $950 | Catalogue: $1900 | Écart: -950
+#KBOALAP65.2 | BOCINA ALFA 6.5
+   Site: $660 | Catalogue: $1320 | Écart: -660
+#PBOALMRA80 | BOCINA ALFA MRA80
+   Site: $1280 | Catalogue: $1160 | Écart: +120
+#PSWALMT10D2 | SUBWOOFER ALFA MT10D2
+   Site: $2560 | Catalogue: $2820 | Écart: -260
+#PTEALSCJGK-25 | TERMINAL PARA CABLE CALIBRE 4 10MM 100% COBRE
+   Site: $65 | Catalogue: $130 | Écart: -65

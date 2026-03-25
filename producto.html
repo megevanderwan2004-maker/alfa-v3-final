@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ALFA Car Audio | Producto</title>
+    <meta name="description" content="ALFA Car Audio en Guadalajara - Sistemas de audio premium, iluminación LED y seguridad para tu vehículo. Instalación profesional. Envíos a todo México en 24-48h. ☎️ 33 1568 6159">
+    <title>ALFA Car Audio | Accesorios Premium en Guadalajara y México</title>
     <!-- Google Fonts -->
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;800&family=Oswald:wght@400;500;600;700&display=swap"
@@ -12,6 +13,49 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "AutoPartsStore",
+      "name": "ALFA Car Audio",
+      "description": "Detalles del producto y equipamiento automotriz premium en ALFA Car Audio Guadalajara.",
+      "url": "https://alfacaraudiomx.com/",
+      "telephone": "+52-33-1568-6159",
+      "priceRange": "$$",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Calz. del Ejército 619, Del Periodista",
+        "addressLocality": "Guadalajara",
+        "addressRegion": "Jalisco",
+        "postalCode": "44430",
+        "addressCountry": "MX"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "20.661717307265878",
+        "longitude": "-103.33408046217968"
+      },
+      "sameAs": [
+        "https://www.instagram.com/alfacaraudiomx?utm_source=qr",
+         "https://www.facebook.com/AlfaCarAudiomx"
+      ],
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "09:00",
+          "closes": "18:30"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Saturday",
+          "opens": "09:00",
+          "closes": "14:30"
+        }
+      ]
+    }
+    </script>
 </head>
 
 <body>
@@ -59,6 +103,11 @@
                     <a href="index.html" class="logo">
                         <img src="PHOTO-2026-02-20-13-37-44.jpg" alt="ALFA Audio Logo" class="logo-img">
                     </a>
+                    <ul class="nav-links">
+                        <li class="nav-item"><a href="index.html" class="nav-link">INICIO</a></li>
+                        <li class="nav-item"><a href="sobre-nosotros.html" class="nav-link">NOSOTROS</a></li>
+                        <li class="nav-item"><a href="blog.html" class="nav-link">BLOG</a></li>
+                    </ul>
                 </div>
                 <div class="nav-right">
                     <button id="btn-cuenta" class="btn-secret-lock" title="Cuenta"><i
@@ -169,23 +218,23 @@
                     <div class="footer-brand">
                         <img src="PHOTO-2026-02-20-13-37-44.jpg" alt="ALFA" class="logo-img"
                             style="margin-bottom: 20px; max-height: 40px; mix-blend-mode: screen;">
-                        <p>Luxe y performance sonora para tu vehículo. Domina la ruta con ALFA.</p>
+                        <p>Domina la ruta con ALFA.</p>
                         <div class="footer-social" style="margin-top: 20px;">
-                            <a href="#" class="social-link" id="footer-wa-link"><i
+                            <a href="https://wa.me/523315686159" class="social-link" id="footer-wa-link" target="_blank"><i
                                     class="fa-brands fa-whatsapp"></i></a>
-                            <a href="#" class="social-link"><i class="fa-brands fa-instagram"></i></a>
-                            <a href="#" class="social-link"><i class="fa-brands fa-facebook-f"></i></a>
+                            <a href="https://www.instagram.com/alfacaraudiomx?utm_source=qr" class="social-link" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                            <a href="https://www.facebook.com/AlfaCarAudiomx" class="social-link" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
                         </div>
                     </div>
                     <div class="footer-info">
                         <h4>CONTACTO</h4>
                         <p><i class="fa-solid fa-phone"></i> +52 33 1568 6159</p>
-                        <p><i class="fa-solid fa-location-dot"></i> Guadalajara, Jalisco, México</p>
+                        <p><i class="fa-solid fa-location-dot"></i> Calz. del Ejército 619, Del Periodista, 44430 Guadalajara, Jal.</p>
                     </div>
                     <div class="footer-hours">
                         <h4>HORARIOS</h4>
                         <p>Lunes - Viernes: 9:00 - 18:30</p>
-                        <p>Sábado: 9:00 - 14:00</p>
+                        <p>Sábado: 9:00 - 14:30</p>
                         <p>Domingo: Cerrado</p>
                     </div>
                 </div>
@@ -205,10 +254,10 @@
 
     <!-- Data source strictly from catalog.js -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script type="module" src="catalog.js"></script>
+    <script src="catalog.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>window.ALFA_PAGE_MODE = 'PRODUCT';</script>
-    <script type="module" src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>
