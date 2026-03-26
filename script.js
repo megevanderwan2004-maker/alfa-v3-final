@@ -189,6 +189,14 @@ function handleSpaNavigation(value, type) {
         catalogSection.style.display = 'block';
         window.scrollTo({ top: catalogSection.offsetTop - 50, behavior: 'smooth' });
     }
+    
+    document.body.classList.add('show-mobile-categories');
+
+    if (type === 'mainCategory' || type === 'category') {
+        sessionStorage.setItem('alfa_current_category', value);
+    } else {
+        sessionStorage.removeItem('alfa_current_category');
+    }
     if (grid) grid.innerHTML = '';
     let filtered = [];
     if (type === 'category') filtered = catalog.filter(p => normalizeText(p.categoria) === normalizeText(value));
@@ -222,7 +230,14 @@ async function loadCatalogRouter() {
         
         if (spinner) spinner.style.display = 'none';
 
-        if (mode === 'HOME') loadHome(catalog, configPromos);
+        if (mode === 'HOME') {
+            loadHome(catalog, configPromos);
+            const urlParams = new URLSearchParams(window.location.search);
+            const cat = urlParams.get('cat');
+            if (cat) {
+                setTimeout(() => handleSpaNavigation(cat, 'mainCategory'), 100);
+            }
+        }
         else if (mode === 'TIENDA') loadTienda(catalog);
         else if (mode === 'PRODUCT') loadProductDetails(catalog);
         
@@ -232,7 +247,14 @@ async function loadCatalogRouter() {
         if (typeof ALFA_CATALOG_FALLBACK !== 'undefined') {
             catalog = ALFA_CATALOG_FALLBACK;
             if (spinner) spinner.style.display = 'none';
-            if (mode === 'HOME') loadHome(catalog, null);
+            if (mode === 'HOME') {
+                loadHome(catalog, null);
+                const urlParams = new URLSearchParams(window.location.search);
+                const cat = urlParams.get('cat');
+                if (cat) {
+                    setTimeout(() => handleSpaNavigation(cat, 'mainCategory'), 100);
+                }
+            }
             else if (mode === 'TIENDA') loadTienda(catalog);
             else if (mode === 'PRODUCT') loadProductDetails(catalog);
             initSmartSearch(catalog, document.getElementById('gallery-grid'));
@@ -412,6 +434,18 @@ function loadProductDetails(data) {
     const errorEl = document.getElementById('error-state');
     const spinner = document.getElementById('loading-spinner');
 
+    // Update Contextual Back Button based on sessionStorage history
+    const backBtns = document.querySelectorAll('.btn-back, .btn-outline-red');
+    const lastCat = sessionStorage.getItem('alfa_current_category');
+    if (lastCat) {
+        backBtns.forEach(btn => {
+            if (btn.textContent.toUpperCase().includes('VOLVER')) {
+                btn.href = `index.html?cat=${encodeURIComponent(lastCat)}`;
+                btn.innerHTML = `<i class="fa-solid fa-arrow-left"></i> VOLVER A ${lastCat.toUpperCase()}`;
+            }
+        });
+    }
+
     if (!sku) {
         if (spinner) spinner.style.display = 'none';
         if (errorEl) errorEl.style.display = 'block';
@@ -536,4 +570,19 @@ document.addEventListener('DOMContentLoaded', () => {
     initUniverseClicks();
     const btnLock = document.getElementById('btn-cuenta');
     if (btnLock) btnLock.onclick = () => window.location.href = 'login.html';
+
+    const btnBackSpa = document.getElementById('btn-back-to-home');
+    if (btnBackSpa) {
+        btnBackSpa.addEventListener('click', () => {
+            const hero = document.getElementById('hero-section');
+            const featured = document.getElementById('featured-products');
+            const catalogSection = document.getElementById('catalog-section');
+            if (hero) hero.style.display = 'block';
+            if (featured) featured.style.display = 'block';
+            if (catalogSection) catalogSection.style.display = 'none';
+            document.body.classList.remove('show-mobile-categories');
+            sessionStorage.removeItem('alfa_current_category');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
 });

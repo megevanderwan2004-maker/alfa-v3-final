@@ -2815,7 +2815,45 @@ iframe[src*="mailjet"] {
         height: 50vh;
     }
     
-    .nav-links.categories-center {
-        display: none; /* Mobile menu handles this */
+    body:not(.show-mobile-categories) .nav-links.categories-center:not(.mobile-only) {
+        display: none !important; /* Force hide on index.html hero explicitly */
+    }
+
+    body.show-mobile-categories .nav-links.categories-center,
+    .categories-center.mobile-only {
+        display: flex !important;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: nowrap;
+        gap: 15px;
+        width: 100%;
+        margin-top: 5px;
+        padding-bottom: 5px;
+        overflow-x: auto;
+    }
+
+    .nav-links.categories-center .nav-link {
+        font-size: 0.85rem;
+        padding: 5px 0;
+    }
+
+    .mobile-home-icon {
+        display: list-item;
+    }
+
+    .mobile-home-icon .nav-link {
+        color: var(--red-sport);
+        font-size: 1.1rem;
+    }
+}
+
+/* Hide mobile injected elements on desktop */
+@media (min-width: 769px) {
+    .categories-center.mobile-only {
+        display: none !important;
+    }
+    .mobile-home-icon {
+        display: none !important;
     }
 }
