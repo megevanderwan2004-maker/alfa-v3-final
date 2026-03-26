@@ -42,7 +42,22 @@
                     <button class="btn-gold" id="btn-add-product"><i class="fa-solid fa-plus"></i> Nuevo Producto</button>
                     <button class="btn-gold" id="btn-export-catalog" style="margin-left: 10px; background: #fff; color: #000;"><i class="fa-solid fa-save"></i> SAUVEGARDER LES MODIFICATIONS</button>
                 </div>
-            </header>
+                    <!-- Mobile Secondary Categories Bar -->
+        <div class="mobile-category-ribbon" id="mobile-category-ribbon">
+            <div class="ribbon-item">
+                <span onclick="toggleRibbon(this, 'iluminacion')">ILUMINACIÓN <i class="fa-solid fa-chevron-down"></i></span>
+                <div class="ribbon-dropdown" id="ribbon-drop-iluminacion"></div>
+            </div>
+            <div class="ribbon-item">
+                <span onclick="toggleRibbon(this, 'audio')">AUDIO <i class="fa-solid fa-chevron-down"></i></span>
+                <div class="ribbon-dropdown" id="ribbon-drop-audio"></div>
+            </div>
+            <div class="ribbon-item">
+                <span onclick="toggleRibbon(this, 'seguridad')">SEGURIDAD <i class="fa-solid fa-chevron-down"></i></span>
+                <div class="ribbon-dropdown" id="ribbon-drop-seguridad"></div>
+            </div>
+        </div>
+        </header>
 
             <!-- Products Management Panel -->
             <div id="products-panel" class="content-panel tab-content active">

@@ -11,7 +11,7 @@
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=4">
     <link rel="icon" href="/favicon.ico" sizes="any">
     <!-- Schema.org Structured Data -->
     <script type="application/ld+json">
@@ -126,6 +126,21 @@
                     </div>
                 </div>
             </div>
+                <!-- Mobile Secondary Categories Bar -->
+        <div class="mobile-category-ribbon" id="mobile-category-ribbon">
+            <div class="ribbon-item">
+                <span onclick="toggleRibbon(this, 'iluminacion')">ILUMINACIÓN <i class="fa-solid fa-chevron-down"></i></span>
+                <div class="ribbon-dropdown" id="ribbon-drop-iluminacion"></div>
+            </div>
+            <div class="ribbon-item">
+                <span onclick="toggleRibbon(this, 'audio')">AUDIO <i class="fa-solid fa-chevron-down"></i></span>
+                <div class="ribbon-dropdown" id="ribbon-drop-audio"></div>
+            </div>
+            <div class="ribbon-item">
+                <span onclick="toggleRibbon(this, 'seguridad')">SEGURIDAD <i class="fa-solid fa-chevron-down"></i></span>
+                <div class="ribbon-dropdown" id="ribbon-drop-seguridad"></div>
+            </div>
+        </div>
         </header>
 
         <main class="main-content" style="padding-top: 120px;">
@@ -200,7 +215,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="catalog.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="script.js"></script>
+    <script src="script.js?v=4"></script>
     <script>AOS.init();</script>
 </body>
 

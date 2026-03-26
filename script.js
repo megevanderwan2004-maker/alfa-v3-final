@@ -164,6 +164,23 @@ function initMegaMenu(data) {
         const dropEl = document.getElementById(`drop-${mainKey}`);
         if (dropEl) {
             dropEl.innerHTML = '';
+            
+            // Inject a "VER TODO" link for the entire category
+            const allLink = document.createElement('a');
+            allLink.href = "#";
+            allLink.className = "dropdown-link";
+            allLink.style.fontWeight = "bold";
+            allLink.style.color = "var(--primary-color)";
+            allLink.innerHTML = "VER TODO " + mainKey.toUpperCase() + " <i class='fa-solid fa-arrow-right' style='font-size:0.8em; margin-left:5px;'></i>";
+            allLink.onclick = (e) => { 
+                e.preventDefault(); 
+                document.querySelectorAll('.nav-links').forEach(m => m.classList.remove('active'));
+                if (window.mobileBtn) window.mobileBtn.classList.remove('active');
+                document.body.style.overflow = '';
+                handleSpaNavigation(mainKey, 'mainCategory'); 
+            };
+            dropEl.appendChild(allLink);
+
             menuGroups[mainKey].forEach(subCat => {
                 const a = document.createElement('a');
                 a.href = "#";
@@ -172,34 +189,65 @@ function initMegaMenu(data) {
                 a.onclick = (e) => { 
                     e.preventDefault(); 
                     document.querySelectorAll('.nav-links').forEach(m => m.classList.remove('active'));
-                    if (mobileBtn) mobileBtn.classList.remove('active');
+                    if (window.mobileBtn) window.mobileBtn.classList.remove('active');
                     document.body.style.overflow = '';
                     handleSpaNavigation(subCat, 'category'); 
                 };
                 dropEl.appendChild(a);
             });
         }
+
+        const ribbonDrop = document.getElementById(`ribbon-drop-${mainKey}`);
+        if (ribbonDrop) {
+            ribbonDrop.innerHTML = '';
+            
+            const rAll = document.createElement('a');
+            rAll.href = "#";
+            rAll.style.fontWeight = "bold";
+            rAll.style.color = "var(--primary-color)";
+            rAll.innerHTML = "VER TODO " + mainKey.toUpperCase() + " <i class='fa-solid fa-arrow-right' style='font-size:0.8em; margin-left:5px;'></i>";
+            rAll.onclick = (e) => { 
+                e.preventDefault(); 
+                document.querySelectorAll('.ribbon-item').forEach(m => m.classList.remove('active'));
+                handleSpaNavigation(mainKey, 'mainCategory'); 
+            };
+            ribbonDrop.appendChild(rAll);
+
+            menuGroups[mainKey].forEach(subCat => {
+                const ra = document.createElement('a');
+                ra.href = "#";
+                ra.textContent = subCat.toUpperCase();
+                ra.onclick = (e) => { 
+                    e.preventDefault(); 
+                    document.querySelectorAll('.ribbon-item').forEach(m => m.classList.remove('active'));
+                    handleSpaNavigation(subCat, 'category'); 
+                };
+                ribbonDrop.appendChild(ra);
+            });
+        }
     });
 
     document.querySelectorAll('.nav-link').forEach(link => {
         link.onclick = (e) => {
-            const chevron = e.target.closest('.nav-chevron');
-            if (chevron) {
+            const cat = link.getAttribute('data-cat');
+            
+            // On mobile, if this link is a main category, clicking anywhere toggles the accordion
+            if (window.innerWidth <= 768 && cat) {
                 const parentItem = link.closest('.nav-item');
-                // Only toggle if on mobile
-                if (parentItem && window.innerWidth <= 768) {
+                if (parentItem) {
                     e.preventDefault();
                     e.stopPropagation();
                     const isActive = parentItem.classList.contains('active');
                     // Close other open categories
                     document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
                     if (!isActive) parentItem.classList.add('active');
-                    return;
+                    return; // Stop here, do not navigate
                 }
             }
-            // Normal navigation for the link text or tablet/desktop
-            if (e.target.closest('.nav-chevron')) return;
-            const cat = link.getAttribute('data-cat');
+
+            // Normal navigation for desktop, or items without 'data-cat'
+            if (e.target.closest('.nav-chevron')) return; // Desktop chevron fallback
+            
             if (cat) {
                 e.preventDefault();
                 document.querySelectorAll('.nav-links').forEach(m => m.classList.remove('active'));
@@ -283,12 +331,18 @@ async function loadCatalogRouter() {
         
         if (spinner) spinner.style.display = 'none';
 
+        // Initialize globally for all pages
+        initMegaMenu(catalog);
+
         if (mode === 'HOME') {
             loadHome(catalog, configPromos);
             const urlParams = new URLSearchParams(window.location.search);
-            const cat = urlParams.get('cat');
-            if (cat) {
-                setTimeout(() => handleSpaNavigation(cat, 'mainCategory'), 100);
+            const mainCat = urlParams.get('mainCategory') || urlParams.get('cat');
+            const subCat = urlParams.get('category');
+            if (mainCat) {
+                setTimeout(() => handleSpaNavigation(mainCat, 'mainCategory'), 100);
+            } else if (subCat) {
+                setTimeout(() => handleSpaNavigation(subCat, 'category'), 100);
             }
         }
         else if (mode === 'TIENDA') loadTienda(catalog);
@@ -300,12 +354,19 @@ async function loadCatalogRouter() {
         if (typeof ALFA_CATALOG_FALLBACK !== 'undefined') {
             catalog = ALFA_CATALOG_FALLBACK;
             if (spinner) spinner.style.display = 'none';
+            
+            // Initialize globally for fallback
+            initMegaMenu(catalog);
+
             if (mode === 'HOME') {
                 loadHome(catalog, null);
                 const urlParams = new URLSearchParams(window.location.search);
-                const cat = urlParams.get('cat');
-                if (cat) {
-                    setTimeout(() => handleSpaNavigation(cat, 'mainCategory'), 100);
+                const mainCat = urlParams.get('mainCategory') || urlParams.get('cat');
+                const subCat = urlParams.get('category');
+                if (mainCat) {
+                    setTimeout(() => handleSpaNavigation(mainCat, 'mainCategory'), 100);
+                } else if (subCat) {
+                    setTimeout(() => handleSpaNavigation(subCat, 'category'), 100);
                 }
             }
             else if (mode === 'TIENDA') loadTienda(catalog);
@@ -330,7 +391,6 @@ function loadHome(data, config) {
     }
 
     renderProducts(featured.length ? featured : data.slice(0, 3), grid);
-    initMegaMenu(data);
 }
 
 function renderCategoryMenu(data, activeFilter = null) {
@@ -641,5 +701,29 @@ document.addEventListener('DOMContentLoaded', () => {
             sessionStorage.removeItem('alfa_current_category');
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
+    }
+});
+
+// Toggle logic for the mobile category ribbon
+function toggleRibbon(el, cat) {
+    const parentItem = el.closest('.ribbon-item');
+    if (!parentItem) return;
+    const isActive = parentItem.classList.contains('active');
+    
+    // Close all
+    document.querySelectorAll('.ribbon-item').forEach(item => {
+        item.classList.remove('active');
+    });
+    
+    // Toggle active state
+    if (!isActive) {
+        parentItem.classList.add('active');
+    }
+}
+
+// Close ribbon dropdowns when clicking outside
+document.addEventListener('click', (e) => {
+    if (!e.target.closest('.mobile-category-ribbon')) {
+        document.querySelectorAll('.ribbon-item').forEach(item => item.classList.remove('active'));
     }
 });
