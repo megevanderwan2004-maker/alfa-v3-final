@@ -183,8 +183,12 @@ function handleSpaNavigation(value, type) {
     const grid = document.getElementById('gallery-grid');
     const catalogTitle = document.getElementById('catalog-title');
 
+    const extraSections = document.querySelectorAll('.universes-section, .seo-text-section, .reviews-section, .faq-section, .location-section, .newsletter-section');
+
     if (hero) hero.style.display = 'none';
     if (featured) featured.style.display = 'none';
+    extraSections.forEach(sec => sec.style.display = 'none');
+
     if (catalogSection) {
         catalogSection.style.display = 'block';
         window.scrollTo({ top: catalogSection.offsetTop - 50, behavior: 'smooth' });
@@ -577,8 +581,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const hero = document.getElementById('hero-section');
             const featured = document.getElementById('featured-products');
             const catalogSection = document.getElementById('catalog-section');
+            const extraSections = document.querySelectorAll('.universes-section, .seo-text-section, .reviews-section, .faq-section, .location-section, .newsletter-section');
+
             if (hero) hero.style.display = 'block';
             if (featured) featured.style.display = 'block';
+            extraSections.forEach(sec => sec.style.display = 'block');
+            
             if (catalogSection) catalogSection.style.display = 'none';
             document.body.classList.remove('show-mobile-categories');
             sessionStorage.removeItem('alfa_current_category');
