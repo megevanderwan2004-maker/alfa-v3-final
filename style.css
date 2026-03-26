@@ -1811,8 +1811,12 @@ h6 {
 
     /* Consejos Section - 3 columns on mobile */
     .consejos-grid {
-        grid-template-columns: repeat(3, 1fr) !important;
-        gap: 10px !important;
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+    }
+
+    #seo-iluminacion {
+        grid-column: 1 !important;
     }
 
     .seo-block {
@@ -2738,6 +2742,42 @@ iframe[src*="mailjet"] {
 .seo-block.expanded .btn-ver-mas-details {
     display: inline-flex;
 }
+
+.see-also-tag {
+    color: var(--red-sport);
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.see-also-desc {
+    color: var(--text-secondary);
+    font-size: 0.85rem !important;
+    margin-bottom: 20px !important;
+    line-height: 1.4;
+}
+
+.seo-see-also {
+    border-color: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.seo-see-also h3 {
+    font-size: 1.2rem !important;
+    color: #fff !important;
+    transition: var(--transition-fast);
+}
+
+.seo-see-also:hover h3 {
+    color: var(--red-sport) !important;
+}
+
+.seo-see-also:hover {
+    border-color: var(--red-sport);
+    transform: translateY(-5px);
+}
 /* ==========================================
    LUXE BLOG & HEADER REFINEMENTS
    ========================================== */
@@ -2824,6 +2864,16 @@ iframe[src*="mailjet"] {
     text-transform: uppercase;
     letter-spacing: 3px;
     font-weight: 600;
+}
+
+.seo-text-section .container {
+    max-width: 1000px;
+}
+
+.consejos-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
 }
 
 .blog-container {
