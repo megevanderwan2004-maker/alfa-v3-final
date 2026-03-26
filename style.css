@@ -983,7 +983,10 @@ h6 {
    Catalog Grid (Glassmorphism Cards)
    ========================================= */
 .catalog-section {
-    padding: 100px 20px;
+    padding-top: calc(var(--header-height) + 40px);
+    padding-bottom: 100px;
+    padding-left: 20px;
+    padding-right: 20px;
     position: relative;
     z-index: 10;
     background: var(--bg-darker);
@@ -1121,7 +1124,10 @@ h6 {
    Producto.html Layout
    ========================================= */
 .product-page {
-    padding: 140px 20px 80px;
+    padding-top: calc(var(--header-height) + 40px);
+    padding-bottom: 80px;
+    padding-left: 20px;
+    padding-right: 20px;
     position: relative;
     z-index: 10;
     min-height: 80vh;
@@ -1776,7 +1782,12 @@ h6 {
         gap: 15px;
     }
 
-    .nav-right .nav-links {
+    .nav-links.active {
+        display: flex !important; /* Global show for active menus */
+    }
+
+    .nav-right .nav-links,
+    .nav-center .nav-links {
         display: none;
         position: absolute;
         top: 60px;
@@ -1790,10 +1801,6 @@ h6 {
         box-shadow: 0 10px 40px rgba(0, 0, 0, 1);
         z-index: 1200;
         gap: 15px;
-    }
-
-    .nav-right .nav-links.active {
-        display: flex !important; /* Show dropdown when hamburger active */
     }
 
     .mobile-menu-btn {
@@ -1826,7 +1833,7 @@ h6 {
     }
 
     .seo-block h3 {
-        font-size: 0.75rem !important;
+        font-size: 1.5rem !important;
         margin-bottom: 10px !important;
         min-height: 40px;
         display: flex;
@@ -2876,6 +2883,20 @@ iframe[src*="mailjet"] {
     gap: 30px;
 }
 
+.consejos-grid h3 {
+    font-size: 1.5rem !important;
+    font-weight: 700 !important;
+    color: #fff !important;
+    margin-bottom: 20px !important;
+}
+
+.see-also-desc {
+    color: var(--text-secondary);
+    font-size: 0.85rem !important;
+    margin-bottom: 20px !important;
+    line-height: 1.4;
+}
+
 .blog-container {
     max-width: 1100px;
     margin: -100px auto 100px;
@@ -2984,8 +3005,8 @@ iframe[src*="mailjet"] {
     }
     
     /* Hide the standalone category row which was causing extra height */
-    .nav-links.categories-center,
-    .categories-center.mobile-only {
+    .nav-links.categories-center:not(.active),
+    .categories-center.mobile-only:not(.active) {
         display: none !important;
     }
 

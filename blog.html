@@ -69,36 +69,61 @@
     </div>
 
     <div class="page-wrapper">
-        <header class="navbar scrolled">
+        <header class="navbar scrolled" id="navbar">
             <div class="container nav-content">
-                <div class="nav-left">
-                    <a href="index.html" class="btn-outline-red" style="text-decoration: none;"><i class="fa-solid fa-arrow-left"></i> VOLVER</a>
+                <!-- À Gauche : Volver & Search (Search and Back same as tienda) -->
+                <div class="nav-left" style="gap: 15px;">
+                    <a href="index.html" class="btn-outline-red" style="text-decoration: none; white-space: nowrap;"><i class="fa-solid fa-arrow-left"></i> VOLVER</a>
                 </div>
+
+                <!-- Au Centre : Logo & Categories -->
                 <div class="nav-center">
                     <a href="index.html" class="logo">
-                        <img src="PHOTO-2026-02-20-13-37-44.jpg" alt="ALFA Audio Logo" class="logo-img" style="max-height: 40px;">
+                        <img src="PHOTO-2026-02-20-13-37-44.jpg" alt="ALFA Audio Logo" class="logo-img">
                     </a>
                     <ul class="nav-links categories-center mobile-only">
                         <li class="nav-item mobile-home-icon">
                             <a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i></a>
                         </li>
                         <li class="nav-item">
-                            <a href="iluminacion-led-autos-guadalajara.html" class="nav-link" data-cat="iluminacion">ILUMINACIÓN</a>
+                            <a href="iluminacion-led-autos-guadalajara.html" class="nav-link" data-cat="iluminacion">
+                                ILUMINACIÓN <i class="fa-solid fa-chevron-down nav-chevron"></i>
+                            </a>
+                            <div class="nav-dropdown" id="drop-iluminacion">
+                                <!-- JS injected -->
+                            </div>
                         </li>
                         <li class="nav-item">
-                            <a href="sistemas-audio-premium.html" class="nav-link" data-cat="audio">AUDIO</a>
+                            <a href="sistemas-audio-premium.html" class="nav-link" data-cat="audio">
+                                AUDIO <i class="fa-solid fa-chevron-down nav-chevron"></i>
+                            </a>
+                            <div class="nav-dropdown" id="drop-audio">
+                                <!-- JS injected -->
+                            </div>
                         </li>
                         <li class="nav-item">
-                            <a href="seguridad-vehicular.html" class="nav-link" data-cat="seguridad">SEGURIDAD</a>
+                            <a href="seguridad-vehicular.html" class="nav-link" data-cat="seguridad">
+                                SEGURIDAD <i class="fa-solid fa-chevron-down nav-chevron"></i>
+                            </a>
+                            <div class="nav-dropdown" id="drop-seguridad">
+                                <!-- JS injected -->
+                            </div>
                         </li>
+                        <li class="nav-item mobile-only-item"><a href="sobre-nosotros.html" class="nav-link">NOSOTROS</a></li>
+                        <li class="nav-item mobile-only-item"><a href="blog.html" class="nav-link">BLOG</a></li>
                     </ul>
                 </div>
+
+                <!-- À Droite : Meta Links & Cuenta -->
                 <div class="nav-right">
                     <ul class="nav-links">
                         <li class="nav-item"><a href="index.html" class="nav-link">INICIO</a></li>
                         <li class="nav-item"><a href="tienda.html" class="nav-link">TIENDA</a></li>
                         <li class="nav-item"><a href="sobre-nosotros.html" class="nav-link">NOSOTROS</a></li>
                     </ul>
+                    <div class="mobile-menu-btn" id="mobile-menu-btn" style="z-index: 9999; pointer-events: auto; position: relative;">
+                        <i class="fa-solid fa-bars"></i>
+                    </div>
                 </div>
             </div>
         </header>
@@ -172,7 +197,10 @@
         </footer>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="catalog.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
     <script>AOS.init();</script>
 </body>
 

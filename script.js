@@ -62,11 +62,13 @@ function handleImageError(img) {
 function initNavbar() {
     const navbar = document.getElementById('navbar');
     const mobileBtn = document.getElementById('mobile-menu-btn');
+    console.log('initNavbar running. Navbar:', !!navbar, 'MobileBtn:', !!mobileBtn);
     const navLinks = document.querySelector('.nav-right .nav-links');
     if (!navbar) return;
     const updateHeaderHeight = () => {
         document.documentElement.style.setProperty('--header-height', `${navbar.offsetHeight}px`);
     };
+    document.addEventListener('click', (e) => console.log('Global Click on:', e.target));
     window.addEventListener('resize', throttle(updateHeaderHeight, 200));
     updateHeaderHeight();
     window.addEventListener('scroll', throttle(() => {
@@ -232,7 +234,7 @@ function handleSpaNavigation(value, type) {
 
     if (catalogSection) {
         catalogSection.style.display = 'block';
-        window.scrollTo({ top: catalogSection.offsetTop - 50, behavior: 'smooth' });
+        window.scrollTo({ top: catalogSection.offsetTop, behavior: 'smooth' });
     }
     
     // Fix: Hide search suggestions on navigation
