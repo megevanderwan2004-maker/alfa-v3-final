@@ -1805,9 +1805,72 @@ h6 {
         font-size: 3rem;
     }
 
-    .product-page {
-        padding-top: calc(var(--header-height, 130px) + 20px) !important;
-        padding-bottom: 100px;
+    .btn-secret-lock {
+        display: none !important;
+    }
+
+    /* Consejos Section - 3 columns on mobile */
+    .consejos-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 10px !important;
+    }
+
+    .seo-block {
+        padding: 10px !important;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .seo-block h3 {
+        font-size: 0.75rem !important;
+        margin-bottom: 10px !important;
+        min-height: 40px;
+        display: flex;
+        align-items: center;
+    }
+
+    .seo-excerpt-wrapper {
+        max-height: 80px !important;
+    }
+
+    .seo-excerpt-wrapper p {
+        font-size: 0.65rem !important;
+        line-height: 1.4 !important;
+        margin-bottom: 5px !important;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .seo-actions {
+        gap: 5px !important;
+        margin-top: auto;
+    }
+
+    .btn-excerpt-toggle, .btn-ver-mas-details {
+        font-size: 0.55rem !important;
+        letter-spacing: 0;
+    }
+
+    .blog-container {
+        padding: 0 15px;
+        margin-top: 20px !important;
+    }
+
+    .blog-content {
+        font-size: 0.95rem !important;
+        line-height: 1.6;
+    }
+
+    .glass-card {
+        padding: 25px 15px !important;
+    }
+
+    .feature-grid {
+        grid-template-columns: 1fr !important;
+        gap: 20px;
     }
 
     /* Space for sticky CTA */
