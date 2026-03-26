@@ -62,7 +62,7 @@ function handleImageError(img) {
 function initNavbar() {
     const navbar = document.getElementById('navbar');
     const mobileBtn = document.getElementById('mobile-menu-btn');
-    const navLinks = document.querySelector('.nav-links');
+    const navLinks = document.querySelector('.nav-right .nav-links');
     if (!navbar) return;
     const updateHeaderHeight = () => {
         document.documentElement.style.setProperty('--header-height', `${navbar.offsetHeight}px`);
@@ -73,9 +73,37 @@ function initNavbar() {
         if (window.scrollY > 50) navbar.classList.add('scrolled');
         else navbar.classList.remove('scrolled');
     }, 100));
-    if (mobileBtn && navLinks) {
-        mobileBtn.addEventListener('click', () => { navLinks.classList.toggle('active'); });
+    if (mobileBtn) {
+        mobileBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const menus = document.querySelectorAll('.nav-links');
+            menus.forEach(menu => menu.classList.toggle('active'));
+            mobileBtn.classList.toggle('active');
+            
+            const icon = mobileBtn.querySelector('i');
+            if (mobileBtn.classList.contains('active')) {
+                icon.classList.replace('fa-bars', 'fa-xmark');
+            } else {
+                icon.classList.replace('fa-xmark', 'fa-bars');
+            }
+            
+            // Toggle body scroll if menu is open
+            if (document.querySelector('.nav-links.active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+        });
     }
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.navbar')) {
+            document.querySelectorAll('.nav-links').forEach(m => m.classList.remove('active'));
+            if (mobileBtn) mobileBtn.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
 }
 
 function initFAQ() {
@@ -139,7 +167,13 @@ function initMegaMenu(data) {
                 a.href = "#";
                 a.className = "dropdown-link";
                 a.textContent = subCat.toUpperCase();
-                a.onclick = (e) => { e.preventDefault(); handleSpaNavigation(subCat, 'category'); };
+                a.onclick = (e) => { 
+                    e.preventDefault(); 
+                    document.querySelectorAll('.nav-links').forEach(m => m.classList.remove('active'));
+                    if (mobileBtn) mobileBtn.classList.remove('active');
+                    document.body.style.overflow = '';
+                    handleSpaNavigation(subCat, 'category'); 
+                };
                 dropEl.appendChild(a);
             });
         }
@@ -166,7 +200,14 @@ function initMegaMenu(data) {
             const cat = link.getAttribute('data-cat');
             if (cat) {
                 e.preventDefault();
+                document.querySelectorAll('.nav-links').forEach(m => m.classList.remove('active'));
+                if (window.mobileBtn) window.mobileBtn.classList.remove('active');
+                document.body.style.overflow = '';
                 handleSpaNavigation(cat, 'mainCategory');
+            } else if (link.href && !link.href.includes('#')) {
+                // For Nosotros/Blog etc
+                document.querySelectorAll('.nav-links').forEach(m => m.classList.remove('active'));
+                document.body.style.overflow = '';
             }
         };
     });
@@ -194,6 +235,12 @@ function handleSpaNavigation(value, type) {
         window.scrollTo({ top: catalogSection.offsetTop - 50, behavior: 'smooth' });
     }
     
+    // Fix: Hide search suggestions on navigation
+    const suggestionsEl = document.getElementById('search-suggestions');
+    if (suggestionsEl) suggestionsEl.classList.remove('active');
+    const searchInput = document.getElementById('header-search-input');
+    if (searchInput) searchInput.blur();
+
     document.body.classList.add('show-mobile-categories');
 
     if (type === 'mainCategory' || type === 'category') {
@@ -396,7 +443,7 @@ function initSmartSearch(data) {
         
         let html = '';
         if (matches.length > 0) {
-            html += `<div class="suggestion-item search-all" onclick="handleSpaNavigation('${term}', 'search')">
+            html += `<div class="suggestion-item search-all" onclick="document.getElementById('search-suggestions').classList.remove('active'); document.getElementById('header-search-input').blur(); handleSpaNavigation('${term}', 'search')">
                         <i class="fa-solid fa-magnifying-glass"></i>
                         <div class="suggestion-info"><strong>Ver todos los resultados para "${term}"</strong></div>
                     </div>`;

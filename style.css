@@ -631,6 +631,10 @@ h6 {
 /* =========================================
    Buttons
    ========================================= */
+.mobile-only-item {
+    display: none !important;
+}
+
 .btn-red {
     display: inline-flex;
     align-items: center;
@@ -1630,121 +1634,171 @@ h6 {
 /* Responsive */
 @media (max-width: 992px) {
     .nav-content {
-        grid-template-columns: 1fr auto;
+        grid-template-columns: auto 1fr auto;
     }
 
     .nav-left {
-        display: none;
-        /* Hide search bar inline on tablet, or handle specifically */
+        order: 2;
     }
 
-    .massive-grid {
-        grid-template-columns: 1fr;
+    .nav-center {
+        order: 1;
+        align-items: flex-start;
     }
 
-    .massive-card {
-        height: 350px;
+    .nav-right {
+        order: 3;
     }
 }
 
 @media (max-width: 768px) {
+    .navbar {
+        padding: 10px 0;
+    }
+
     .nav-content {
-        grid-template-columns: 1fr auto 1fr;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 15px;
     }
 
     .nav-left {
-        display: flex;
-        width: 100vw;
-        margin-left: -20px;
-        padding: 0 20px;
-        margin-top: 15px;
-        order: 3;
-        grid-column: 1 / -1;
-        justify-content: center;
-    }
-
-    .header-search {
-        max-width: 95%;
-    }
-
-    .nav-links {
-        display: flex !important;
-        /* Force display since we removed the hamburger */
-        flex-direction: row;
-        width: 100vw;
-        margin-left: -5vw;
-        /* Pull out of normal grid padding to span full width */
-        padding: 5px 20px 10px 20px;
-        order: 4;
-        /* Place below search */
-        grid-column: 1 / -1;
-        gap: 25px;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-        /* Hide scrollbar Firefox */
-    }
-
-    .nav-links::-webkit-scrollbar {
-        display: none;
-        /* Hide scrollbar Chrome/Safari */
-    }
-
-    .nav-item {
-        position: static;
-        /* So absolute dropdowns can anchor to the navbar, not the scrolling container */
-        padding: 5px 0;
-        white-space: nowrap;
-        /* Prevent text wrapping */
-    }
-
-    .nav-link {
-        font-size: 0.85rem;
-    }
-
-    .nav-dropdown {
-        position: fixed;
-        width: 100vw;
-        left: 0;
-        top: var(--header-height, 130px);
-        /* Fixed overlay starting directly underneath the dynamically measured navbar */
-        border: none;
-        border-radius: 0;
-        border-top: 1px solid var(--glass-border);
-        border-bottom: 1px solid var(--glass-border);
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
-        background: rgba(10, 10, 10, 0.95);
-        transform: translateY(10px) !important;
-        margin-top: 0;
-        z-index: 999;
-        display: none;
-        /* Crucial for preventing iOS sticky hover! */
-    }
-
-    .nav-item.active .nav-dropdown {
         display: block;
-        opacity: 1;
-        visibility: visible;
-        pointer-events: auto;
-        transform: translateY(0) !important;
-    }
-
-    .nav-links.active {
-        display: flex;
-        /* Keep for safety, though we forced it above */
+        width: 100%;
+        margin: 10px 0 0 0;
+        order: 3;
+        grid-column: span 3;
     }
 
     .nav-center {
-        margin-right: auto;
+        width: auto;
+        order: 1;
+        margin: 0;
+        flex-direction: row;
+    }
+
+    .logo-img {
+        max-height: 40px;
     }
 
     .nav-right {
-        gap: 10px;
+        order: 2;
+        position: static;
+        margin: 0;
+    }
+
+    /* Combined Mobile Menu */
+    .nav-links {
+        display: none !important; /* Hide all nav-links by default */
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        height: 100vh;
+        background: rgba(5, 5, 5, 0.98);
+        flex-direction: column !important;
+        padding: 80px 30px 40px;
+        gap: 0 !important;
+        transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 2000;
+        backdrop-filter: blur(20px);
+        border-left: 1px solid var(--glass-border);
+        overflow-y: auto;
+    }
+
+    .nav-links.categories-center.active {
+        display: flex !important;
+        right: 0;
+    }
+
+    .nav-links.meta-right {
+        display: none !important;
+    }
+
+    .mobile-only-item {
+        display: block !important;
+    }
+
+    .nav-item {
+        width: 100%;
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+        padding: 15px 0;
+        position: relative;
+    }
+
+    .nav-link {
+        font-size: 1.1rem;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .nav-dropdown {
+        position: static !important;
+        width: 100%;
+        background: rgba(20, 20, 20, 0.5);
+        transform: none !important;
+        opacity: 1;
+        visibility: visible;
+        display: none;
+        padding: 10px 0 10px 20px;
+        border: none;
+        box-shadow: none;
+    }
+
+    .nav-item.active .nav-dropdown {
+        display: block !important;
+    }
+
+    .nav-item.active .nav-dropdown {
+        display: block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+        transform: translateY(0);
+    }
+
+    .nav-container {
+        flex-wrap: wrap; /* Allow categories to drop below logo */
+        position: relative; /* Anchor for absolute objects */
+    }
+
+    .nav-center {
+        width: 100%;
+        order: 2; /* Force below logo/hamburger row */
+        margin-top: 10px;
+    }
+
+    .nav-right {
+        position: absolute;
+        top: 20px;
+        right: 15px;
+        gap: 15px;
+    }
+
+    .nav-right .nav-links {
+        display: none;
+        position: absolute;
+        top: 60px;
+        right: 15px;
+        background: rgba(5, 5, 5, 0.98);
+        flex-direction: column;
+        padding: 20px;
+        border: 1px solid var(--glass-border);
+        border-radius: 8px;
+        min-width: 200px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 1);
+        z-index: 1200;
+        gap: 15px;
+    }
+
+    .nav-right .nav-links.active {
+        display: flex !important; /* Show dropdown when hamburger active */
     }
 
     .mobile-menu-btn {
-        display: none !important;
-        /* Hamburger is dead */
+        display: block !important;
+        /* Hamburger lives! */
     }
 
     .hero-title {
@@ -1752,6 +1806,7 @@ h6 {
     }
 
     .product-page {
+        padding-top: calc(var(--header-height, 130px) + 20px) !important;
         padding-bottom: 100px;
     }
 
@@ -2815,38 +2870,18 @@ iframe[src*="mailjet"] {
         height: 50vh;
     }
     
-    /* Keep category row constantly visible under the logo on mobile layout */
+    /* Hide the standalone category row which was causing extra height */
     .nav-links.categories-center,
     .categories-center.mobile-only {
-        display: flex !important;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        flex-wrap: nowrap;
-        gap: 15px;
-        width: 100%;
-        margin-top: 5px;
-        padding-bottom: 5px;
-        overflow-x: auto;
-    }
-
-    /* Only show home icon if we've navigated away from hero (SPA specific class) */
-    body:not(.show-mobile-categories) .mobile-home-icon:not(.mobile-only) {
         display: none !important;
     }
 
-    .nav-links.categories-center .nav-link {
-        font-size: 0.85rem;
-        padding: 5px 0;
+    .nav-links.meta-right {
+        display: none !important;
     }
 
-    .mobile-home-icon {
-        display: list-item;
-    }
-
-    .mobile-home-icon .nav-link {
-        color: var(--red-sport);
-        font-size: 1.1rem;
+    .navbar .container {
+        flex-wrap: wrap;
     }
 }
 
