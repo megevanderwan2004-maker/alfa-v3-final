@@ -3103,13 +3103,18 @@ iframe[src*="mailjet"] {
     }
 }
 
-/* Global content offset to clear fixed header */
+/* Global content offset to clear fixed header - Tightened */
 .main-content {
-    padding-top: var(--header-height, 100px);
+    padding-top: var(--header-height, 90px);
 }
 
-/* Ensure secondary page content has extra breathing room */
 .main-content > .container:first-child,
+.main-content > section:first-child,
 .main-content > .blog-container:first-child {
-    padding-top: 20px;
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
+.section-title-wrapper:first-child {
+    margin-top: 0 !important;
 }
