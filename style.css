@@ -3102,3 +3102,14 @@ iframe[src*="mailjet"] {
         border-bottom: none;
     }
 }
+
+/* Global content offset to clear fixed header */
+.main-content {
+    padding-top: var(--header-height, 100px);
+}
+
+/* Ensure secondary page content has extra breathing room */
+.main-content > .container:first-child,
+.main-content > .blog-container:first-child {
+    padding-top: 20px;
+}
