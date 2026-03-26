@@ -723,14 +723,13 @@ h6 {
    Hero Section
    ========================================= */
 .hero-section {
-    height: 100vh;
-    min-height: 700px;
+    min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
     text-align: center;
-    padding-top: var(--header-height, 140px);
+    padding-top: var(--header-height, 100px);
     /* Transparent background, stars will show through */
 }
 
@@ -1808,8 +1807,15 @@ h6 {
         /* Hamburger lives! */
     }
 
+    .hero-section {
+        min-height: 80vh;
+        padding-top: calc(var(--header-height, 100px) + 20px);
+        padding-bottom: 40px;
+    }
+
     .hero-title {
-        font-size: 3rem;
+        font-size: 2.8rem;
+        margin-bottom: 25px;
     }
 
     .btn-secret-lock {
@@ -3095,14 +3101,4 @@ iframe[src*="mailjet"] {
     .ribbon-dropdown a:last-child {
         border-bottom: none;
     }
-}
-
-/* Global content offset to clear fixed header */
-.main-content {
-    padding-top: var(--header-height, 120px) !important;
-}
-
-/* Specific overrides if needed */
-.hero-section {
-    padding-top: var(--header-height, 140px) !important;
 }
