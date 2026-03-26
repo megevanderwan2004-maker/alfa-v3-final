@@ -341,7 +341,7 @@ body {
 .page-wrapper {
     position: relative;
     z-index: 10;
-    padding-top: 80px;
+    padding-top: 0; /* Handled by main-content or sections */
 }
 
 /* =========================================
@@ -730,7 +730,7 @@ h6 {
     justify-content: center;
     position: relative;
     text-align: center;
-    padding-top: 80px;
+    padding-top: var(--header-height, 140px);
     /* Transparent background, stars will show through */
 }
 
@@ -3095,4 +3095,14 @@ iframe[src*="mailjet"] {
     .ribbon-dropdown a:last-child {
         border-bottom: none;
     }
+}
+
+/* Global content offset to clear fixed header */
+.main-content {
+    padding-top: var(--header-height, 120px) !important;
+}
+
+/* Specific overrides if needed */
+.hero-section {
+    padding-top: var(--header-height, 140px) !important;
 }
