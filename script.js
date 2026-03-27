@@ -339,10 +339,14 @@ async function loadCatalogRouter() {
             const urlParams = new URLSearchParams(window.location.search);
             const mainCat = urlParams.get('mainCategory') || urlParams.get('cat');
             const subCat = urlParams.get('category');
+            const search = urlParams.get('search') || urlParams.get('q');
+
             if (mainCat) {
                 setTimeout(() => handleSpaNavigation(mainCat, 'mainCategory'), 100);
             } else if (subCat) {
                 setTimeout(() => handleSpaNavigation(subCat, 'category'), 100);
+            } else if (search) {
+                setTimeout(() => handleSpaNavigation(search, 'search'), 100);
             }
         }
         else if (mode === 'TIENDA') loadTienda(catalog);
@@ -511,7 +515,7 @@ function initSmartSearch(data) {
                     </div>`;
             
             html += matches.map(p => `
-                <div class="suggestion-item" onclick="window.location.href='producto.html?sku=${p.sku}'">
+                <div class="suggestion-item" onclick="window.location.href='producto.html?sku=${encodeURIComponent(p.sku)}'">
                     <img src="${p.image_url || ''}" class="suggestion-img" onerror="this.src='PHOTO-2026-02-20-13-37-44.jpg'">
                     <div class="suggestion-info"><span>${p.nombre}</span><small>${p.sku}</small></div>
                 </div>`).join('');
@@ -565,7 +569,7 @@ function loadProductDetails(data) {
         return;
     }
 
-    const p = data.find(p => String(p.sku).toLowerCase() === decodeURIComponent(sku).toLowerCase());
+    const p = data.find(p => String(p.sku).toLowerCase() === String(sku).toLowerCase());
     
     if (spinner) spinner.style.display = 'none';
 
