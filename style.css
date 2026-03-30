@@ -1749,6 +1749,9 @@ h6 {
         padding: 10px 0 10px 20px;
         border: none;
         box-shadow: none;
+        max-height: 60vh;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
     }
 
     .nav-item.active .nav-dropdown {
@@ -3080,11 +3083,14 @@ iframe[src*="mailjet"] {
         left: 0;
         background: #0a0a0a;
         width: 220px;
-        z-index: 9999; /* Absolute top priority */
+        z-index: 9999;
         box-shadow: 0 10px 25px rgba(0,0,0,0.8);
         border: 1px solid rgba(255,255,255,0.1);
         border-top: none;
         border-radius: 0 0 5px 5px;
+        max-height: 60vh;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
     }
     .ribbon-item.active .ribbon-dropdown {
         display: block;
