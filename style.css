@@ -2226,13 +2226,14 @@ iframe[src*="mailjet"] {
 
 .footer-grid {
     display: grid;
-    grid-template-columns: 2fr 1.5fr 1fr;
-    gap: 60px;
+    grid-template-columns: 2fr 1fr 1fr 1.5fr;
+    gap: 40px;
     margin-bottom: 60px;
 }
 
 .footer-info h4,
-.footer-hours h4 {
+.footer-hours h4,
+.footer-policies h4 {
     font-family: var(--font-heading);
     letter-spacing: 2px;
     margin-bottom: 25px;
@@ -2252,6 +2253,41 @@ iframe[src*="mailjet"] {
 .footer-info i {
     color: #fff;
     width: 20px;
+}
+
+.footer-policies ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-policies li {
+    margin-bottom: 12px;
+}
+
+.footer-policies a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.footer-policies a::before {
+    content: "›";
+    color: var(--red-sport);
+    font-weight: bold;
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+}
+
+.footer-policies a:hover {
+    color: var(--text-primary);
+}
+
+.footer-policies a:hover::before {
+    transform: translateX(5px);
 }
 
 .footer-social {
@@ -2605,7 +2641,8 @@ iframe[src*="mailjet"] {
     }
 
     .footer-info p,
-    .footer-hours p {
+    .footer-hours p,
+    .footer-policies a {
         justify-content: center;
     }
 
@@ -3123,4 +3160,26 @@ iframe[src*="mailjet"] {
 
 .section-title-wrapper:first-child {
     margin-top: 0 !important;
+}
+
+/* =========================================
+   Policy Pages (Mobile Additions)
+   ========================================= */
+@media (max-width: 768px) {
+    .policy-container {
+        padding: 2rem 1rem !important;
+    }
+    .policy-content {
+        padding: 1.5rem !important;
+    }
+    .policy-content h1 {
+        font-size: 1.5rem !important;
+    }
+    .policy-content h2, .policy-content h3 {
+        font-size: 1.2rem !important;
+    }
+    .footer-policies a {
+        padding: 8px 0;
+        font-size: 1rem;
+    }
 }
