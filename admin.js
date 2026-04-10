@@ -4,7 +4,12 @@ const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZ
 const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 let products = [];
-let promoSkus = ["", "", ""]; // Managed via _CONFIG_PROMOS_ row
+let promoSlots = [
+    { sku: "", price: null },
+    { sku: "", price: null },
+    { sku: "", price: null }
+]; // Managed via _CONFIG_PROMOS_ row
+let customSections = []; // Managed via _CONFIG_SECTIONS_ row
 
 document.addEventListener('DOMContentLoaded', async () => {
     const { data: { session } } = await _supabase.auth.getSession();
@@ -33,10 +38,24 @@ async function fetchCatalog() {
         // Find Promo Config
         const config = data.find(p => p.sku === '_CONFIG_PROMOS_');
         if (config) {
-            promoSkus = (config.descripcion || "").split(',').map(s => s.trim());
+            promoSlots = (config.descripcion || "").split(',').map(s => {
+                const parts = s.split('|');
+                return {
+                    sku: parts[0] ? parts[0].trim() : "",
+                    price: parts[1] && !isNaN(parseFloat(parts[1])) ? parseFloat(parts[1]) : null
+                };
+            });
             // Ensure exactly 3 slots
-            while(promoSkus.length < 3) promoSkus.push("");
-            promoSkus = promoSkus.slice(0, 3);
+            while(promoSlots.length < 3) promoSlots.push({ sku: "", price: null });
+            promoSlots = promoSlots.slice(0, 3);
+        }
+
+        // Find Custom Sections Config
+        const sectionsConfig = data.find(p => p.sku === '_CONFIG_SECTIONS_');
+        if (sectionsConfig) {
+            customSections = (sectionsConfig.descripcion || "").split(',').map(s => s.trim()).filter(x => x);
+        } else {
+            customSections = [];
         }
 
         renderTable();
@@ -65,8 +84,17 @@ if (btnAdd) {
         document.getElementById('prod-id').value = '';
         document.getElementById('modal-title').textContent = 'Agregar Producto';
         preview.innerHTML = '';
+        
+        populateCategoriesSelect();
+        
+        const promoCheck = document.getElementById('prod-is-promo');
+        const promoGroup = document.getElementById('promo-price-group');
+        const promoPrice = document.getElementById('prod-precio-ant');
+        if (promoCheck) promoCheck.checked = false;
+        if (promoGroup) promoGroup.style.display = 'none';
+        if (promoPrice) promoPrice.value = '';
+        
         modal.classList.add('active');
-        document.getElementById('prod-category').value = "Nuevos Productos";
     };
 }
 
@@ -89,12 +117,28 @@ if (form) {
         const saveBtn = form.querySelector('button[type="submit"]');
         saveBtn.disabled = true; saveBtn.textContent = 'Guardando...';
 
+        const catSelect = document.getElementById('prod-category');
+        const catNewInput = document.getElementById('prod-new-category');
+        let finalCategory = catSelect ? catSelect.value.trim() : '';
+        if (finalCategory === '__NEW__' && catNewInput) {
+            finalCategory = catNewInput.value.trim();
+        }
+
+        let descRaw = document.getElementById('prod-desc').value.trim();
+        descRaw = descRaw.replace(/\n?<!--PRECIO_ANT:\d+(\.\d+)?-->/g, '').trim();
+
+        const promoCheck = document.getElementById('prod-is-promo');
+        const promoPrice = document.getElementById('prod-precio-ant');
+        if (promoCheck && promoCheck.checked && promoPrice && promoPrice.value) {
+            descRaw += `\n<!--PRECIO_ANT:${parseFloat(promoPrice.value).toFixed(2)}-->`;
+        }
+
         const productData = {
             sku: sku,
             nombre: document.getElementById('prod-name').value.trim(),
             precio: parseFloat(document.getElementById('prod-price').value),
-            categoria: document.getElementById('prod-category').value.trim(),
-            descripcion: document.getElementById('prod-desc').value.trim() || '',
+            categoria: finalCategory,
+            descripcion: descRaw,
             image_url: fImg.value.trim()
         };
 
@@ -222,7 +266,7 @@ function renderTable(searchTerm = "") {
             cats[catName].forEach(item => {
                 const p = item.p;
                 const imgThumb = p.image_url ? `<img src="${p.image_url}" class="thumb" onerror="this.src='PHOTO-2026-02-20-13-37-44.jpg'">` : '<div class="no-thumb">Sin Img</div>';
-                const isFeatured = promoSkus.includes(p.sku);
+                const isFeatured = promoSlots.some(s => s.sku === p.sku);
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
                     <td>${imgThumb}</td>
@@ -271,8 +315,30 @@ window.editProduct = (index) => {
     document.getElementById('prod-name').value = p.nombre || '';
     document.getElementById('prod-sku').value = p.sku || '';
     document.getElementById('prod-price').value = p.precio || '0';
-    document.getElementById('prod-category').value = p.categoria || '';
-    document.getElementById('prod-desc').value = p.descripcion || '';
+    
+    populateCategoriesSelect(p.categoria || '');
+
+    let cleanDesc = p.descripcion || '';
+    const promoCheck = document.getElementById('prod-is-promo');
+    const promoGroup = document.getElementById('promo-price-group');
+    const promoPrice = document.getElementById('prod-precio-ant');
+    
+    if (promoCheck && promoGroup && promoPrice) {
+        const match = cleanDesc.match(/<!--PRECIO_ANT:(\d+(\.\d+)?)-->/);
+        if (match) {
+            promoCheck.checked = true;
+            promoGroup.style.display = 'flex';
+            promoPrice.value = match[1];
+        } else {
+            promoCheck.checked = false;
+            promoGroup.style.display = 'none';
+            promoPrice.value = '';
+        }
+    }
+    
+    cleanDesc = cleanDesc.replace(/\n?<!--PRECIO_ANT:\d+(\.\d+)?-->/g, '').trim();
+    document.getElementById('prod-desc').value = cleanDesc;
+
     fImg.value = p.image_url || '';
     preview.innerHTML = p.image_url ? `<img src="${p.image_url}" onerror="this.src='PHOTO-2026-02-20-13-37-44.jpg'">` : '';
     modal.classList.add('active');
@@ -310,16 +376,40 @@ function renderPromotions() {
     container.innerHTML = '';
 
     for (let i = 0; i < 3; i++) {
-        const sku = promoSkus[i];
-        const p = products.find(prod => prod.sku === sku);
+        const slotData = promoSlots[i];
+        const p = products.find(prod => prod.sku === slotData.sku);
         const slot = document.createElement('div');
         slot.className = 'promo-slot';
         if (p) {
+            let promoBadgeHtml = '';
+            
+            const normalPrice = parseFloat(p.precio) || 0;
+            const promoPrice = slotData.price;
+            
+            if (normalPrice > 0 && promoPrice && promoPrice < normalPrice) {
+                const discount = Math.round((1 - (promoPrice / normalPrice)) * 100);
+                promoBadgeHtml = `<div style="margin-top: 8px; text-align: center;"><span style="text-decoration: line-through; color: #888; font-size: 0.85rem; margin-right: 8px;">$${normalPrice.toFixed(2)}</span><span style="background: var(--red-sport); color: #ffffff !important; padding: 2px 6px; border-radius: 2px; font-size: 0.8rem; font-weight: bold;">-${discount}%</span></div>`;
+            } else if (promoPrice) {
+                promoBadgeHtml = `<div style="margin-top: 8px; text-align: center; color: var(--gold-primary); font-weight: bold;">Precio Promo: $${promoPrice.toFixed(2)}</div>`;
+            }
+
             slot.innerHTML = `
                 <h4>Slot ${i + 1}</h4>
                 <div class="promo-preview"><img src="${p.image_url}" onerror="this.src='PHOTO-2026-02-20-13-37-44.jpg'"></div>
-                <div class="promo-info"><span class="promo-name">${p.nombre}</span><span class="promo-sku">SKU: ${p.sku}</span></div>
-                <div class="promo-actions">
+                <div class="promo-info">
+                    <span class="promo-name">${p.nombre}</span>
+                    <span class="promo-sku" style="margin-bottom: 2px;">SKU: ${p.sku}</span>
+                    <span style="font-size: 0.8rem; color: #aaa; margin-bottom: 0;">Precio Base: $${normalPrice.toFixed(2)}</span>
+                    ${promoBadgeHtml}
+                </div>
+                <div style="margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.1);">
+                    <label style="font-size: 0.8rem; color: #888;">Cambiar precio de la promo ($)</label>
+                    <div style="display: flex; gap: 5px; margin-top: 5px;">
+                        <input type="number" step="0.01" id="slot-price-${i}" value="${promoPrice || ''}" style="flex:1; padding: 5px; font-size: 0.9rem; color: #000000 !important; background-color: #ffffff !important; border: 1px solid #ccc; border-radius: 3px;" placeholder="Ej. ${Math.round(normalPrice * 0.8)}">
+                        <button class="btn-gold" style="padding: 5px 10px; font-size: 0.8rem;" onclick="saveSlotPrice(${i})">OK</button>
+                    </div>
+                </div>
+                <div class="promo-actions" style="margin-top: 15px;">
                     <button class="btn-promo-action btn-promo-assign" onclick="openSelectModal(${i})">Cambiar</button>
                     <button class="btn-promo-action btn-promo-clear" onclick="clearSlotPromocion(${i})">Quitar</button>
                 </div>`;
@@ -347,20 +437,28 @@ window.openSelectModal = (index) => {
 };
 
 window.clearSlotPromocion = async (index) => {
-    promoSkus[index] = "";
+    promoSlots[index] = { sku: "", price: null };
     await savePromoConfig();
 };
 
 window.assignProductToSlot = async (sku) => {
     if (activeSlotIndex !== null) {
-        promoSkus[activeSlotIndex] = sku;
+        promoSlots[activeSlotIndex] = { sku, price: null };
         await savePromoConfig();
         selectModal.classList.remove('active');
     }
 };
 
+window.saveSlotPrice = async (index) => {
+    const el = document.getElementById(`slot-price-${index}`);
+    if (!el) return;
+    const val = parseFloat(el.value);
+    promoSlots[index].price = isNaN(val) ? null : val;
+    await savePromoConfig();
+};
+
 async function savePromoConfig() {
-    const csv = promoSkus.join(',');
+    const csv = promoSlots.map(s => `${s.sku}|${s.price !== null ? s.price : ''}`).join(',');
     const { error } = await _supabase
         .from('catalog')
         .update({ descripcion: csv })
@@ -429,3 +527,99 @@ async function handleFileUpload(file) {
         preview.innerHTML = `<img src="${publicUrl}">`;
     }
 }
+
+// --- Nueva Lógica UI (Secciones y Promociones) ---
+function populateCategoriesSelect(selectedVal = null) {
+    const catSelect = document.getElementById('prod-category');
+    const catNewInput = document.getElementById('prod-new-category');
+    if (!catSelect) return;
+    catSelect.innerHTML = '';
+    
+    // gather unique from products
+    let catSet = new Set(customSections);
+    products.forEach(p => { if (p.categoria) catSet.add(p.categoria); });
+    
+    let arr = Array.from(catSet).sort();
+    
+    arr.forEach(c => {
+        const opt = document.createElement('option');
+        opt.value = c;
+        opt.textContent = c.toUpperCase();
+        catSelect.appendChild(opt);
+    });
+    
+    const optNew = document.createElement('option');
+    optNew.value = '__NEW__';
+    optNew.textContent = '+ AGREGAR NUEVA SECCIÓN...';
+    optNew.style.color = 'var(--gold-primary)';
+    catSelect.appendChild(optNew);
+    
+    // Select value
+    if (selectedVal && arr.includes(selectedVal)) {
+        catSelect.value = selectedVal;
+        if (catNewInput) catNewInput.style.display = 'none';
+    } else if (selectedVal) {
+        catSelect.value = '__NEW__';
+        if (catNewInput) {
+            catNewInput.style.display = 'block';
+            catNewInput.value = selectedVal;
+        }
+    } else {
+        catSelect.selectedIndex = 0;
+        if (catNewInput) catNewInput.style.display = 'none';
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const btnAddSection = document.getElementById('btn-add-section');
+    if (btnAddSection) {
+        btnAddSection.onclick = async () => {
+            const name = prompt('Nombre de la nueva sección:');
+            if (!name || !name.trim()) return;
+            const normalized = name.trim();
+            if (!customSections.includes(normalized)) {
+                customSections.push(normalized);
+                const csv = customSections.join(',');
+                const { error } = await _supabase.from('catalog').upsert({
+                    sku: '_CONFIG_SECTIONS_',
+                    nombre: 'CONFIG_SECTIONS',
+                    categoria: '',
+                    descripcion: csv
+                }, { onConflict: 'sku' });
+                if (error) alert("Error: " + error.message);
+                else {
+                    alert("Sección creada.");
+                    await fetchCatalog();
+                }
+            } else {
+                alert("La sección ya existe.");
+            }
+        };
+    }
+
+    const catSelect = document.getElementById('prod-category');
+    const catNewInput = document.getElementById('prod-new-category');
+    if (catSelect && catNewInput) {
+        catSelect.addEventListener('change', () => {
+            if (catSelect.value === '__NEW__') {
+                catNewInput.style.display = 'block';
+                catNewInput.required = true;
+            } else {
+                catNewInput.style.display = 'none';
+                catNewInput.required = false;
+            }
+        });
+    }
+
+    const promoCheck = document.getElementById('prod-is-promo');
+    const promoGroup = document.getElementById('promo-price-group');
+    if (promoCheck && promoGroup) {
+        promoCheck.addEventListener('change', (e) => {
+            if (e.target.checked) {
+                promoGroup.style.display = 'flex';
+            } else {
+                promoGroup.style.display = 'none';
+            }
+        });
+    }
+});

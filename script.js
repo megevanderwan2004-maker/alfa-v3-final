@@ -295,8 +295,10 @@ function handleSpaNavigation(value, type) {
 
     if (type === 'mainCategory' || type === 'category') {
         sessionStorage.setItem('alfa_current_category', value);
+        sessionStorage.setItem('alfa_prev_nav_type', type);
     } else {
         sessionStorage.removeItem('alfa_current_category');
+        sessionStorage.removeItem('alfa_prev_nav_type');
     }
     if (grid) grid.innerHTML = '';
     let filtered = [];
@@ -386,15 +388,72 @@ function loadHome(data, config) {
     const grid = document.getElementById('featured-grid');
     if (!grid) return;
     
-    let featured = [];
+    let featuredList = [];
     if (config && config.descripcion) {
-        const skus = config.descripcion.split(',').map(s => s.trim());
-        featured = data.filter(p => skus.includes(p.sku));
-        // Ordenamos segun el orden del config
-        featured.sort((a, b) => skus.indexOf(a.sku) - skus.indexOf(b.sku));
+        featuredList = config.descripcion.split(',').map(s => {
+            const parts = s.split('|');
+            return {
+                sku: parts[0] ? parts[0].trim() : "",
+                promoPrice: parts[1] && !isNaN(parseFloat(parts[1])) ? parseFloat(parts[1]) : null
+            };
+        }).filter(item => item.sku);
     }
 
-    renderProducts(featured.length ? featured : data.slice(0, 3), grid);
+    grid.innerHTML = '';
+    
+    if (!featuredList.length) {
+        featuredList = data.slice(0, 3).map(p => ({ sku: p.sku, promoPrice: null }));
+    }
+    
+    featuredList.forEach(item => {
+        const product = data.find(p => p.sku === item.sku);
+        if (!product) return;
+        
+        const card = document.createElement('a');
+        card.className = 'premium-promo-card';
+        card.href = `producto.html?sku=${encodeURIComponent(product.sku)}`;
+        
+        let extraBadgeHtml = '';
+        let extraOldPriceHtml = '';
+        
+        const normalPrice = parseFloat(product.precio) || 0;
+        let finalPrice = normalPrice;
+        
+        if (normalPrice > 0 && item.promoPrice && item.promoPrice < normalPrice) {
+            finalPrice = item.promoPrice;
+            const discount = Math.round((1 - (finalPrice / normalPrice)) * 100);
+            extraBadgeHtml = `<div class="premium-promo-badge">-${discount}%</div>`;
+            extraOldPriceHtml = `<span class="premium-promo-old-price">$${normalPrice.toFixed(2)}</span>`;
+        } else if (product.descripcion) {
+            const match = product.descripcion.match(/<!--PRECIO_ANT:(\d+(\.\d+)?)-->/);
+            if (match && normalPrice > 0) {
+                const precioAntLegacy = parseFloat(match[1]);
+                if (precioAntLegacy > normalPrice) {
+                    const discount = Math.round((1 - (normalPrice / precioAntLegacy)) * 100);
+                    extraBadgeHtml = `<div class="premium-promo-badge">-${discount}%</div>`;
+                    extraOldPriceHtml = `<span class="premium-promo-old-price">$${precioAntLegacy.toFixed(2)}</span>`;
+                }
+            }
+        }
+
+        let precioDisplay = finalPrice > 0 ? `<span>$</span>${finalPrice.toFixed(2).replace(/\.00$/, '')}` : (product.precio ? `<span>$</span>${product.precio}` : 'Consultar precio');
+
+        card.innerHTML = `
+            ${extraBadgeHtml}
+            <div class="premium-promo-image-wrapper">
+                <img src="${product.image_url || 'PHOTO-2026-02-20-13-37-44.jpg'}" loading="lazy" onerror="handleImageError(this)">
+            </div>
+            <div class="premium-promo-info">
+                <div class="premium-promo-category">${product.categoria || 'ALFA'}</div>
+                <h3 class="premium-promo-name">${product.nombre}</h3>
+                <div class="premium-promo-prices">
+                    ${extraOldPriceHtml}
+                    <span class="premium-promo-current-price">${precioDisplay}</span>
+                </div>
+            </div>
+        `;
+        grid.appendChild(card);
+    });
 }
 
 function renderCategoryMenu(data, activeFilter = null) {
@@ -463,6 +522,19 @@ function renderProducts(products, container) {
             card.href = `producto.html?sku=${encodeURIComponent(product.sku)}`;
             const priceDisplay = product.precio ? `<span>$</span>${product.precio}` : 'Consultar precio';
             
+            let extraPriceHtml = '';
+            if (product.descripcion) {
+                const match = product.descripcion.match(/<!--PRECIO_ANT:(\d+(\.\d+)?)-->/);
+                if (match && product.precio) {
+                    const precioAnt = parseFloat(match[1]);
+                    const currentPrice = parseFloat(product.precio);
+                    if (precioAnt > currentPrice) {
+                        const discount = Math.round((1 - (currentPrice / precioAnt)) * 100);
+                        extraPriceHtml = `<div class="price-promo-info"><span class="old-price">$${precioAnt.toFixed(2)}</span> <span class="discount-badge">-${discount}%</span></div>`;
+                    }
+                }
+            }
+            
             card.innerHTML = `
                 <div class="product-image-container">
                     <img src="${product.image_url || 'PHOTO-2026-02-20-13-37-44.jpg'}" 
@@ -471,7 +543,7 @@ function renderProducts(products, container) {
                 <div class="product-info">
                     <div class="product-category">${product.categoria || 'ALFA'}</div>
                     <h3 class="product-name">${product.nombre}</h3>
-                    <div class="price-row"><span class="product-price">${priceDisplay}</span></div>
+                    <div class="price-row">${extraPriceHtml}<span class="product-price">${priceDisplay}</span></div>
                 </div>`;
             container.appendChild(card);
         });
@@ -554,10 +626,12 @@ function loadProductDetails(data) {
     // Update Contextual Back Button based on sessionStorage history
     const backBtns = document.querySelectorAll('.btn-back, .btn-outline-red');
     const lastCat = sessionStorage.getItem('alfa_current_category');
+    const lastNavType = sessionStorage.getItem('alfa_prev_nav_type') || 'cat';
     if (lastCat) {
         backBtns.forEach(btn => {
             if (btn.textContent.toUpperCase().includes('VOLVER')) {
-                btn.href = `index.html?cat=${encodeURIComponent(lastCat)}`;
+                const paramName = lastNavType === 'category' ? 'category' : 'cat';
+                btn.href = `index.html?${paramName}=${encodeURIComponent(lastCat)}`;
                 btn.innerHTML = `<i class="fa-solid fa-arrow-left"></i> VOLVER A ${lastCat.toUpperCase()}`;
             }
         });
@@ -591,8 +665,25 @@ function loadProductDetails(data) {
     if (spTitle) spTitle.textContent = p.nombre;
     if (spCat) spCat.textContent = p.categoria || 'ALFA';
     if (spSku) spSku.textContent = p.sku;
-    if (spPrice) spPrice.innerHTML = p.precio ? `<span>$</span>${p.precio}` : 'Consultar precio';
-    if (spDesc) spDesc.innerHTML = (p.descripcion || 'Producto de alto rendimiento ALFA Car Audio. Diseñado para ofrecer la mejor experiencia sonora y durabilidad en tu vehículo.').replace(/\n/g, '<br>');
+    
+    let pPriceHtml = p.precio ? `<span>$</span>${p.precio}` : 'Consultar precio';
+    let cleanDesc = p.descripcion || 'Producto de alto rendimiento ALFA Car Audio. Diseñado para ofrecer la mejor experiencia sonora y durabilidad en tu vehículo.';
+    
+    if (p.descripcion) {
+        const match = p.descripcion.match(/<!--PRECIO_ANT:(\d+(\.\d+)?)-->/);
+        if (match && p.precio) {
+            const precioAnt = parseFloat(match[1]);
+            const currentPrice = parseFloat(p.precio);
+            if (precioAnt > currentPrice) {
+                const discount = Math.round((1 - (currentPrice / precioAnt)) * 100);
+                pPriceHtml = `<div class="single-promo-info"><span class="old-price">$${precioAnt.toFixed(2)}</span> <span class="discount-badge">-${discount}%</span></div>` + pPriceHtml;
+            }
+        }
+        cleanDesc = p.descripcion.replace(/<!--PRECIO_ANT:\d+(\.\d+)?-->/g, '').trim();
+    }
+    
+    if (spPrice) spPrice.innerHTML = pPriceHtml;
+    if (spDesc) spDesc.innerHTML = cleanDesc.replace(/\n/g, '<br>');
 
     const waMsg = encodeURIComponent(`Hola ALFA Car Audio, me interesa el producto: ${p.nombre} (SKU: ${p.sku})`);
     const waUrl = `https://wa.me/${CONFIG.whatsappNumber}?text=${waMsg}`;
@@ -696,13 +787,14 @@ document.addEventListener('DOMContentLoaded', () => {
             const catalogSection = document.getElementById('catalog-section');
             const extraSections = document.querySelectorAll('.universes-section, .seo-text-section, .reviews-section, .faq-section, .location-section, .newsletter-section');
 
-            if (hero) hero.style.display = 'block';
-            if (featured) featured.style.display = 'block';
-            extraSections.forEach(sec => sec.style.display = 'block');
+            if (hero) hero.style.display = '';
+            if (featured) featured.style.display = '';
+            extraSections.forEach(sec => sec.style.display = '');
             
             if (catalogSection) catalogSection.style.display = 'none';
             document.body.classList.remove('show-mobile-categories');
             sessionStorage.removeItem('alfa_current_category');
+            sessionStorage.removeItem('alfa_prev_nav_type');
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     }
