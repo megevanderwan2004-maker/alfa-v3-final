@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     await fetchCatalog();
     initTabs();
     initImageUpload();
+    initBlogUploads();
 });
 
 async function fetchCatalog() {
@@ -101,7 +102,11 @@ if (btnAdd) {
 const closeModalBtn = document.querySelector('.close-modal');
 if (closeModalBtn) closeModalBtn.onclick = () => modal.classList.remove('active');
 
-window.onclick = (e) => { if (e.target === modal) modal.classList.remove('active'); };
+window.addEventListener('click', (e) => {
+    if (e.target === modal) modal.classList.remove('active');
+    const bModal = document.getElementById('blog-modal');
+    if (bModal && e.target === bModal) bModal.classList.remove('active');
+});
 
 if (fImg) {
     fImg.oninput = () => {
@@ -364,8 +369,17 @@ function initTabs() {
             tab.classList.add('active');
             contents.forEach(c => c.style.display = 'none');
             document.getElementById(target).style.display = 'block';
-            if (adminTitle) adminTitle.textContent = target === 'products-panel' ? 'Gestión de Catálogo' : 'Promoción del Mes';
+            if (adminTitle) {
+                if (target === 'products-panel') adminTitle.textContent = 'Gestión de Catálogo';
+                else if (target === 'promotions-panel') adminTitle.textContent = 'Promoción del Mes';
+                else if (target === 'blog-panel') {
+                    adminTitle.textContent = 'Blog & Artículos';
+                    fetchBlog();
+                }
+            }
             if (btnAdd) btnAdd.style.display = target === 'products-panel' ? 'inline-flex' : 'none';
+            const btnAddSection = document.getElementById('btn-add-section');
+            if (btnAddSection) btnAddSection.style.display = target === 'products-panel' ? 'inline-flex' : 'none';
         }
     });
 }
@@ -623,3 +637,303 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+// =========================================
+// BLOG MANAGEMENT
+// =========================================
+let blogArticles = [];
+
+async function fetchBlog() {
+    const { data, error } = await _supabase.from('blog_articles').select('*').order('created_at', { ascending: false });
+    if (error) {
+        console.error('Error fetching blog:', error);
+        return;
+    }
+    blogArticles = data || [];
+    renderBlogTable();
+}
+
+function renderBlogTable() {
+    const tbody = document.getElementById('blog-tbody');
+    if (!tbody) return;
+    tbody.innerHTML = '';
+    
+    if (blogArticles.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="6" style="text-align:center; padding: 20px;">No hay artículos todavía.</td></tr>';
+        return;
+    }
+
+    blogArticles.forEach((article) => {
+        const tr = document.createElement('tr');
+        tr.style.borderBottom = '1px solid rgba(255,255,255,0.1)';
+        
+        const statusBadge = article.published 
+            ? '<span style="background: var(--red-sport); color: #fff; padding: 3px 8px; border-radius: 12px; font-size: 0.8rem; font-weight: bold;">Publicado</span>' 
+            : '<span style="background: #555; color: #fff; padding: 3px 8px; border-radius: 12px; font-size: 0.8rem;">Borrador</span>';
+            
+        const dateStr = new Date(article.created_at).toLocaleDateString('es-MX', { year: 'numeric', month: 'short', day: 'numeric' });
+        
+        tr.innerHTML = `
+            <td style="padding: 10px;">${statusBadge}</td>
+            <td style="padding: 10px; font-weight: bold; color: #fff;">${article.title}</td>
+            <td style="padding: 10px;">${article.category}</td>
+            <td style="padding: 10px;">${article.views || 0} lecturas</td>
+            <td style="padding: 10px; color: #888; font-size: 0.9rem;">${dateStr}</td>
+            <td style="padding: 10px;">
+                <button class="btn-action edit" onclick="editBlogArticle('${article.id}')" title="Editar"><i class="fa-solid fa-pen"></i></button>
+                <button class="btn-action delete" onclick="deleteBlogArticle('${article.id}')" title="Eliminar"><i class="fa-solid fa-trash"></i></button>
+            </td>
+        `;
+        tbody.appendChild(tr);
+    });
+}
+
+const blogModal = document.getElementById('blog-modal');
+const blogForm = document.getElementById('blog-form');
+const btnAddBlog = document.getElementById('btn-add-blog');
+
+if (btnAddBlog) {
+    btnAddBlog.onclick = () => {
+        blogForm.reset();
+        document.getElementById('blog-id').value = '';
+        document.getElementById('blog-modal-title').textContent = 'Nuevo Artículo';
+        
+        const dropZonePreview = document.getElementById('drop-zone-preview');
+        const dropZoneMain = document.getElementById('drop-zone-main');
+        if (dropZonePreview) removeMiniPreview(dropZonePreview);
+        if (dropZoneMain) removeMiniPreview(dropZoneMain);
+
+        blogModal.classList.add('active');
+    };
+}
+
+const closeBlogModalBtn = document.querySelector('.close-blog-modal');
+if (closeBlogModalBtn) {
+    closeBlogModalBtn.onclick = () => blogModal.classList.remove('active');
+}
+
+const blogTitleInput = document.getElementById('blog-title');
+const blogSlugInput = document.getElementById('blog-slug');
+if (blogTitleInput && blogSlugInput) {
+    blogTitleInput.addEventListener('input', () => {
+        if (!document.getElementById('blog-id').value) {
+            blogSlugInput.value = normalizeTextPath(blogTitleInput.value);
+        }
+    });
+}
+
+function normalizeTextPath(text) {
+    return text.toString().toLowerCase()
+        .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+        .replace(/[^a-z0-9\s-]/g, "")
+        .replace(/\s+/g, "-")
+        .replace(/-+/g, "-")
+        .trim();
+}
+
+window.editBlogArticle = (id) => {
+    const article = blogArticles.find(a => a.id === id);
+    if (!article) return;
+    
+    document.getElementById('blog-id').value = article.id;
+    document.getElementById('blog-modal-title').textContent = 'Editar Artículo';
+    document.getElementById('blog-published').checked = article.published;
+    document.getElementById('blog-title').value = article.title;
+    document.getElementById('blog-slug').value = article.slug;
+    document.getElementById('blog-category').value = article.category || '';
+    document.getElementById('blog-excerpt').value = article.excerpt || '';
+    document.getElementById('blog-meta-desc').value = article.meta_description || '';
+    document.getElementById('blog-keywords').value = (article.keywords || []).join(', ');
+    const previewEl = document.getElementById('blog-preview-image');
+    const dropZonePreview = document.getElementById('drop-zone-preview');
+    if (previewEl && dropZonePreview) {
+        previewEl.value = article.preview_image || '';
+        if (article.preview_image) {
+            updateMiniPreview(dropZonePreview, article.preview_image);
+        } else {
+            removeMiniPreview(dropZonePreview);
+        }
+    }
+
+    const mainImgEl = document.getElementById('blog-image');
+    const dropZoneMain = document.getElementById('drop-zone-main');
+    if (mainImgEl && dropZoneMain) {
+        mainImgEl.value = article.featured_image || '';
+        if (article.featured_image) {
+            updateMiniPreview(dropZoneMain, article.featured_image);
+        } else {
+            removeMiniPreview(dropZoneMain);
+        }
+    }
+
+    document.getElementById('blog-reading-time').value = article.reading_time || 5;
+    document.getElementById('blog-content').value = article.content || '';
+    
+    blogModal.classList.add('active');
+};
+
+window.deleteBlogArticle = async (id) => {
+    if (!confirm('¿Estás seguro de que quieres eliminar este artículo? Esta acción no se puede deshacer.')) return;
+    
+    const { error } = await _supabase.from('blog_articles').delete().eq('id', id);
+    if (error) {
+        alert('Error al eliminar: ' + error.message);
+    } else {
+        await fetchBlog();
+    }
+};
+
+if (blogForm) {
+    blogForm.onsubmit = async (e) => {
+        e.preventDefault();
+        const submitBtn = blogForm.querySelector('button[type="submit"]');
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Guardando...';
+        
+        const id = document.getElementById('blog-id').value;
+        const keywordsStr = document.getElementById('blog-keywords').value;
+        const keywordsArray = keywordsStr ? keywordsStr.split(',').map(k => k.trim()).filter(k => k) : [];
+        
+        const articleData = {
+            title: document.getElementById('blog-title').value.trim(),
+            slug: document.getElementById('blog-slug').value.trim(),
+            published: document.getElementById('blog-published').checked,
+            category: document.getElementById('blog-category').value.trim(),
+            excerpt: document.getElementById('blog-excerpt').value.trim(),
+            meta_description: document.getElementById('blog-meta-desc').value.trim(),
+            keywords: keywordsArray,
+            preview_image: document.getElementById('blog-preview-image') ? document.getElementById('blog-preview-image').value.trim() : '',
+            featured_image: document.getElementById('blog-image').value.trim(),
+            reading_time: parseInt(document.getElementById('blog-reading-time').value) || 5,
+            content: document.getElementById('blog-content').value.trim()
+        };
+        
+        let upsertData = { ...articleData };
+        if (id) {
+            upsertData.id = id;
+            upsertData.updated_at = new Date().toISOString();
+        }
+        
+        const { error } = await _supabase.from('blog_articles').upsert(upsertData, { onConflict: 'slug' });
+        if (error) {
+            alert('Error guardando artículo: ' + error.message);
+        } else {
+            blogModal.classList.remove('active');
+            await fetchBlog();
+        }
+        
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Guardar Artículo';
+    };
+}
+
+// =========================================
+// BLOG IMAGE UPLOADS & DRAG N DROP
+// =========================================
+function initBlogUploads() {
+    const zones = [
+        { dropId: 'drop-zone-preview', fileId: 'file-blog-preview', inputId: 'blog-preview-image' },
+        { dropId: 'drop-zone-main', fileId: 'file-blog-main', inputId: 'blog-image' }
+    ];
+
+    zones.forEach(config => {
+        const dropZone = document.getElementById(config.dropId);
+        const fileInput = document.getElementById(config.fileId);
+        const textInput = document.getElementById(config.inputId);
+
+        if (!dropZone || !fileInput) return;
+
+        // Click to upload
+        dropZone.onclick = (e) => {
+            if (e.target.tagName !== 'INPUT') {
+                fileInput.click();
+            }
+        };
+
+        fileInput.onchange = (e) => {
+            if (e.target.files.length > 0) {
+                handleBlogFileUpload(e.target.files[0], textInput, dropZone);
+            }
+        };
+
+        // Drag and Drop
+        ['dragenter', 'dragover'].forEach(eventName => {
+            dropZone.addEventListener(eventName, (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                dropZone.style.background = 'rgba(255, 215, 0, 0.1)';
+                dropZone.style.borderColor = 'var(--gold-primary)';
+            }, false);
+        });
+
+        ['dragleave', 'drop'].forEach(eventName => {
+            dropZone.addEventListener(eventName, (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                dropZone.style.background = 'rgba(255, 255, 255, 0.05)';
+                dropZone.style.borderColor = 'var(--glass-border)';
+            }, false);
+        });
+
+        dropZone.addEventListener('drop', (e) => {
+            const dt = e.dataTransfer;
+            const files = dt.files;
+            if (files.length > 0) {
+                handleBlogFileUpload(files[0], textInput, dropZone);
+            }
+        }, false);
+    });
+}
+
+async function handleBlogFileUpload(file, targetInput, dropZone) {
+    const originalText = dropZone.querySelector('p').textContent;
+    const progressText = dropZone.querySelector('p');
+    progressText.textContent = 'Subiendo...';
+    
+    const slug = document.getElementById('blog-slug').value.trim() || 'blog-image';
+    const fileName = `${slug}-${Date.now()}.jpg`;
+    
+    try {
+        const { data, error } = await _supabase.storage.from('blog-images').upload(fileName, file);
+        
+        if (error) {
+            alert("Error subiendo imagen: " + error.message);
+            progressText.textContent = originalText;
+        } else {
+            const { data: { publicUrl } } = _supabase.storage.from('blog-images').getPublicUrl(fileName);
+            targetInput.value = publicUrl;
+            progressText.textContent = '¡Subida con éxito!';
+            setTimeout(() => { progressText.textContent = originalText; }, 3000);
+            
+            // Add a small preview icon if it doesn't exist
+            let preview = dropZone.querySelector('.mini-preview');
+            if (!preview) {
+                preview = document.createElement('img');
+                preview.className = 'mini-preview';
+                preview.style.cssText = 'width: 40px; height: 40px; object-fit: cover; border-radius: 4px; border: 1px solid var(--gold-primary); margin-top: 5px;';
+                dropZone.appendChild(preview);
+            }
+            preview.src = publicUrl;
+        }
+    } catch (err) {
+        console.error(err);
+        alert("Error crítico en la subida.");
+        progressText.textContent = originalText;
+    }
+}
+
+function updateMiniPreview(dropZone, url) {
+    let preview = dropZone.querySelector('.mini-preview');
+    if (!preview) {
+        preview = document.createElement('img');
+        preview.className = 'mini-preview';
+        preview.style.cssText = 'width: 40px; height: 40px; object-fit: cover; border-radius: 4px; border: 1px solid var(--gold-primary); margin-top: 5px;';
+        dropZone.appendChild(preview);
+    }
+    preview.src = url;
+}
+
+function removeMiniPreview(dropZone) {
+    const preview = dropZone.querySelector('.mini-preview');
+    if (preview) preview.remove();
+}

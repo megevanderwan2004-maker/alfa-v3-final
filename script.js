@@ -230,9 +230,10 @@ function initMegaMenu(data) {
     document.querySelectorAll('.nav-link').forEach(link => {
         link.onclick = (e) => {
             const cat = link.getAttribute('data-cat');
-            
+            if (!cat) return; // Let regular links navigate naturally!
+
             // On mobile, if this link is a main category, clicking anywhere toggles the accordion
-            if (window.innerWidth <= 768 && cat) {
+            if (window.innerWidth <= 768) {
                 const parentItem = link.closest('.nav-item');
                 if (parentItem) {
                     e.preventDefault();
@@ -245,20 +246,14 @@ function initMegaMenu(data) {
                 }
             }
 
-            // Normal navigation for desktop, or items without 'data-cat'
+            // Normal navigation for desktop
             if (e.target.closest('.nav-chevron')) return; // Desktop chevron fallback
             
-            if (cat) {
-                e.preventDefault();
-                document.querySelectorAll('.nav-links').forEach(m => m.classList.remove('active'));
-                if (window.mobileBtn) window.mobileBtn.classList.remove('active');
-                document.body.style.overflow = '';
-                handleSpaNavigation(cat, 'mainCategory');
-            } else if (link.href && !link.href.includes('#')) {
-                // For Nosotros/Blog etc
-                document.querySelectorAll('.nav-links').forEach(m => m.classList.remove('active'));
-                document.body.style.overflow = '';
-            }
+            e.preventDefault();
+            document.querySelectorAll('.nav-links').forEach(m => m.classList.remove('active'));
+            if (window.mobileBtn) window.mobileBtn.classList.remove('active');
+            document.body.style.overflow = '';
+            handleSpaNavigation(cat, 'mainCategory');
         };
     });
 }

@@ -29,6 +29,7 @@
             <nav class="sidebar-nav">
                 <a href="#" class="nav-link-tab active" data-target="products-panel"><i class="fa-solid fa-box"></i> Productos</a>
                 <a href="#" class="nav-link-tab" data-target="promotions-panel"><i class="fa-solid fa-star"></i> Promoción del Mes</a>
+                <a href="#" class="nav-link-tab" data-target="blog-panel"><i class="fa-solid fa-pen-nib"></i> Blog & Artículos</a>
             </nav>
             <div class="sidebar-footer">
                 <button id="btn-logout" class="btn-sidebar"><i class="fa-solid fa-sign-out-alt"></i> Cerrar Sesión</button>
@@ -87,6 +88,31 @@
                 <p style="margin-bottom: 30px; color: var(--text-secondary);">Selecciona los 3 productos que se mostrarán en la sección "PROMOCIÓN DEL MES" de la página de inicio.</p>
                 <div class="promotions-grid" id="promotions-slots" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
                     <!-- 3 Slots injected via JS -->
+                </div>
+            </div>
+
+            <!-- Blog Management Panel -->
+            <div id="blog-panel" class="content-panel tab-content" style="display:none;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 20px;">
+                    <p style="color: var(--text-secondary); margin:0;">Gestiona los artículos de tu blog. Usa Markdown para el contenido.</p>
+                    <button class="btn-gold" id="btn-add-blog"><i class="fa-solid fa-plus"></i> Nuevo Artículo</button>
+                </div>
+                <div class="table-container">
+                    <table class="blog-table" style="width: 100%; border-collapse: collapse;">
+                        <thead>
+                            <tr>
+                                <th>Estado</th>
+                                <th>Título</th>
+                                <th>Categoría</th>
+                                <th>Visitas</th>
+                                <th>Fecha</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="blog-tbody">
+                            <!-- Inyectado por JS -->
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </main>
@@ -196,6 +222,86 @@
                     </tbody>
                 </table>
             </div>
+        </div>
+    </div>
+
+    <!-- Blog Article Modal -->
+    <div id="blog-modal" class="modal">
+        <div class="modal-content" style="max-width: 900px; height: 90vh; overflow-y: auto;">
+            <span class="close-blog-modal" style="position: absolute; top: 15px; right: 20px; font-size: 1.5rem; cursor: pointer; color: var(--text-secondary);">&times;</span>
+            <h3 id="blog-modal-title" style="margin-bottom: 20px; color: var(--gold-primary);">Nuevo Artículo</h3>
+            <form id="blog-form">
+                <input type="hidden" id="blog-id">
+
+                <div class="form-group" style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                    <input type="checkbox" id="blog-published" style="width: 20px; height: 20px;">
+                    <label for="blog-published" style="margin: 0; cursor: pointer; color: var(--text-primary); font-weight: bold;">Publicado (Visible al público)</label>
+                </div>
+
+                <div class="form-group">
+                    <label>Título del Artículo *</label>
+                    <input type="text" id="blog-title" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Slug (URL) *</label>
+                        <input type="text" id="blog-slug" placeholder="se-genera-automaticamente" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Categoría *</label>
+                        <input type="text" id="blog-category" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Extracto (Resumen) *</label>
+                    <textarea id="blog-excerpt" rows="2" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Meta Descripción (SEO)</label>
+                    <textarea id="blog-meta-desc" rows="2"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Palabras Clave (Keywords, separadas por coma)</label>
+                    <input type="text" id="blog-keywords">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Imagen Preview (Grilla del Blog)</label>
+                        <div class="blog-upload-zone" id="drop-zone-preview" style="border: 2px dashed var(--glass-border); padding: 15px; border-radius: 8px; text-align: center; cursor: pointer; transition: 0.3s; background: rgba(255,255,255,0.05);">
+                            <i class="fa-solid fa-image" style="font-size: 1.5rem; color: var(--gold-primary); margin-bottom: 8px;"></i>
+                            <p style="font-size: 0.8rem; color: #888;">Arrastra o haz clic para subir preview</p>
+                            <input type="text" id="blog-preview-image" placeholder="URL de la imagen..." style="margin-top: 10px; font-size: 0.8rem;">
+                            <input type="file" id="file-blog-preview" hidden accept="image/*">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Imagen Principal (Dentro del Artículo)</label>
+                        <div class="blog-upload-zone" id="drop-zone-main" style="border: 2px dashed var(--glass-border); padding: 15px; border-radius: 8px; text-align: center; cursor: pointer; transition: 0.3s; background: rgba(255,255,255,0.05);">
+                            <i class="fa-solid fa-camera-retro" style="font-size: 1.5rem; color: var(--gold-primary); margin-bottom: 8px;"></i>
+                            <p style="font-size: 0.8rem; color: #888;">Arrastra o haz clic para subir principal</p>
+                            <input type="text" id="blog-image" placeholder="URL de la imagen..." style="margin-top: 10px; font-size: 0.8rem;">
+                            <input type="file" id="file-blog-main" hidden accept="image/*">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Tiempo de Lectura (minutos)</label>
+                    <input type="number" id="blog-reading-time" value="5" style="max-width: 200px;">
+                </div>
+
+                <div class="form-group">
+                    <label>Contenido del Artículo (Usa texto formateado Markdown) *</label>
+                    <textarea id="blog-content" rows="15" required style="font-family: monospace; line-height: 1.5; padding: 15px; font-size: 1rem;"></textarea>
+                </div>
+
+                <button type="submit" class="btn-save">Guardar Artículo</button>
+            </form>
         </div>
     </div>
 

@@ -3331,3 +3331,65 @@ iframe[src*="mailjet"] {
         font-size: 1rem;
     }
 }
+
+/* ================================
+   BLOG & MARKDOWN TYPOGRAPHY
+   ================================ */
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4 {
+    color: #fff;
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+    font-weight: 600;
+}
+
+.markdown-body h2 {
+    font-size: 1.8rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 0.3em;
+}
+
+.markdown-body h3 {
+    font-size: 1.4rem;
+}
+
+.markdown-body p {
+    margin-bottom: 1.2em;
+}
+
+.markdown-body ul,
+.markdown-body ol {
+    margin-bottom: 1.2em;
+    padding-left: 20px;
+}
+
+.markdown-body li {
+    margin-bottom: 0.5em;
+}
+
+.markdown-body strong {
+    color: var(--gold-primary);
+}
+
+.markdown-body a {
+    color: var(--gold-primary);
+    text-decoration: underline;
+}
+
+.markdown-body a:hover {
+    color: #fff;
+}
+
+.markdown-body blockquote {
+    border-left: 4px solid var(--gold-primary);
+    padding-left: 15px;
+    margin-left: 0;
+    color: #aaa;
+    font-style: italic;
+    background: rgba(255, 255, 255, 0.02);
+    padding: 10px 15px;
+    border-radius: 0 4px 4px 0;
+}

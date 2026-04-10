@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="description" content="Expertos en Car Audio Guadalajara e Iluminación LED autos. El mejor sistema audio para coche Guadalajara e instalación profesional en Jalisco. ¡Contáctanos!">
-    <title>Blog & Noticias | ALFA</title>
+    <title>Artículo | ALFA</title>
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;800&family=Oswald:wght@400;500;600;700&display=swap"
         rel="stylesheet">
@@ -181,15 +181,23 @@
         </header>
 
         <main class="page-content" style="padding-top: 160px; min-height: 70vh;">
-            <div class="container">
-                <div class="section-header" data-aos="fade-up">
-                    <h2>Blog & <span class="gold-text" style="color: var(--gold-primary);">Noticias</span></h2>
-                    <p style="color:var(--text-secondary); margin-top: 10px;">Las últimas novedades, guías y consejos sobre Car Audio en Guadalajara</p>
-                </div>
+            <div class="container" style="max-width: 800px; margin: 0 auto; margin-bottom: 60px;">
+                <div id="article-loading" style="text-align: center; color: var(--text-secondary); padding: 50px 0;">Cargando artículo...</div>
                 
-                <div id="blog-grid" class="blog-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px; margin-top: 40px; margin-bottom: 60px;">
-                    <div style="text-align: center; grid-column: 1 / -1; color: var(--text-secondary);">Cargando artículos...</div>
-                </div>
+                <article id="article-content" style="display: none; background: rgba(10, 10, 10, 0.8); border: 1px solid var(--glass-border); border-radius: 12px; padding: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+                    <a href="blog.html" class="btn-gold" style="display: inline-block; margin-bottom: 20px; font-size: 0.9rem; text-decoration: none;"><i class="fa-solid fa-arrow-left"></i> Volver al Blog</a>
+                    
+                    <div id="article-meta" style="display: flex; gap: 15px; margin-bottom: 15px; font-size: 0.9rem; color: var(--gold-primary); font-weight: bold;">
+                        <span id="article-category"></span> • <span id="article-date"></span> • <span><i class="fa-solid fa-clock"></i> <span id="article-readtime"></span> min</span>
+                    </div>
+                    
+                    <h1 id="article-title" style="font-size: 2.5rem; margin-bottom: 20px; line-height: 1.2;"></h1>
+                    
+                    <img id="article-image" src="" alt="Featured" style="width: 100%; height: auto; max-height: 400px; object-fit: cover; border-radius: 8px; margin-bottom: 30px; display: none;">
+                    
+                    <div id="article-body" class="markdown-body" style="line-height: 1.8; font-size: 1.1rem; color: var(--text-secondary);">
+                    </div>
+                </article>
             </div>
         </main>
 
@@ -266,7 +274,8 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>window.ALFA_PAGE_MODE = 'HOME';</script>
     <script src="script.js?v=12"></script>
-<script src="blog.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="article.js"></script>
 </body>
 
 </html>
