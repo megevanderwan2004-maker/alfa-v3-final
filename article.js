@@ -1,6 +1,16 @@
 document.addEventListener('DOMContentLoaded', async () => {
     const urlParams = new URLSearchParams(window.location.search);
     const slug = urlParams.get('slug');
+    const from = urlParams.get('from');
+
+    // Handle back button target
+    const backBtn = document.querySelector('.btn-gold[href="blog.html"]');
+    if (backBtn && from === 'home') {
+        backBtn.href = 'index.html';
+        backBtn.innerHTML = '<i class="fa-solid fa-house"></i> Volver al Inicio';
+        backBtn.style.color = '#fff';
+        backBtn.style.borderColor = 'rgba(255,255,255,0.3)';
+    }
     
     if (!slug) {
         document.getElementById('article-loading').textContent = 'Artículo no encontrado.';

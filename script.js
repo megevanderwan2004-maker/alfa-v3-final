@@ -349,7 +349,10 @@ async function loadCatalogRouter() {
         else if (mode === 'TIENDA') loadTienda(catalog);
         else if (mode === 'PRODUCT') loadProductDetails(catalog);
         
-        initSmartSearch(catalog, document.getElementById('gallery-grid'));
+        const galleryGrid = document.getElementById('gallery-grid');
+        if (galleryGrid) {
+            initSmartSearch(catalog, galleryGrid);
+        }
     } catch (err) {
         console.warn("Supabase load failed, using local fallback:", err);
         if (typeof ALFA_CATALOG_FALLBACK !== 'undefined') {
@@ -372,7 +375,10 @@ async function loadCatalogRouter() {
             }
             else if (mode === 'TIENDA') loadTienda(catalog);
             else if (mode === 'PRODUCT') loadProductDetails(catalog);
-            initSmartSearch(catalog, document.getElementById('gallery-grid'));
+            const galleryGrid = document.getElementById('gallery-grid');
+            if (galleryGrid) {
+                initSmartSearch(catalog, galleryGrid);
+            }
         } else {
             if (spinner) spinner.style.display = 'none';
         }
