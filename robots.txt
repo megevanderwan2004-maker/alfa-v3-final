@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+
+# Exclude sensitive or system pages
+Disallow: /admin.html
+Disallow: /login.html
+Disallow: /gracias.html
+Disallow: /_ARCHIVE/
+Disallow: /node_modules/
+
+# Direct link to the dynamic sitemap
+Sitemap: https://alfacaraudiomx.com/sitemap.xml

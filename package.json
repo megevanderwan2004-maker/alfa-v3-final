@@ -5,6 +5,7 @@
   "main": "admin.js",
   "scripts": {
     "start": "node server.js",
+    "build": "node generate_sitemap.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
