@@ -3394,6 +3394,16 @@ iframe[src*="mailjet"] {
     border-radius: 0 4px 4px 0;
 }
 
+.markdown-body img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    margin: 2.5rem auto;
+    display: block;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--glass-border);
+}
+
 .page-content {
     padding-top: 160px;
 }
