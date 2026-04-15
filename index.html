@@ -450,31 +450,27 @@
             <section class="newsletter-section" data-aos="fade-up">
                 <div class="container newsletter-content">
                     <div class="newsletter-text">
-                        <h2 class="section-title" style="text-align: left; margin-bottom: 10px;">Obtén nuestro catálogo
-                            2025 en PDF</h2>
-                        <p>Déjanos tu correo y recíbelo gratis al instante.</p>
+                        <h2 class="section-title" style="text-align: left; margin-bottom: 10px;">RECIBE NUESTRO CATÁLOGO 2026</h2>
+                        <p>Ingresa tu correo y nuestro sistema te lo enviará automáticamente al instante.</p>
                     </div>
                     <div class="newsletter-form-container" style="flex: 1; width: 100%;">
-                        <form action="https://formsubmit.co/alfa@alfacaraudiomx.com" method="POST"
-                            class="pas-form alfa-custom-form" autocomplete="off">
-                            <input type="hidden" name="_next"
-                                value="https://drive.google.com/file/d/1UHAi3XOsHjMOjInNodlON3X6rThz8Ngv/view?usp=share_link">
-                            <input type="hidden" name="_captcha" value="false">
+                        <form id="newsletter-form" class="pas-form alfa-custom-form" autocomplete="off">
                             <div class="alfa-form-row">
                                 <div class="pas-input">
-                                    <input class="pas-email" required="required" type="email" name="email" id="email"
+                                    <input class="pas-email" required="required" type="email" name="email" id="newsletter-email"
                                         placeholder="Tu correo electrónico..." autocomplete="email">
                                 </div>
-                                <label class="pas-optin" id="consent-label" for="consent">
-                                    <input id="consent" name="consent" required="true" type="checkbox">
-                                    <span class="optin-text">Acepto recibir el catálogo.</span>
+                                <label class="pas-optin" id="consent-label" for="newsletter-consent">
+                                    <input id="newsletter-consent" name="consent" required="true" type="checkbox" checked>
+                                    <span class="optin-text">Acepto recibir el catálogo por email.</span>
                                 </label>
                                 <div class="pas-submit">
-                                    <button type="submit" class="btn-red btn-alfa-submit">
-                                        <span class="btn-text">Recibir</span>
+                                    <button type="submit" id="btn-newsletter-submit" class="btn-red btn-alfa-submit">
+                                        <span class="btn-text">Recibir Catálogo</span>
                                     </button>
                                 </div>
                             </div>
+                            <div id="newsletter-status" style="margin-top: 15px; display: none; text-align: center; font-weight: bold;"></div>
                         </form>
                     </div>
                 </div>

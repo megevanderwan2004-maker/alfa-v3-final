@@ -126,6 +126,76 @@ function initWhatsAppLinks() {
     const waParams = `?text=${encodeURIComponent(CONFIG.whatsappDefaultMsg)}`;
     const floatWa = document.getElementById('floating-wa');
     const footerWa = document.getElementById('footer-wa-link');
+    
+    // Footer Year Update
+    const footerYear = document.querySelector('.footer-bottom p');
+    if (footerYear) {
+        footerYear.innerHTML = `&copy; ${new Date().getFullYear()} ALFA Car Audio. Todos los derechos reservados.`;
+    }
+
+    // Newsletter Lead Capture with Supabase
+    const newsletterForm = document.getElementById('newsletter-form');
+    const newsletterStatus = document.getElementById('newsletter-status');
+    const btnSubmit = document.getElementById('btn-newsletter-submit');
+
+    if (newsletterForm) {
+        newsletterForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const email = document.getElementById('newsletter-email').value;
+            const consent = document.getElementById('newsletter-consent').checked;
+            
+            if (!email) return;
+
+            // UI State: Loading
+            const originalBtnText = btnSubmit.innerHTML;
+            btnSubmit.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> ENVIANDO...';
+            btnSubmit.disabled = true;
+            newsletterStatus.style.display = 'block';
+            newsletterStatus.style.color = 'var(--text-secondary)';
+            newsletterStatus.textContent = 'Guardando tus datos...';
+
+            try {
+                // 1. Save Lead to Database
+                const { error: dbError } = await _supabase
+                    .from('leads')
+                    .insert([
+                        { email: email, consent: consent, source: 'catalog_download' }
+                    ]);
+
+                if (dbError) {
+                    if (dbError.code === '23505') {
+                        throw new Error('Ese correo ya está registrado.');
+                    }
+                    throw dbError;
+                }
+
+                // 2. Trigger Email Delivery Directly (Bypasses Webhook requirement)
+                // This calls the 'send-catalog' Edge Function you created
+                _supabase.functions.invoke('send-catalog', {
+                    body: { record: { email: email } }
+                }).then(({ error: fnError }) => {
+                    if (fnError) console.error('Error triggering email:', fnError);
+                });
+
+                // UI State: Success
+                newsletterStatus.style.color = '#00ff88';
+                newsletterStatus.innerHTML = '<i class="fa-solid fa-circle-check"></i> ¡Éxito! Revisa tu correo en breve.';
+                btnSubmit.innerHTML = '<i class="fa-solid fa-check"></i> ¡CATÁLOGO ENVIADO!';
+                btnSubmit.style.background = '#00ff88';
+                btnSubmit.style.borderColor = '#00ff88';
+                newsletterForm.reset();
+
+            } catch (err) {
+                console.error('Newsletter Error:', err);
+                newsletterStatus.style.color = 'var(--red-sport)';
+                newsletterStatus.textContent = err.message || 'Error al conectar con el servidor.';
+                btnSubmit.innerHTML = originalBtnText;
+                btnSubmit.disabled = false;
+            }
+        });
+    }
+    
     if (floatWa) floatWa.href = `https://wa.me/${CONFIG.whatsappNumber}${waParams}`;
     if (footerWa) footerWa.href = `https://wa.me/${CONFIG.whatsappNumber}${waParams}`;
 }
